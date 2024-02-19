@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const app = express();
 
@@ -11,4 +11,4 @@ app.get('/', (req, res) => {
 // Register all routers
 app.use('/example', require('./routes/ExampleRoutes'));
 
-module.exports = app;
+export default app;

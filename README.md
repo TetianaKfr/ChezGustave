@@ -24,7 +24,7 @@ If you want to close them `docker compose kill` to close the server, client and 
 
 To run server tests your need to run the `docker-compose.test.yml` instead of the normal `docker-compose.yml`
 
-To do that you should run: `docker compose up -f docker-compose.test.yml -d`.
+To do that you should run: `docker compose -f docker-compose.test.yml up -d`.
 
 ### Client
 
