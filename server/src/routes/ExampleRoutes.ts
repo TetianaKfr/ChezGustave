@@ -1,6 +1,6 @@
-const { Router } = require('express');
-const ExampleController = require('../controllers/ExampleController');
-const ExampleMiddleware = require('../middlewares/ExampleMiddlewares');
+import { Router } from 'express';
+import * as ExampleController from '../controllers/ExampleController';
+import { ExampleMiddleware } from '../middlewares/ExampleMiddlewares';
 
 const router = Router();
 
