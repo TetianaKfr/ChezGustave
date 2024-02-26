@@ -18,8 +18,14 @@ export default class User {
   @Column({ unique: true })
   phone_number: string
 
-  @Column({ unique: true, nullable: true })
+  /**
+   * Randomly generated base64 string
+   */
+  @Column({ nullable: true })
   session_token: string
+
+  @Column({ nullable: true })
+  session_token_expiration: Date
 
   @Column({ nullable: true })
   admin: boolean
