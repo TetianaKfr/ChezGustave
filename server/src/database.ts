@@ -1,5 +1,9 @@
 import { DataSource } from 'typeorm';
-import { ExampleEntity } from './entities/ExampleEntity';
+import Booking from './entities/Booking';
+import Equipment from './entities/Equipment';
+import Housing from './entities/Housing';
+import Rating from './entities/Rating';
+import User from './entities/User';
 
 export default new DataSource({
     type: 'postgres',
@@ -7,6 +11,10 @@ export default new DataSource({
     synchronize: true,
     logging: true,
     entities: [
-        ExampleEntity
+        Booking,
+        Equipment,
+        Housing,
+        Rating,
+        User,
     ]
 });
