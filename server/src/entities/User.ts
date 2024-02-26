@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import Booking from "./Booking";
 
 @Entity()
 export default class User {
@@ -22,4 +23,7 @@ export default class User {
 
   @Column({ nullable: true })
   admin: boolean
+
+  @OneToMany(() => Booking, (booking) => booking.user)
+  bookings: Booking[]
 }

@@ -23,7 +23,7 @@ export default class Booking {
   @ManyToOne(() => Housing)
   housing: Housing
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.bookings)
   user: User
 
   @ManyToOne(() => Rating)
