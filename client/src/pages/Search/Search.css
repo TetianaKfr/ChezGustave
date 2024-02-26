@@ -1,0 +1,26 @@
+.produitDescription{
+    display:flex;
+    padding: 2vw;
+    border:  solid 1px green;
+    flex-direction: row;
+    gap: 5vw;
+}
+
+.filtre{
+    display:flex;
+    padding: 2vw;
+    width: 15vw;
+    background-color: beige;
+    border:  solid 1px blue;
+    flex-direction: row;
+}
+
+.card{
+    display:flex;
+    flex-direction: row; 
+    align-items: center;
+    width: 70vw;
+    padding : 1vw;
+    gap: 10vw;
+    border:  solid 1px red;
+}
