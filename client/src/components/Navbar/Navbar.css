@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    --VertBleu:#155B55;
+    --Blanc: #eeeeee;
+    --DoreClair:#d2c592;      
+    --DoreMedium: #c2a564;
+    --DoreSombre: #b99652;
+    overflow-x: hidden;
+  }
+
+
+.navbar{
+    margin-top: 2.5vw;
+    display: flex;
+    justify-content: space-around;
+    padding: -10vw;
+    align-items: center;
+    height: 10vw;
+    width: 100vw;                       
+    background: linear-gradient(0deg,#c2a564,#b99652, #d2c592,#c2a564,#b99652);      
+                
+}
+
+#Logo{
+    height: 15vw;
+    width: 15vw;
+}
+
+.Boutons{
+    display: flex;
+    gap: 2vw; 
+}
+
+button{
+    border: none;
+    color: var(--Blanc);
+    height: 4vw;
+    width: 10vw;
+    border-radius: 20px;
+    background-color: var(--VertBleu);
+    border: solid 3px #0d4b46;
+    font-size: 1.3rem;
+}
