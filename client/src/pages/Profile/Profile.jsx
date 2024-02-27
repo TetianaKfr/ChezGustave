@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./Profile.css";
+import { Navbar } from "../../components/Navbar/Navbar";
+import { Commandes } from "./Commandes";
+import { Reclamations } from "./Reclamations";
 
 function Profile() {
   // State variables for user data
-  const [firstName, setFirstName] = useState("Alice");
-  const [lastName, setLastName] = useState("Dupont");
-  const [email, setEmail] = useState("alice.dupont@example.com");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   // State variables for password change
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -40,47 +43,108 @@ function Profile() {
   };
 
   return (
-    <div className="profile">
-      <h1>Mon compte</h1>
-      <h2>
-        {firstName} {lastName}
-      </h2>
-      <div className="profile-info">
-        <h3>Mes informations</h3>
-        <p>Nom : {firstName}</p>
-        <p>Prénom : {lastName}</p>
-        <p>Email : {email}</p>
-        <h3>Changement de mot de passe</h3>
-        <p>Mot de passe actuel :</p>
-        <input
-          type="password"
-          value={currentPassword}
-          onChange={(e) => setCurrentPassword(e.target.value)}
-        />
-        <p>Nouveau mot de passe :</p>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <p>Confirmer le nouveau mot de passe :</p>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button onClick={handleChangePassword}>Valider</button>
-        <p className="password-message">{passwordMessage}</p>
+    <>
+      <Navbar />
+      <div className="gauche">
+        <h2>Mon compte</h2>
+        <h2>
+          {firstName} {lastName}
+        </h2>
+        <div className="rectangle">
+          <div className="bottom-side"></div>
+        </div>
+        <div className="profile">
+          <div className="remettre">
+            <div className="bar">
+              <div className="colonne2">
+                <h3>Mes informations</h3>
+              </div>
+              <div className="colonne2">
+                <h3>Mes commandes</h3>
+              </div>
+              <div className="colonne2">
+                <h3>Mes réclamations</h3>
+              </div>
+              <div className="vertical-side"></div>
+            </div>
+          </div>
+          <div className="droite">
+            <div className="profile-info">
+              <h3>Mes informations</h3>
+              <form>
+                <div className="nomprenom">
+                  <div className="colonne">
+                    <label id="labelnom" htmlFor="nom">
+                      Nom :
+                    </label>
+                    <div className="input">
+                      <input
+                        type="text"
+                        id="nom"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder="Dupont" // Ajout d'un placeholder avec la valeur initiale
+                      />
+                    </div>
+                  </div>
+                  <div className="colonne">
+                    <label id="labelprenom" htmlFor="prenom">
+                      Prénom :
+                    </label>
+                    <input
+                      type="text"
+                      id="prenom"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Jean" // Ajout d'un placeholder avec la valeur initiale
+                    />
+                  </div>
+                </div>
+                <div className="colonne">
+                  <label id="labelEmail" htmlFor="email">
+                    Email :
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="jeandupont@gmail.com" // Ajout d'un placeholder avec la valeur initiale
+                  />
+                </div>
+              </form>
+              <div className="chgmt">
+                <h3>Changement de mot de passe</h3>
+              </div>
+              <div className="motsDP">
+                <div className="colonne">
+                  <p>Mot de passe actuel :</p>
+                  <div className="input">
+                    <input
+                      type="password"
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="colonne">
+                  <p>Nouveau mot de passe :</p>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="btnConfirmer">
+                <button onClick={handleChangePassword}>Confirmer</button>
+              </div>
+              <p className="password-message">{passwordMessage}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="profile-orders">
-        <h3>Mes commandes</h3>
-        <p>Vous n'avez pas encore passé de commande.</p>
-      </div>
-      <div className="profile-claims">
-        <h3>Mes réclamations</h3>
-        <p>Vous n'avez pas encore fait de réclamation.</p>
-      </div>
-    </div>
+    </>
   );
 }
 
