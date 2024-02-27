@@ -5,16 +5,22 @@ import bcrypt from "bcrypt";
 import database from "../database";
 import User from "../entities/User";
 import { Session, getSession } from "../utils/Session";
-import ControllerException from "../utils/ControllerException";
+import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 
-export async function list(_req: Request, res: Response) {
-  // TODO: Securise this so only admin can request this
+export async function list(req: Request, res: Response) {
+  try {
+    if (await getSession(req) != Session.Admin) {
+      throw new ControllerException(401);
+    }
 
-  let users = database.getRepository(User);
+    let users = database.getRepository(User);
 
-  let emails = (await users.find({ select: ["email"] })).map((user) => user.email);
+    let emails = (await users.find({ select: ["email"] })).map((user) => user.email);
 
-  res.status(200).send(emails);
+    res.status(200).send(emails);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
 }
 
 export async function create(req: Request, res: Response) {
@@ -58,16 +64,12 @@ export async function create(req: Request, res: Response) {
       if (e instanceof QueryFailedError && e.driverError.code == "23505") {
         throw new ControllerException(409);
       }
+
       throw e;
     }
 
     res.sendStatus(201);
-  } catch (e) {
-    if (e instanceof ControllerException) {
-      e.send(res);
-    } else {
-      console.error("Uncatched server error: " + e);
-      res.sendStatus(500);
-    }
+  } catch (err) {
+    handle_controller_errors(res, err);
   }
 }

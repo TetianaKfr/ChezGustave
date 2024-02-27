@@ -11,17 +11,21 @@ export default class ConstrollerException extends Error {
     this.client_message = client_message;
     this.server_message = server_message;
   }
-
-  send(res: Response) {
-    if (this.client_message == undefined) {
-      res.sendStatus(this.code);
-    } else {
-      res.status(this.code).send(this.client_message);
-    }
-
-    if (this.server_message != undefined) {
-      console.error(this.server_message);
-    }
-  }
 }
 
+export function handle_controller_errors(res: Response, err: any) {
+  if (err instanceof ConstrollerException) {
+    if (err.client_message == undefined) {
+      res.sendStatus(err.code);
+    } else {
+      res.status(err.code).send(err.client_message);
+    }
+
+    if (err.server_message != undefined) {
+      console.error(err.server_message);
+    }
+  } else {
+    console.error("Unknown exception: " + err);
+    res.sendStatus(500);
+  }
+}
