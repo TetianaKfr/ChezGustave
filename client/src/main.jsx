@@ -6,7 +6,6 @@ import { Search } from "./pages/Search/Search";
 import { Navbar } from "./components/Navbar/Navbar";
 import Profile from "./pages/Profile/Profile.jsx";
 import Commandes from "./pages/Profile/Commandes";
-import Reclamations from "./pages/Profile/Reclamations";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -16,8 +15,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Navbar />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/orders" component={Commandes} />
-        <Route path="/profile/reclamations" component={Reclamations} />
-        <Route path="/profile" component={Profile} />
       </Routes>
     </Router>
   </React.StrictMode>
