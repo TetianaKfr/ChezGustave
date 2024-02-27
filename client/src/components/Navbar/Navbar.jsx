@@ -1,16 +1,17 @@
 import React from 'react';
-import './Navbar.css';
+import '../component.css';
 import LogoGustave from '../../assets/LogoGustave.png';
+import { NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
     return (
         <>
             <div className='navbar'>
-                <img id='Logo' src={LogoGustave} alt="logo site" />
+                <NavLink to="/"><img id='Logo' src={LogoGustave} alt="logo site" /></NavLink>
 
                 <div className='Boutons'>
-                    <button>Se connecter</button>
-                    <button>S'inscrire</button>
+                    <NavLink to="/"><button>Se connecter</button></NavLink>
+                    <NavLink to="/"><button>S'inscrire</button></NavLink>
                 </div>
             </div>
         </>
