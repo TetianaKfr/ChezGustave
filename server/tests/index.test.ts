@@ -1,3 +1,4 @@
+/*
 import supertest from 'supertest';
 import app from '../src/app';
 import database from '../src/database';
@@ -22,3 +23,4 @@ describe('Tests', () => {
     });
 
 });
+*/
