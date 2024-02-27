@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
-import { Commandes } from "./Commandes";
-import { Reclamations } from "./Reclamations";
+import { NavLink } from "react-router-dom";
 
 function Profile() {
   // State variables for user data
@@ -57,13 +56,19 @@ function Profile() {
           <div className="remettre">
             <div className="bar">
               <div className="colonne2">
-                <h3>Mes informations</h3>
+                <h3>
+                  <NavLink to="/profile/info">Mes informations</NavLink>
+                </h3>
               </div>
               <div className="colonne2">
-                <h3>Mes commandes</h3>
+                <h3>
+                  <NavLink to="/profile/orders">Mes commandes</NavLink>
+                </h3>
               </div>
               <div className="colonne2">
-                <h3>Mes réclamations</h3>
+                <h3>
+                  <NavLink to="/profile/reclamations">Mes réclamations</NavLink>
+                </h3>
               </div>
               <div className="vertical-side"></div>
             </div>
