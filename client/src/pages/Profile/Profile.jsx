@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
+import Commandes from "./Commandes";
 
 function Profile() {
   // State variables for user data
