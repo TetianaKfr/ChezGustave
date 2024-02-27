@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Profil= () => {
+export const Error= () => {
     return (
         <>
-
+            <p>Mauvaise URL</p>
         </>
     )
 }
