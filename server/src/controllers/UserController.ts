@@ -7,9 +7,11 @@ import User from "../entities/User";
 import { Session, getSession } from "../utils/Session";
 import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 
-export async function list(_req: Request, res: Response) {
+export async function list(req: Request, res: Response) {
   try {
-    // TODO: Securise this so only admin can request this
+    if (await getSession(req) != Session.Admin) {
+      throw new ControllerException(401);
+    }
 
     let users = database.getRepository(User);
 
