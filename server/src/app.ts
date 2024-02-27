@@ -1,15 +1,9 @@
 import express from 'express';
 
+import UsersRouter from "./routes/UserRoutes";
+
 const app = express();
 
-// Define global middlewares here:
-
-app.get('/', (req, res) => {
-    res.send('Hello world');
-});
-
-// Register all routers
-import ExampleRouter from './routes/ExampleRoutes';
-app.use('/example', ExampleRouter);
+app.use('/users', UsersRouter);
 
 export default app;
