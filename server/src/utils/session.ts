@@ -9,7 +9,7 @@ export enum Session {
   Admin,
 }
 
-export async function getPermissions(req: Request): Promise<Session> {
+export async function getSession(req: Request): Promise<Session> {
   let authorization = req.headers["Authorization"];
 
   if (typeof authorization != "string") {
