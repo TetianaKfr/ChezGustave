@@ -10,6 +10,7 @@ import { Home } from "./pages/Home/Home";
 import { Error } from "./pages/Erreur/Error";
 import { Presentation } from "./pages/Presentation/Presentation";
 import Commandes from "./pages/Profile/Commandes";
+import Reclamations from "./pages/Profile/Reclamations";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/presentation" element={<Presentation />} />
         <Route path="*" element={<Error />} />
         <Route path="/profile/orders" component={Commandes} />
+        <Route path="/profile/reclamations" component={Reclamations} />
       </Routes>
     </Router>
   </React.StrictMode>
