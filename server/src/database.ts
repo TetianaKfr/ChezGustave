@@ -8,7 +8,7 @@ import User from './entities/User';
 export default new DataSource({
     type: 'postgres',
     url: process.env['DATABASE_URL'],
-    synchronize: true,
+    synchronize: false,
     logging: true,
     entities: [
         Booking,
