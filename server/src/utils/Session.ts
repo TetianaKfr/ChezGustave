@@ -10,7 +10,7 @@ export enum Session {
 }
 
 export async function getSession(req: Request): Promise<Session> {
-  let authorization = req.headers["Authorization"];
+  let authorization = req.get("Authorization");
 
   if (typeof authorization != "string") {
     return Session.Inexistant;
