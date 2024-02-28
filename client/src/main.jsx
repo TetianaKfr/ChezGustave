@@ -21,9 +21,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/recherche" element={<Search />} />
         <Route path="/details" element={<Produit />} />
         <Route path="/presentation" element={<Presentation />} />
-        <Route path="*" element={<Error />} />
         <Route path="/profile/orders" component={Commandes} />
-        <Route path="/profile/reclamations" component={Reclamations} />
+        <Route path="/profile/reclamations" component={<Reclamations />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   </React.StrictMode>

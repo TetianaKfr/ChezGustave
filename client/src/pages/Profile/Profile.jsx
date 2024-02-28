@@ -3,6 +3,7 @@ import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import Commandes from "./Commandes";
+import Reclamations from "./Reclamations";
 
 function Profile() {
   // State variables for user data

@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import "./Profile.css";
-import { Navbar } from "../../components/Navbar/Navbar";
+import React from "react";
 
 export default function Reclamations() {
   return (
