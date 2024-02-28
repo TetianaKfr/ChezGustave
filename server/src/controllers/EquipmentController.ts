@@ -5,6 +5,18 @@ import ControllerException, { handle_controller_errors } from "../utils/Controll
 import database from "../database";
 import Equipment from "../entities/Equipment";
 
+
+export async function list(_req: Request, res: Response) {
+  try {
+    let equipments = database.getRepository(Equipment);
+    let equipment_names = (await equipments.find({ select: ["name"] })).map(equipment => equipment.name);
+
+    res.status(200).send(equipment_names);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
+
 export async function create(req: Request, res: Response) {
   try {
     const { name } = req.body;
