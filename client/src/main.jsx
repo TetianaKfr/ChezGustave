@@ -19,11 +19,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<Home />} />
         <Route path="/recherche" element={<Search />} />
-        <Route path="/details" element={<Produit />} />
+        <Route path="/profile/reclamations" component={<Reclamations />} />
+        <Route         <Route path="/details" element={<Produit />} />
         <Route path="/presentation" element={<Presentation />} />
         <Route path="/profile/orders" component={Commandes} />
-        <Route path="/profile/reclamations" component={<Reclamations />} />
-        <Route path="*" element={<Error />} />
+path="*" element={<Error />} />
       </Routes>
     </Router>
   </React.StrictMode>
