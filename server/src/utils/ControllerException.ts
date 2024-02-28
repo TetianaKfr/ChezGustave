@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-export default class ConstrollerException extends Error {
+export default class ControllerException extends Error {
   code: number
   client_message?: string
   server_message?: string
@@ -14,7 +14,7 @@ export default class ConstrollerException extends Error {
 }
 
 export function handle_controller_errors(res: Response, err: any) {
-  if (err instanceof ConstrollerException) {
+  if (err instanceof ControllerException) {
     if (err.client_message == undefined) {
       res.sendStatus(err.code);
     } else {
