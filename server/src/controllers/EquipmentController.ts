@@ -4,9 +4,14 @@ import { QueryFailedError } from "typeorm";
 import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 import database from "../database";
 import Equipment from "../entities/Equipment";
+import { Session, getSession } from "../utils/Session";
 
 export async function create(req: Request, res: Response) {
   try {
+    if (await getSession(req) != Session.Admin) {
+      throw new ControllerException(401);
+    }
+    
     const { name } = req.body;
 
     if (typeof name != "string") {
