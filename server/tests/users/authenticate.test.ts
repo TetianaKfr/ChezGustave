@@ -5,7 +5,7 @@ import User from "../../src/entities/User";
 import supertest from "supertest";
 import app from "../../src/app";
 
-describe('Authentificate', () => {
+describe('Authenticate', () => {
   beforeAll(async () => {
     await database.initialize();
   });
@@ -51,7 +51,7 @@ describe('Authentificate', () => {
     expect(session_token_expiration > new Date()).toBe(true);
   });
 
-  test("Authentificate bad email", async () => {
+  test("Authenticate bad email", async () => {
     const users = database.getRepository(User);
     users.insert({
       first_name: "first name",
@@ -88,7 +88,7 @@ describe('Authentificate', () => {
   });
 
 
-  test("Authentificate bad password", async () => {
+  test("Authenticate bad password", async () => {
     const users = database.getRepository(User);
     users.insert({
       first_name: "first name",
