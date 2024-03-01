@@ -14,7 +14,7 @@ export default class User {
 
   @Column({ unique: true })
   password_hash: string
-  
+
   @Column({ unique: true })
   email: string
 

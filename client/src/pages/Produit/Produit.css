@@ -1,0 +1,100 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    --VertBleu:#155B55;
+    --Blanc: #eeeeee;
+    --DoreClair:#d2c592;      
+    --DoreMedium: #c2a564;
+    --DoreSombre: #b99652;
+    overflow-x: hidden;
+}
+
+.wrapper{
+    margin: 4vw 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    justify-content: space-around;
+}
+
+/* */
+
+.divImg{
+    width: 35vw;
+    border-radius: 20px;
+    padding: 2vw;
+
+}
+
+.detailsProduit{
+    margin: 2vw;
+    padding: 2vw;
+    width: 55vw;
+    height: 100%;
+    border-radius: 20px;
+    background-color:  var(--DoreClair);
+    color: var(--Blanc);
+}
+
+.detailsProduit h2 {
+    color: var(--VertBleu);
+}
+
+.boutonsReserv{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+/*Taille img principale*/
+.divImg{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.displayMiniImg {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+    gap: 2vw;
+}
+
+.mainImg{
+    padding: 1vw;
+    width: 30vw;
+    height: 20vw;
+    background-color: #155B55;
+    display: flex;
+    border-radius: 10px;
+}
+
+.miniImg{
+    width: 6vw;
+    height: 6vw;
+    background-color: #155B55;
+    border-radius: 10px;
+}
+
+.tailleLogo{
+    height: 4vw;
+    width: 4vw;
+}
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
