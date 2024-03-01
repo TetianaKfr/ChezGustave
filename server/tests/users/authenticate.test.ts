@@ -4,17 +4,10 @@ import database from "../../src/database";
 import User from "../../src/entities/User";
 import supertest from "supertest";
 import app from "../../src/app";
+import { initAndClearDatabase } from "../utils";
 
 describe('Authenticate', () => {
-  beforeAll(async () => {
-    await database.initialize();
-  });
-
-  beforeEach(async () => {
-    const entities_names = database.entityMetadatas.map(entity => '"' + entity.tableName + '"').join(", ");
-    console.log("TRUNCATE " + entities_names + " CASCADE;");
-    database.query("TRUNCATE " + entities_names + " CASCADE;");
-  });
+  beforeEach(initAndClearDatabase);
 
   test("Authentificate success", async () => {
     const users = database.getRepository(User);
