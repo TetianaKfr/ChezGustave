@@ -5,6 +5,11 @@ export default class ControllerException extends Error {
   client_message?: string
   server_message?: string
 
+  static readonly MALFORMED_REQUEST = new ControllerException(400);
+  static readonly UNAUTHORIZED = new ControllerException(401);
+  static readonly NOT_FOUND = new ControllerException(404);
+  static readonly CONFLICT = new ControllerException(409);
+
   constructor(code: number, client_message?: string, server_message?: string) {
     super("Http error: " + code);
     this.code = code;

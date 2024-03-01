@@ -1,18 +1,44 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  --VertBleu:#155B55;
+  --Blanc: #eeeeee;
+  --DoreClair:#d2c592;      
+  --DoreMedium: #c2a564;
+  --DoreSombre: #b99652;
+  overflow-x: hidden;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+}
+
 .produitDescription{
     display:flex;
-    padding: 2vw;
-    border:  solid 1px green;
+    padding: 0 2vw;
     flex-direction: row;
     gap: 5vw;
 }
 
 .filtre{
-    display:flex;
+    display:block;
+    flex-direction: column;
     padding: 2vw;
     width: 15vw;
-    background-color: beige;
-    border:  solid 1px blue;
+    height: auto;
+    margin: 1vw;
+    color: var(--Blanc);
+    background-color: var(--VertBleu);
     flex-direction: row;
+    border-radius: 20px;
 }
 
 .card{
@@ -20,7 +46,39 @@
     flex-direction: row; 
     align-items: center;
     width: 70vw;
+    height: 15vw;
     padding : 1vw;
     gap: 10vw;
     border:  solid 1px red;
 }
+  
+.row input {
+  width: 25px;
+}
+
+
+/*
+*
+*
+* gestion slider filtre de prix
+*
+*/
+
+.PB-range-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    background: var(--Blanc);
+  }
+
+  .PB-range-slider::-moz-range-thumb {
+    width: 25px;
+    height:  25px;
+    border-radius: 50%;
+    background-color: var(--DoreClair);
+    cursor: pointer;
+  }
+
+
+
+  /*            */
