@@ -50,10 +50,9 @@ export async function create(req: Request, res: Response) {
   }
 }
 
-
 export async function modify(req: Request, res: Response) {
   try {
-    if (await getSession(req) != Session.Admin) {
+    if (!await isSessionAdmin(req)) {
       throw new ControllerException(401);
     }
 
@@ -83,6 +82,29 @@ export async function modify(req: Request, res: Response) {
 
     if (result.affected == null || result.affected < 1) {
       throw new ControllerException(404);
+    }
+
+    res.sendStatus(200);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
+
+export async function remove(req: Request, res: Response) {
+  try {
+    if (!await isSessionAdmin(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
+    const { name } = req.body;
+
+    if (typeof name != "string") {
+      throw ControllerException.MALFORMED_REQUEST;
+    }
+
+    const result = await database.getRepository(Equipment).delete({ name: name });
+    if (result.affected == null || result.affected < 1) {
+      throw ControllerException.NOT_FOUND;
     }
 
     res.sendStatus(200);
