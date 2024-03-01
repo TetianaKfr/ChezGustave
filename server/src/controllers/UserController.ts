@@ -4,13 +4,13 @@ import bcrypt from "bcrypt";
 
 import database from "../database";
 import User from "../entities/User";
-import { Session, getSession } from "../utils/Session";
+import { isSessionAdmin } from "../utils/Session";
 import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 
 export async function list(req: Request, res: Response) {
   try {
-    if (await getSession(req) != Session.Admin) {
-      throw new ControllerException(401);
+    if (!await isSessionAdmin(req)) {
+      throw ControllerException.UNAUTHORIZED;
     }
 
     let users = database.getRepository(User);
@@ -25,8 +25,8 @@ export async function list(req: Request, res: Response) {
 
 export async function create(req: Request, res: Response) {
   try {
-    if (await getSession(req) != Session.Admin) {
-      throw new ControllerException(401);
+    if (!await isSessionAdmin(req)) {
+      throw ControllerException.UNAUTHORIZED;
     }
 
     const {
@@ -46,7 +46,7 @@ export async function create(req: Request, res: Response) {
       typeof phone_number != "string" ||
       typeof admin != "boolean"
     ) {
-      throw new ControllerException(400);
+      throw ControllerException.MALFORMED_REQUEST;
     }
 
     const user: DeepPartial<User> = {
@@ -62,7 +62,7 @@ export async function create(req: Request, res: Response) {
       await database.getRepository(User).save(user);
     } catch (e) {
       if (e instanceof QueryFailedError && e.driverError.code == "23505") {
-        throw new ControllerException(409);
+        throw ControllerException.CONFLICT;
       }
 
       throw e;
@@ -85,19 +85,19 @@ export async function authentificate(req: Request, res: Response) {
       typeof email != "string" ||
       typeof password != "string"
     ) {
-      throw new ControllerException(400);
+      throw ControllerException.MALFORMED_REQUEST;
     }
 
     let users = database.getRepository(User);
 
     const users_result = await users.find({ where: { email }, select: ["id", "password_hash"] });
     if (users_result[0] == undefined) {
-      throw new ControllerException(403);
+      throw ControllerException.UNAUTHORIZED;
     }
     const { id, password_hash } = users_result[0];
 
     if (password_hash == undefined || !await bcrypt.compare(password, password_hash)) {
-      throw new ControllerException(403);
+      throw ControllerException.UNAUTHORIZED;
     }
 
     const token = Buffer.from(crypto.getRandomValues(new Uint8Array(128))).toString("base64");
