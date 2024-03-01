@@ -4,11 +4,15 @@ import { QueryFailedError } from "typeorm";
 import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 import database from "../database";
 import Equipment from "../entities/Equipment";
-import { Session, getSession } from "../utils/Session";
+import { isSessionAdmin, isSessionConnected } from "../utils/Session";
 
 
-export async function list(_req: Request, res: Response) {
+export async function list(req: Request, res: Response) {
   try {
+    if (!await isSessionConnected(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+    
     let equipments = database.getRepository(Equipment);
     let equipment_names = (await equipments.find({ select: ["name"] })).map(equipment => equipment.name);
 
@@ -20,21 +24,21 @@ export async function list(_req: Request, res: Response) {
 
 export async function create(req: Request, res: Response) {
   try {
-    if (await getSession(req) != Session.Admin) {
-      throw new ControllerException(401);
+    if (!await isSessionAdmin(req)) {
+      throw ControllerException.UNAUTHORIZED;
     }
     
     const { name } = req.body;
 
     if (typeof name != "string") {
-      throw new ControllerException(400);
+      throw ControllerException.MALFORMED_REQUEST;
     }
 
     try {
       await database.getRepository(Equipment).save({ name });
     } catch (err) {
       if (err instanceof QueryFailedError && err.driverError.code == "23505") {
-        throw new ControllerException(409);
+        throw ControllerException.CONFLICT;
       }
 
       throw err;
