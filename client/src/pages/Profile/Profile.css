@@ -9,6 +9,7 @@
     align-items:flex-start;
     padding-top:50px;
     padding-left:50px;
+    white-space: nowrap;
 }
 .profile-info{
     display: flex;
