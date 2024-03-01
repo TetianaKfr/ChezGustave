@@ -1,3 +1,7 @@
-export default () => describe('Authentificate', () => {
-  // TODO: Add tests
+describe('Authentificate', () => {
+  test("todo", () => {
+    // TODO: Remove this test
+    // this is just any empty test because jest expect at list one test
+    expect(true).toBe(true);
+  })
 });
