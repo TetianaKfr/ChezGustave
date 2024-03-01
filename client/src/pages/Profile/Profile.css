@@ -36,6 +36,7 @@
 
 .gauche {
   width: 300px;
+  white-space: nowrap;
 }
 
 .droite {
@@ -107,4 +108,5 @@
   flex-direction: column;
   padding-left: 50px;
   padding-top: 50px;
+  white-space: nowrap;
 }
