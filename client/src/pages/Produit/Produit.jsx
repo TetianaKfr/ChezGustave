@@ -35,4 +35,10 @@ export const Produit = () => {
             <Footer />
         </>
     )
+
+      =======
+export const Produit = () => {
+	return(
+<></>
+	)
 }

@@ -40,3 +40,11 @@ export async function getSession(req: Request): Promise<Session> {
     return Session.User;
   }
 }
+
+export async function isSessionAdmin(req: Request): Promise<boolean> {
+  return await getSession(req) == Session.Admin;
+}
+
+export async function isSessionConnected(req: Request): Promise<boolean> {
+  return await getSession(req) != Session.Inexistant;
+}

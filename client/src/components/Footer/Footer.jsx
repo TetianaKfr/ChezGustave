@@ -21,7 +21,7 @@ export const Footer = () => {
                             <NavLink to="/recherche"><p>Page de recherche</p></NavLink>
                         </div>
                         <div className='column'>
-                        <NavLink to="/compte"><h4>Mon profil</h4></NavLink>
+                        <NavLink to="/profile"><h4>Mon profil</h4></NavLink>
                             <p>Mes informations</p>
                             <p>Mes commandes</p>
                             <p>Mes réclamations</p>
