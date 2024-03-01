@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         {/* Routes should be declared here. */}
         <Route path="/" element={<Navbar />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/orders" component={Commandes} />
+        <Route path="/profile/orders" element={<Commandes />} />
       </Routes>
     </Router>
   </React.StrictMode>
