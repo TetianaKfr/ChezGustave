@@ -23,7 +23,7 @@ export async function create(req: Request, res: Response) {
     if (await getSession(req) != Session.Admin) {
       throw new ControllerException(401);
     }
-    
+
     const { name } = req.body;
 
     if (typeof name != "string") {
@@ -46,3 +46,43 @@ export async function create(req: Request, res: Response) {
   }
 }
 
+
+export async function modify(req: Request, res: Response) {
+  try {
+    if (await getSession(req) != Session.Admin) {
+      throw new ControllerException(401);
+    }
+
+    const {
+      name,
+      new_name,
+    } = req.body;
+
+    if (
+      typeof name != "string" ||
+      typeof new_name != "string"
+    ) {
+      throw new ControllerException(400);
+    }
+
+    let result;
+
+    try {
+      result = await database.getRepository(Equipment).update({ name }, { name: new_name });
+    } catch (err) {
+      if (err instanceof QueryFailedError && err.driverError.code == "23505") {
+        throw new ControllerException(409);
+      }
+
+      throw err;
+    }
+
+    if (result.affected == null || result.affected < 1) {
+      throw new ControllerException(404);
+    }
+
+    res.sendStatus(200);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
