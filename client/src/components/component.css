@@ -165,3 +165,57 @@ a {
     color: inherit; 
     /* Assure que les liens héritent de la couleur du texte parent */
 }
+
+/*
+*
+* Composant CardDetails ( carte fiche produit page recherche )
+*/
+
+.CardDetails{
+    background-color: var(--DoreMedium);
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    padding: 1vw;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius:  50px;
+}
+
+.cardComplete{
+    display: flex;
+    height: 18vw;
+    width: 65vw;
+}
+.cardComplete span {
+    width: 30px;
+    background: linear-gradient(90deg,#b99652,#d2c592); 
+}
+
+.textCard{
+    background-color: #d2c592;
+    color: var(--Blanc);
+    padding: 1vw;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.textCard h2 {
+    color: var(--VertBleu); 
+}
+
+.photoLogement{
+    width: 15vw;
+    height: 15vw;
+    background-color: #155B55;
+    border-radius: 20px;
+}
+
+.divPicto{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.divPicto img{
+    height: 80px;
+    width: 80px;;
+}
