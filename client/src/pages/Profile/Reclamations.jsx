@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
+import { Footer } from "../../components/Footer/Footer";
 
 export default function Commandes() {
   const [firstName, setFirstName] = useState("");
@@ -9,7 +10,6 @@ export default function Commandes() {
   return (
     <>
       <Navbar />
-
       <div className="gauche">
         <h2>Mon compte</h2>
         <h2>
@@ -43,6 +43,7 @@ export default function Commandes() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

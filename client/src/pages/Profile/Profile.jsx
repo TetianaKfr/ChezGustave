@@ -4,6 +4,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import Commandes from "./Commandes";
 import Reclamations from "./Reclamations";
+import { Footer } from "../../components/Footer/Footer";
 
 function Profile() {
   // State variables for user data
@@ -151,6 +152,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
