@@ -3,6 +3,7 @@ import './Search.css';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Searchbar } from '../../components/SearchBar/Searchbar';
 import { Footer } from '../../components/Footer/Footer';
+import { CardDetails } from '../../components/CardDetails/CardDetails';
 
 //export default function Search() {
 export const Search = () => {
@@ -34,12 +35,7 @@ export const Search = () => {
                 </div>
 
                 <div className='card'>
-                    <img src="" alt="img du logement" />
-                    <div className='description'>
-                        <h2>Nom</h2>
-                        <p>Secteur</p>
-                        <p>Description</p>
-                    </div>
+                <CardDetails/>
                 </div>
             </div>
             <Footer />
