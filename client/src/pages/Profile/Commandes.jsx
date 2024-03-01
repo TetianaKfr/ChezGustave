@@ -40,8 +40,8 @@ export default function Commandes() {
         </div>
       </div>
       <div className="Texte">
-        <h2>Mes réclamations</h2>
-        <h3>Vous n'avez pas de réclamations</h3>
+        <h2>Mes commandes</h2>
+        <h3>Vous n'avez pas de commandes</h3>
       </div>
     </>
   );
