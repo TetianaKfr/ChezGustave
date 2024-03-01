@@ -36,12 +36,12 @@ export default function Commandes() {
               </div>
               <div className="vertical-side"></div>
             </div>
+            <div className="Texte">
+              <h2>Mes réclamations</h2>
+              <h3>Vous n'avez pas de réclamations</h3>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="Texte">
-        <h2>Mes réclamations</h2>
-        <h3>Vous n'avez pas de réclamations</h3>
       </div>
     </>
   );
