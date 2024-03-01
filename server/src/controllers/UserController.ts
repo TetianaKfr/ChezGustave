@@ -118,7 +118,6 @@ export async function authentificate(req: Request, res: Response) {
   }
 }
 
-
 export async function deleteUser(req: Request, res: Response) {
   let email: string = req.params.email;
 
