@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+
 import Booking from "./Booking";
 
 @Entity()

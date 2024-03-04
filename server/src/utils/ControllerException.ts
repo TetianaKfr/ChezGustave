@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { QueryFailedError } from "typeorm";
 
 export default class ControllerException extends Error {
   code: number
@@ -19,6 +20,10 @@ export default class ControllerException extends Error {
 }
 
 export function handle_controller_errors(res: Response, err: any) {
+  if (err instanceof QueryFailedError && err.driverError.code == "23505") {
+    err = ControllerException.CONFLICT;
+  }
+
   if (err instanceof ControllerException) {
     if (err.client_message == undefined) {
       res.sendStatus(err.code);

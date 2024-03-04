@@ -15,9 +15,9 @@ export async function initAndClearDatabase() {
   await database.query("TRUNCATE " + entities_names + " CASCADE;");
 }
 
-export async function authentificate(email: string, password: string): Promise<any> {
+export async function authenticate(email: string, password: string): Promise<any> {
   const authentification_response = await supertest(app)
-    .post("/authentificate")
+    .post("/authenticate")
     .send({
       email,
       password,

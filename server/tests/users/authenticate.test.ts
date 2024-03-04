@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
+import supertest from "supertest";
 
 import database from "../../src/database";
 import User from "../../src/entities/User";
-import supertest from "supertest";
 import app from "../../src/app";
 import { initAndClearDatabase } from "../utils";
 
-describe('Authenticate', () => {
+describe('Authentication', () => {
   beforeEach(async () => {
     await initAndClearDatabase();
 
@@ -20,8 +20,8 @@ describe('Authenticate', () => {
     });
   });
 
-  test("Authentificate success", async () => {
-    const response = await supertest(app).post("/authentificate").send({
+  test("Authentication success", async () => {
+    const response = await supertest(app).post("/authenticate").send({
       email: "mail@example.xyz",
       password: "$£°a+ù%è`²47G\"(@",
     });
@@ -47,8 +47,8 @@ describe('Authenticate', () => {
     expect(session_token_expiration > new Date()).toBe(true);
   });
 
-  test("Authenticate bad email", async () => {
-    const response = await supertest(app).post("/authentificate").send({
+  test("Authentication bad email", async () => {
+    const response = await supertest(app).post("/authenticate").send({
       email: "wrong_email@example.xyz",
       password: "$£°a+ù%è`²47G\"(@",
     });
@@ -76,8 +76,8 @@ describe('Authenticate', () => {
   });
 
 
-  test("Authenticate bad password", async () => {
-    const response = await supertest(app).post("/authentificate").send({
+  test("Authentication bad password", async () => {
+    const response = await supertest(app).post("/authenticate").send({
       email: "mail@example.xyz",
       password: "$£°a+ù%èbad_password`²47G\"(@",
     });

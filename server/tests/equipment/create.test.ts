@@ -1,5 +1,6 @@
 import supertest from "supertest";
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
+
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 import database from "../../src/database";
 import Equipment from "../../src/entities/Equipment";
@@ -15,7 +16,7 @@ describe('Create equipment', () => {
   test("Create equipment success", async () => {
     const response = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
       });
@@ -30,7 +31,7 @@ describe('Create equipment', () => {
   test("Create equipment unauthorized connected as user", async () => {
     const response = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("user", "user"), { type: "bearer" })
+      .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({
         name: "equipment 1"
       });
@@ -74,7 +75,7 @@ describe('Create equipment', () => {
   test("Create equipment conflict", async () => {
     const response_1 = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
       });
@@ -82,14 +83,14 @@ describe('Create equipment', () => {
 
     const response_2 = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
       });
 
     const response_3 = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 2"
       });
@@ -110,7 +111,7 @@ describe('Create equipment', () => {
   test("Create equipment missing name", async () => {
     const response = await supertest(app)
       .post("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({});
 
     const equipments_names = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
