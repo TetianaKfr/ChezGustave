@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
+import { Footer } from "../../components/Footer/Footer";
 
 export default function Commandes() {
   const [firstName, setFirstName] = useState("");
@@ -23,7 +24,7 @@ export default function Commandes() {
             <div className="bar">
               <div className="colonne2">
                 <h3>
-                  <NavLink to="/profile/info">Mes informations</NavLink>
+                  <NavLink to="/profile">Mes informations</NavLink>
                 </h3>
               </div>
               <div className="colonne2">
@@ -37,12 +38,17 @@ export default function Commandes() {
               <div className="vertical-side"></div>
             </div>
             <div className="Texte">
-              <h2>Mes réclamations</h2>
-              <h3>Vous n'avez pas de réclamations</h3>
+              <div className="reclamStyle">
+                <h2>Mes réclamations</h2>
+                <h3>Vous n'avez pas de réclamations</h3>
+                <h3>Vous avez x réclamations</h3>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
