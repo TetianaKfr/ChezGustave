@@ -10,7 +10,7 @@ describe('Authenticate', () => {
   beforeEach(async () => {
     await initAndClearDatabase();
 
-    database.getRepository(User).insert({
+    await database.getRepository(User).insert({
       first_name: "first name",
       last_name: "last name",
       password_hash: await bcrypt.hash("$£°a+ù%è`²47G\"(@", 12),
