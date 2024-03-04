@@ -1,0 +1,134 @@
+
+:root {
+    --blueGreen: #155B55;
+    --white: #fff;
+    --borderRadius: 15px;
+    --fontSize18: 18px;
+    --fontRaleway: 'raleway';
+}
+
+
+
+.titles-presentation-page{
+    display: flex;
+    justify-content: center;
+    color: var(--blueGreen);
+    font-size: 32px;
+    font-family: 'manrope';
+}
+
+.welcome-div-presentation-page{
+    display: flex;
+    justify-content: center;
+}
+.welcome-div-div-presentation-page{
+    display: flex;
+    justify-content: center;
+    background-color: var(--blueGreen);
+    width: 1100px;
+    border-radius: var(--borderRadius);
+}
+.welcome-paragraph-presentation-page{
+    width: 1000px;
+    font-size: 24px;
+    color: var(--white);
+    font-family: var(--fontRaleway);
+}
+
+
+#presentation-lake-div{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+#presentation-lake-img {
+    width: 1000px;
+    padding-top: 50px;
+    border-radius: var(--borderRadius);
+}
+
+
+.founders-images{
+    width: 400px;
+    border-radius: var(--borderRadius);
+}
+.div-founders-images-and-founders-description{
+    display: flex;
+    padding-bottom: 25px;
+    
+}
+
+.paragraph-description-founders {
+    width: 550px;
+    font-size: var(--fontSize18);
+    font-family: var(--fontRaleway);
+}
+
+.div-name-and-paragraph-founders{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 606px;
+    background-color: var(--blueGreen);
+    border-radius: var(--borderRadius);
+    color: var(--white);
+}
+
+.div-founders-images-and-founders-description {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.cliffs-image{
+    height: 566px;
+    border-radius: var(--borderRadius);
+}
+
+.cliffs-image-and-description{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 50px;
+
+}
+
+.description-cliffs{
+    width: 606px;
+    color: var(--blueGreen);
+    font-size: var(--fontSize18);
+    font-family: var(--fontRaleway);
+}
+
+
+.titles-our-values-presentation-page {
+    display: flex;
+    justify-content: center;
+    color: var(--blueGreen);
+    font-size: 20px;
+    font-family: 'manrope';
+}
+
+.icons-presentation{
+    width: 220px;
+}
+.div-icons-presentation{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.description-our-values{
+    color: var(--blueGreen);
+    width: 700px;
+    font-size: var(--fontSize18);
+    font-family: var(--fontRaleway);
+}
+
+.div-description-our-values{
+    display: flex;
+    justify-content: center;
+}
