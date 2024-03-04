@@ -6,9 +6,11 @@ const router = Router();
 
 router.get("/users", UserController.list);
 router.post("/users", UserController.create);
+router.delete("/users/:email", UserController.remove);
+router.put("/users/:email", UserController.modify);
+router.get("/users/:email", UserController.get);
+
 router.post("/authentificate", UserController.authentificate);
-router.delete("/delete_user/:email", UserController.deleteUser);
-router.put("/update_user/:id", UserController.updateUser);
 
 export default router;
 
