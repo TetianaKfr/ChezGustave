@@ -47,19 +47,47 @@ body{
     display: flex;
     gap: 2vw; 
 }
+input{width: auto;}
 
 button{
     border: none;
     color: var(--Blanc);
-    height: 4vw;
-    width: 10vw;
+    height: 4rem;
+    width: 10rem;
     border-radius: 20px;
     background-color: var(--VertBleu);
     border: solid 3px #0d4b46;
     font-size: 1.3rem;
 }
 
+/* Navbar Responsive*/
+@media (max-width: 780px){
+    .navbar{
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 55vw;
+ }
+   .Boutons{
+        flex-direction: row;
+   }
+   .Boutons button{
+    height: 2rem;
+   }
 
+   #Logo{
+        height: 10rem;
+        width: 10rem;
+        border-radius: 20px;
+   }
+
+}
+@media (max-width: 380px) {
+    .navbar{
+        height: 60vw;
+    }
+}
 
 /* 
 * Suite pour la searchbar 
@@ -91,7 +119,6 @@ input{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .InputNb{
@@ -109,6 +136,19 @@ input{
     gap: 2px;
 }
 
+/* searchbar responsive*/
+@media (max-width: 1000px){
+    .searchbar{
+        flex-direction: column;
+    }
+    .searchbar div, .searchbar input {
+        width: 95%;
+    }
+    #btnSearch {
+        height: 3rem;
+    }
+
+}
 
 /*
 * Gestion du Footer
@@ -120,8 +160,8 @@ footer{
     padding: 3vw 0;
     border-top: solid 20px #d2c592;
     border-image: linear-gradient(to right,#d2c592,#b99652) 10 0 0 0;
-
 }
+
 .espacement{
     display: flex;
     gap: 2vw;
@@ -141,7 +181,6 @@ footer{
 
 #logoFooter{
     height: 12vw;
-
 }
 
 .column {
@@ -166,8 +205,34 @@ a {
     /* Assure que les liens héritent de la couleur du texte parent */
 }
 
+/* footer Responsive*/
+@media (max-width: 900px){
+    .gap{
+        flex-direction: column;
+        align-items: center;
+        gap: 10vw
+    }
+
+    #logoFooter{
+        height: 20vw;
+    }
+
+    .row{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 400px){
+    .row{
+        display: flex;
+        gap:20px;
+    }
+}
+
 /*
-*
 * Composant CardDetails ( carte fiche produit page recherche )
 */
 
