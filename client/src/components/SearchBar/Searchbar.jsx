@@ -26,12 +26,12 @@ export const Searchbar = () => {
 
                 <div className='row'>
                     <div className='horaires'>
-                        <label htmlFor="">Depart</label>
+                        <label htmlFor="">Départ</label>
                         <input  type="date" defaultValue={afficheDate()} />
                     </div>
                     <div className='horaires'>
                         <label htmlFor="">Arrivée</label>
-                        <input  type="date" defaultValue={afficheDate()} />
+                        <input type="date" defaultValue={afficheDate()} />
                     </div>
                 </div>
 
@@ -44,12 +44,14 @@ export const Searchbar = () => {
                         <label htmlFor="">Enfants</label>
                         <input placeholder='0' className='InputNb' type="text" />
                     </div>
-                    <div className='nombrePersonnes'>
-                        <label htmlFor="">Chambre</label>
-                        <input placeholder='0' className='InputNb' type="text" />
-                    </div>
+                </div>                    
+                <div className='nombrePersonnes'>
+                    <label htmlFor="">Chambre</label>
+                    <input placeholder='0' className='InputNb' type="text" />
                 </div>
-                <NavLink to="/recherche"><button id='btnSearch'>Rechercher</button></NavLink>
+                <NavLink to="/recherche">
+                    <button id='btnSearch'>Rechercher</button>
+                </NavLink>
             </div>
         </>
     )
