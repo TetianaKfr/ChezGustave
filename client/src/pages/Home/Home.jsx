@@ -11,7 +11,7 @@ export const Home = () => {
             <Navbar />
             <img className='heroBanner' src={Banner} alt="" />
             <Searchbar />
-            <div className='wrapper'>
+            <div className='wrapper displayHome'>
 
                 <div className='backgColor'>
                     <h2>Voyager en France</h2>
