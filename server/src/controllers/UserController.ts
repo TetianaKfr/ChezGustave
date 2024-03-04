@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { DeepPartial, QueryFailedError  } from "typeorm";
 import bcrypt from "bcrypt";
 
 import database from "../database";
@@ -13,9 +12,9 @@ export async function list(req: Request, res: Response) {
       throw ControllerException.UNAUTHORIZED;
     }
 
-    let users = database.getRepository(User);
-
-    let emails = (await users.find({ select: ["email"] })).map((user) => user.email);
+    const emails =
+      (await database.getRepository(User).find({ select: ["email"] }))
+        .map((user) => user.email);
 
     res.status(200).send(emails);
   } catch (err) {
@@ -49,24 +48,14 @@ export async function create(req: Request, res: Response) {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
-    const user: DeepPartial<User> = {
+    await database.getRepository(User).save({
       first_name,
       last_name,
       email,
       password_hash: await bcrypt.hash(password, 12),
       phone_number,
       admin,
-    };
-
-    try {
-      await database.getRepository(User).save(user);
-    } catch (e) {
-      if (e instanceof QueryFailedError && e.driverError.code == "23505") {
-        throw ControllerException.CONFLICT;
-      }
-
-      throw e;
-    }
+    });
 
     res.sendStatus(201);
   } catch (err) {
@@ -74,7 +63,7 @@ export async function create(req: Request, res: Response) {
   }
 }
 
-export async function authentificate(req: Request, res: Response) {
+export async function authenticate(req: Request, res: Response) {
   try {
     const {
       email,
@@ -88,15 +77,14 @@ export async function authentificate(req: Request, res: Response) {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
-    let users = database.getRepository(User);
+    const users = database.getRepository(User);
 
-    const users_result = await users.find({ where: { email }, select: ["id", "password_hash"] });
-    if (users_result[0] == undefined) {
+    const user = await users.findOne({ where: { email }, select: { id: true, password_hash: true } });
+    if (user == null) {
       throw ControllerException.UNAUTHORIZED;
     }
-    const { id, password_hash } = users_result[0];
 
-    if (password_hash == undefined || !await bcrypt.compare(password, password_hash)) {
+    if (!await bcrypt.compare(password, user.password_hash)) {
       throw ControllerException.UNAUTHORIZED;
     }
 
@@ -105,12 +93,10 @@ export async function authentificate(req: Request, res: Response) {
     let expiration = new Date();
     expiration.setDate(new Date().getDate() + 30);
 
-    const user: DeepPartial<User> = {
+    await users.update({ id: user.id }, {
       session_token: token,
       session_token_expiration: expiration,
-    }
-
-    await users.update({ id }, user);
+    });
 
     res.status(200).send({ token: token + ":" + email });
   } catch (err) {
@@ -124,7 +110,11 @@ export async function remove(req: Request, res: Response) {
       throw ControllerException.UNAUTHORIZED;
     }
 
-    let email: string = req.params.email;
+    const { email } = req.body;
+
+    if (typeof email != "string") {
+      throw ControllerException.MALFORMED_REQUEST;
+    }
 
     const result = await database.getRepository(User).delete({ email: email });
     if (result.affected == null || result.affected < 1) {
@@ -142,46 +132,37 @@ export async function modify(req: Request, res: Response) {
     if (!await isSessionAdmin(req)) {
       throw ControllerException.UNAUTHORIZED;
     }
-    
-    const email_params: string = req.params.email;
 
-    const { 
-      first_name, 
-      last_name, 
+    const {
       email,
-      password, 
-      phone_number, 
+      first_name,
+      last_name,
+      new_email,
+      password,
+      phone_number,
       admin,
     } = req.body;
-  
+
     if (
-      typeof first_name != "string" ||
-      typeof last_name != "string" ||
       typeof email != "string" ||
-      typeof password != "string" ||
-      typeof phone_number != "string" ||
-      typeof admin != "boolean"
-      ) {
+      (typeof first_name != "string" && first_name != undefined) ||
+      (typeof last_name != "string" && last_name != undefined) ||
+      (typeof new_email != "string" && new_email != undefined) ||
+      (typeof password != "string" && password != undefined) ||
+      (typeof phone_number != "string" && phone_number != undefined) ||
+      (typeof admin != "boolean" && admin != undefined)
+    ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
-    const user = {     
-      first_name, 
-      last_name, 
-      email,
-      password_hash: await bcrypt.hash(password, 12), 
-      phone_number, 
+    await database.getRepository(User).update({ email }, {
+      first_name,
+      last_name,
+      email: new_email,
+      password_hash: await bcrypt.hash(password, 12),
+      phone_number,
       admin,
-    };
-
-    try {
-      await database.getRepository(User).update({ email: email_params }, user);
-    } catch (err) {
-      if (err instanceof QueryFailedError && err.driverError.code == "23505") {
-        throw ControllerException.CONFLICT;
-      }
-      throw err;
-    }
+    });
 
     res.sendStatus(200);
   } catch (err) {
@@ -194,17 +175,29 @@ export async function get(req: Request, res: Response) {
     if (!await isSessionAdmin(req)) {
       throw ControllerException.UNAUTHORIZED;
     }
-    
-    const email_params: string = req.params.email;
-  
-    const result = await database.getRepository(User).findOne({
-      select: ["first_name", "last_name", "email", "phone_number", "admin"],
-      where: {
-        email: email_params
-      }
+
+    const { email } = req.body;
+
+    if (typeof email != "string") {
+      throw ControllerException.MALFORMED_REQUEST;
+    }
+
+    const user = await database.getRepository(User).findOne({
+      select: {
+        first_name: true,
+        last_name: true,
+        email: true,
+        phone_number: true,
+        admin: true
+      },
+      where: { email },
     });
 
-    res.status(200).send(result);
+    if (user == null) {
+      throw ControllerException.NOT_FOUND;
+    }
+
+    res.status(200).send(user);
   } catch (err) {
     handle_controller_errors(res, err);
   }

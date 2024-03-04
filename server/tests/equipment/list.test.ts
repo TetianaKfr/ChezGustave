@@ -1,5 +1,6 @@
 import supertest from "supertest";
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
+
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 import database from "../../src/database";
 import Equipment from "../../src/entities/Equipment";
@@ -21,7 +22,7 @@ describe('List equipements', () => {
   test("List equipments success connected as admin", async () => {
     const response = await supertest(app)
       .get("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" });
+      .auth(await authenticate("admin", "admin"), { type: "bearer" });
 
     expect(response.status).toBe(200);
     expect(response.body).toContain("Equipment 1");
@@ -33,7 +34,7 @@ describe('List equipements', () => {
   test("List equipments success connected as user", async () => {
     const response = await supertest(app)
       .get("/equipments")
-      .auth(await authentificate("user", "user"), { type: "bearer" });
+      .auth(await authenticate("user", "user"), { type: "bearer" });
 
     expect(response.status).toBe(200);
     expect(response.body).toContain("Equipment 1");

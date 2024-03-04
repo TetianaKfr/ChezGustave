@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 import database from "../../src/database";
 import User from "../../src/entities/User";
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 
 describe('Create user', () => {
@@ -16,8 +16,8 @@ describe('Create user', () => {
 
   test("Create user success", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -31,12 +31,12 @@ describe('Create user', () => {
 
     const user = await users.findOne({ where: { email: "mail@example.xyz" } });
 
+    expect(response.status).toBe(201);
     expect(user).not.toBeNull();
     if (user == null) {
       return;
     }
 
-    expect(response.status).toBe(201);
     expect(response.text).toBe("Created");
     expect(user.first_name).toBe("First Name");
     expect(user.last_name).toBe("Last Name");
@@ -50,8 +50,8 @@ describe('Create user', () => {
 
   test("Create admin success", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -85,8 +85,8 @@ describe('Create user', () => {
 
   test("Create user unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("user", "user"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -107,8 +107,8 @@ describe('Create user', () => {
 
   test("Create admin unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("user", "user"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -129,7 +129,7 @@ describe('Create user', () => {
 
   test("Create user unauthorized not connected", async () => {
     const response = await supertest(app)
-      .post("/users")
+      .post("/user")
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -150,7 +150,7 @@ describe('Create user', () => {
 
   test("Create admin unauthorized not connected", async () => {
     const response = await supertest(app)
-      .post("/users")
+      .post("/user")
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -172,7 +172,7 @@ describe('Create user', () => {
 
   test("Create user unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .post("/users")
+      .post("/user")
       .auth("dqzdqdqzdqzdqzd:admin", { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -194,7 +194,7 @@ describe('Create user', () => {
 
   test("Create admin unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .post("/users")
+      .post("/user")
       .auth("dqzdqdqzdqzdqzd:admin", { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -217,8 +217,8 @@ describe('Create user', () => {
   
   test("Create user missing first name", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         last_name: "Last Name",
         email: "mail@example.xyz",
@@ -238,8 +238,8 @@ describe('Create user', () => {
 
   test("Create user missing last name", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
         email: "mail@example.xyz",
@@ -259,8 +259,8 @@ describe('Create user', () => {
 
   test("Create user missing email", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
         last_name: "Last Name",
@@ -280,8 +280,8 @@ describe('Create user', () => {
 
   test("Create user missing password", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
         last_name: "Last Name",
@@ -301,8 +301,8 @@ describe('Create user', () => {
 
   test("Create user missing phone number", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
         last_name: "Last Name",
@@ -322,8 +322,8 @@ describe('Create user', () => {
 
   test("Create user missing admin", async () => {
     const response = await supertest(app)
-      .post("/users")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .post("/user")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
         last_name: "Last Name",

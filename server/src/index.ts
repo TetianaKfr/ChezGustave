@@ -18,7 +18,7 @@ database.initialize().then(async () => {
       phone_number: '01234567',
       admin: true,
     });
-  } catch (_err) {}
+  } catch (_err) { }
 });
 
 app.listen(process.env.PORT, () => {
