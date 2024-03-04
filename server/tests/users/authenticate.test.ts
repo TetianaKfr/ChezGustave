@@ -7,11 +7,10 @@ import app from "../../src/app";
 import { initAndClearDatabase } from "../utils";
 
 describe('Authenticate', () => {
-  beforeEach(initAndClearDatabase);
+  beforeEach(async () => {
+    await initAndClearDatabase();
 
-  test("Authentificate success", async () => {
-    const users = database.getRepository(User);
-    users.insert({
+    database.getRepository(User).insert({
       first_name: "first name",
       last_name: "last name",
       password_hash: await bcrypt.hash("$£°a+ù%è`²47G\"(@", 12),
@@ -19,11 +18,15 @@ describe('Authenticate', () => {
       phone_number: "0000000000",
       admin: false,
     });
+  });
 
+  test("Authentificate success", async () => {
     const response = await supertest(app).post("/authentificate").send({
       email: "mail@example.xyz",
       password: "$£°a+ù%è`²47G\"(@",
     });
+
+    const users = database.getRepository(User);
 
     const user = await users.findOne({
       where: { email: "mail@example.xyz" },
@@ -45,20 +48,12 @@ describe('Authenticate', () => {
   });
 
   test("Authenticate bad email", async () => {
-    const users = database.getRepository(User);
-    users.insert({
-      first_name: "first name",
-      last_name: "last name",
-      password_hash: await bcrypt.hash("$£°a+ù%è`²47G\"(@", 12),
-      email: "mail@example.xyz",
-      phone_number: "0000000000",
-      admin: false,
-    });
-
     const response = await supertest(app).post("/authentificate").send({
       email: "wrong_email@example.xyz",
       password: "$£°a+ù%è`²47G\"(@",
     });
+
+    const users = database.getRepository(User);
 
     const user = await users.findOne({
       where: { email: "mail@example.xyz" },
@@ -82,20 +77,12 @@ describe('Authenticate', () => {
 
 
   test("Authenticate bad password", async () => {
-    const users = database.getRepository(User);
-    users.insert({
-      first_name: "first name",
-      last_name: "last name",
-      password_hash: await bcrypt.hash("$£°a+ù%è`²47G\"(@", 12),
-      email: "mail@example.xyz",
-      phone_number: "0000000000",
-      admin: false,
-    });
-
     const response = await supertest(app).post("/authentificate").send({
       email: "mail@example.xyz",
       password: "$£°a+ù%èbad_password`²47G\"(@",
     });
+
+    const users = database.getRepository(User);
 
     const user = await users.findOne({
       where: { email: "mail@example.xyz" },
