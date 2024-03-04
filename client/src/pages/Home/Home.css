@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    --VertBleu:#155B55;
+    --Blanc: #eeeeee;
+    --DoreClair:#d2c592;      
+    --DoreMedium: #c2a564;
+    --DoreSombre: #b99652;
+    overflow-x: hidden;
+}
+.heroBanner{
+    margin-top: 2vw;
+    width:100%;
+    height: 40vw;
+}
+.wrapper { display: block;}
+.displayVoyage,.displayCoeur {
+    display: flex;
+    justify-content: space-around;
+}
+.backgColor{
+    display:flex ;
+    flex-direction: column;
+    background-color: #d2c592;
+    padding: 2vw 0;
+    color:  var(--VertBleu);
+}
+
+.backgColor h2,.backgColor p{
+    display: flex;
+    justify-content: center;
+}
+.photoDestination {
+    height: 12vw;
+    width: 12vw;
+    background-color: #155B55;
+}
+.displayVoyage div  {
+    color: var(--VertBleu);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+.coupCoeur h2, .coupCoeur p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardCoeur{
+background-color: var(--DoreClair);
+display: flex;
+font-size: larger;
+cursor: pointer;
+flex-direction: column;
+align-items: center;
+color: var(--Blanc);
+
+}
+.cardCoeur img{
+    height: 18vw;
+    width: 18vw;
+    cursor: pointer;
+    background-color: #155B55;
+}
+
+.colorText{
+    color: var(--DoreClair);
+}
