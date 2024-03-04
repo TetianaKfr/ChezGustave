@@ -3,32 +3,15 @@ import bcrypt from "bcrypt";
 
 import database from "../../src/database";
 import User from "../../src/entities/User";
-import { authentificate, initAndClearDatabase } from "../utils";
+import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 
 describe('Create user', () => {
   beforeEach(async () => {
     await initAndClearDatabase();
 
-    const users = database.getRepository(User);
-
-    await users.insert({
-      first_name: "admin",
-      last_name: "admin",
-      password_hash: await bcrypt.hash("admin", 12),
-      email: "admin",
-      phone_number: "admin",
-      admin: true,
-    });
-
-    await users.insert({
-      first_name: "user",
-      last_name: "user",
-      password_hash: await bcrypt.hash("user", 12),
-      email: "user",
-      phone_number: "user",
-      admin: false,
-    });
+    await insertAdmin();
+    await insertUser();
   });
 
   test("Create user success", async () => {
