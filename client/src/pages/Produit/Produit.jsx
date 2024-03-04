@@ -16,7 +16,6 @@ export const Produit = () => {
                         <img className="miniImg" src="" alt="img mini" />
                         <img className="miniImg" src="" alt="img mini" />
                     </div>
-
                 </div>
 
                 <div className="detailsProduit">
