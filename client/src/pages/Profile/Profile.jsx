@@ -47,115 +47,165 @@ function Profile() {
   return (
     <>
       <Navbar />
-      <div className="tout">
-        <div className="gauche">
-          <h2>Mon compte</h2>
-          <h2>
-            {firstName} {lastName}
-          </h2>
-          <div className="rectangle">
-            <div className="bottom-side"></div>
+
+      <div className="titreCompte">
+        <h2>Mon compte: </h2>
+        <h3>{firstName} {lastName}</h3>
+      </div>
+
+      <div className="responsiveReverse">
+        <span className="barHoriz"></span>
+        <div className="testDiv">
+          <div className="btnTitre">
+            <NavLink to="/profile"><h3>Mes informations</h3></NavLink>
+            <NavLink to="/profile/orders"><h3>Mes commandes</h3></NavLink>
+            <NavLink to="/profile/reclamations"> <h3>Mes réclamations </h3></NavLink>
           </div>
-          <div className="profile">
-            <div className="remettre">
-              <div className="bar">
-                <div className="colonne2">
-                  <div className="tout2">
-                    <h3>
-                      <NavLink to="/profile">Mes informations</NavLink>
-                    </h3>
-                  </div>
-                  <div className="colonne2">
-                    <h3>
-                      <NavLink to="/profile/orders">Mes commandes</NavLink>
-                    </h3>
-                  </div>
-                  <div className="colonne2">
-                    <h3>
-                      <NavLink to="/profile/reclamations">
-                        Mes réclamations
-                      </NavLink>
-                    </h3>
-                  </div>
-                  <div className="vertical-side"></div>
-                </div>
-              </div>
-              <div className="droite">
-                <div className="profile-info">
-                  <h3>Mes informations</h3>
-                  <form>
-                    <div className="nomprenom">
-                      <div className="colonne">
-                        <label id="labelnom" htmlFor="nom">
-                          Nom :
-                        </label>
-                        <div className="input">
-                          <input
-                            type="text"
-                            id="nom"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            placeholder="Dupont" // Ajout d'un placeholder avec la valeur initiale
-                          />
-                        </div>
-                      </div>
-                      <div className="colonne">
-                        <label id="labelprenom" htmlFor="prenom">
-                          Prénom :
-                        </label>
-                        <input
-                          type="text"
-                          id="prenom"
-                          value={lastName}
-                          onChange={(e) => setLastName(e.target.value)}
-                          placeholder="Jean" // Ajout d'un placeholder avec la valeur initiale
-                        />
-                      </div>
-                    </div>
-                    <div className="colonne">
-                      <label id="labelEmail" htmlFor="email">
-                        Email :
-                      </label>
+          <span className="barVertical"></span>
+          <div className="Formulaire">
+            <div className="profile-info">
+              <h3>Mes informations</h3>
+              <form>
+                <div className="nomprenom">
+                  <div className="colonne">
+                    <label id="labelnom" htmlFor="nom">
+                      Nom :
+                    </label>
+                    <div className="input">
                       <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="jeandupont@gmail.com" // Ajout d'un placeholder avec la valeur initiale
-                      />
-                    </div>
-                  </form>
-                  <div className="chgmt">
-                    <h3>Changement de mot de passe</h3>
-                  </div>
-                  <div className="motsDP">
-                    <div className="colonne">
-                      <p>Mot de passe actuel :</p>
-                      <div className="input">
-                        <input
-                          type="password"
-                          value={currentPassword}
-                          onChange={(e) => setCurrentPassword(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                    <div className="colonne">
-                      <p>Nouveau mot de passe :</p>
-                      <input
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        type="text"
+                        id="nom"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder="Nom"
                       />
                     </div>
                   </div>
-                  <div className="btnConfirmer">
-                    <button onClick={handleChangePassword}>Confirmer</button>
+                  <div className="colonne">
+                    <label id="labelprenom" htmlFor="prenom">
+                      Prénom :
+                    </label>
+                    <input
+                      type="text"
+                      id="prenom"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Jean" // Ajout d'un placeholder avec la valeur initiale
+                    />
                   </div>
-                  <p className="password-message">{passwordMessage}</p>
+                </div>
+                <div className="colonne">
+                  <label id="labelEmail" htmlFor="email">
+                    Email :
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="jeandupont@gmail.com" // Ajout d'un placeholder avec la valeur initiale
+                  />
+                </div>
+              </form>
+              <div className="chgmt">
+                <h3>Changement de mot de passe</h3>
+              </div>
+              <div className="motsDP">
+                <div className="colonne">
+                  <p>Mot de passe actuel :</p>
+                  <div className="input">
+                    <input
+                      type="password"
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="colonne">
+                  <p>Nouveau mot de passe :</p>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
                 </div>
               </div>
+              <div className="btnConfirmer">
+                <button onClick={handleChangePassword}>Confirmer</button>
+              </div>
+              <p className="password-message">{passwordMessage}</p>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="formulaireResponsive">
+        <div className="profile-info">
+          <h3>Mes informations</h3>
+          <form>
+            <div className="nomprenom">
+              <div className="colonne">
+                <label id="labelnom" htmlFor="nom">
+                  Nom :
+                </label>
+                  <input className="input"
+                    type="text"
+                    id="nom"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="Prenom"
+                  />
+              </div>
+              <div className="colonne">
+                <label id="labelprenom" htmlFor="prenom">
+                  Prénom :
+                </label>
+                <input
+                  type="text"
+                  id="prenom"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="prenom"
+                />
+              </div>
+            </div>
+            <div className="colonne">
+              <label id="labelEmail" htmlFor="email">
+                Email :
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="votre mail"
+              />
+            </div>
+          </form>
+            <h3 className="chgmt">Changement de mot de passe</h3>
+          <div className="motsDP">
+            <div className="colonne">
+              <p>Mot de passe actuel :</p>
+              <div className="input">
+                <input
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="colonne">
+              <p>Nouveau mot de passe :</p>
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="btnConfirmer">
+            <button onClick={handleChangePassword}>Confirmer</button>
+          </div>
+          <p className="password-message">{passwordMessage}</p>
         </div>
       </div>
       <Footer />

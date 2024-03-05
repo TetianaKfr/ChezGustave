@@ -11,43 +11,26 @@ export default function Commandes() {
     <>
       <Navbar />
 
-      <div className="gauche">
-        <h2>Mon compte</h2>
-        <h2>
-          {firstName} {lastName}
-        </h2>
-        <div className="rectangle">
-          <div className="bottom-side"></div>
-        </div>
-        <div className="profile">
-          <div className="remettre">
-            <div className="bar">
-              <div className="colonne2">
-                <h3>
-                  <NavLink to="/profile">Mes informations</NavLink>
-                </h3>
-              </div>
-              <div className="colonne2">
-                <h3>
-                  <NavLink to="/profile/orders">Mes commandes</NavLink>
-                </h3>
-              </div>
-              <div className="colonne2">
-                <h3>Mes réclamations</h3>
-              </div>
-              <div className="vertical-side"></div>
-            </div>
-            <div className="Texte">
-              <div className="reclamStyle">
-                <h2>Mes réclamations</h2>
-                <h3>Vous n'avez pas de réclamations</h3>
-                <h3>Vous avez x réclamations</h3>
-              </div>
-            </div>
+      <div className="titreCompte">
+        <h2>Mon compte: </h2>
+        <h3>{firstName} {lastName}</h3>
+      </div>
+
+      <div className="responsiveReverse">
+        <span className="barHoriz"></span>
+        <div className="testDiv">
+          <div className="btnTitre">
+            <NavLink to="/profile"><h3>Mes informations</h3></NavLink>
+            <NavLink to="/profile/orders"><h3>Mes commandes</h3></NavLink>
+            <NavLink to="/profile/reclamations"> <h3>Mes réclamations </h3></NavLink>
+          </div>
+          <span className="barVertical"></span>
+          <div className="Formulaire">
+            <h3>Mes réclamations</h3>
+            <h3>Vous n'avez pas de réclamations</h3>
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
