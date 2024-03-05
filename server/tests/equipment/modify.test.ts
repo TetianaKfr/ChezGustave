@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import database from "../../src/database";
 import Equipment from "../../src/entities/Equipment";
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 
 describe('Modify equipment', () => {
@@ -19,8 +19,8 @@ describe('Modify equipment', () => {
 
   test("Modify equipment success", async () => {
     const response = await supertest(app)
-      .put("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .put("/equipment")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Equipment 1", new_name: "Equipment 3" });
 
     const equipments_names = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -34,8 +34,8 @@ describe('Modify equipment', () => {
 
   test("Modify equipment not found", async () => {
     const response = await supertest(app)
-      .put("/equipments")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .put("/equipment")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Equipment 4", new_name: "Equipment 3" });
 
     const equipments_names = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -49,8 +49,8 @@ describe('Modify equipment', () => {
 
   test("Modify equipment unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .put("/equipments")
-      .auth(await authentificate("user", "user"), { type: "bearer" })
+      .put("/equipment")
+      .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({ name: "Equipment 1", new_name: "Equipment 3" });
 
     const equipments_names = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -64,7 +64,7 @@ describe('Modify equipment', () => {
 
   test("Modify equipment unauthorized not connected", async () => {
     const response = await supertest(app)
-      .put("/equipments")
+      .put("/equipment")
       .send({ name: "Equipment 1", new_name: "Equipment 3" });
 
     const equipments_names = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -78,7 +78,7 @@ describe('Modify equipment', () => {
 
   test("Modify equipment unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .put("/equipments")
+      .put("/equipment")
       .auth("dqzjdhejkghfhquifq:admin", { type: "bearer" })
       .send({ name: "Equipment 1", new_name: "Equipment 3" });
 
