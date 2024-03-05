@@ -1,75 +1,67 @@
-.remettre {
-  display: flex;
-  flex-direction: row;
+.barHoriz{
+  display: block;
+  height: 2px;
+  width:100%;
+  background-color: #155b55;
 }
-.gauche {
+.titreCompte{
+  padding:  2vw 2vw;
+}
+
+.barVertical{
+  height: 10rem;
+  width:2px;
+  background-color: #155b55;
+}
+.formulaireResponsive{
+  display: none;
+}
+
+.testDiv{
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+  padding:  0 2vw;
+}
+.Formulaire{
+  display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 50px;
-  padding-left: 50px;
+  align-items: center;
+  border: solid 1px red;  
 }
+
+
+@media (max-width: 800px){
+
+  .btnTitre {
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+  }
+  .barVertical{display: none;}
+  .responsiveReverse{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .formulaireResponsive{
+    display: block;
+  }
+
+  .Formulaire {display: none;}
+}
+
 .profile-info {
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
-  padding-left: 50px;
-  padding-top: 50px;
-}
-.rectangle {
-  width: 1300px;
-  position: relative;
 }
 
-.bottom-side {
-  width: 100%;
-  height: 2px;
-  background-color: #155b55;
-  position: absolute;
-  bottom: 0;
-}
-
-.profile {
-  display: flex;
-}
-
-.gauche {
-  width: 300px;
-  white-space: nowrap;
-}
-
-.droite {
-  width: 500px;
-}
-
-.bar {
-  height: auto;
-  position: relative;
-  padding-right: 50px;
-  padding-left: 50px;
-  padding-top: 50px;
-}
-
-.vertical-side {
-  width: 2px;
-  height: 100%;
-  background-color: #155b55;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 .nomprenom {
   display: flex;
-  align-items: row;
   padding-bottom: 50px;
   padding-top: 20px;
   justify-content: center;
 }
-.btnConfirmer {
-  padding-top: 20px;
-  padding-left: 100%;
-}
+
 #labelnom {
   padding-right: 20px;
   padding-bottom: 20px;
@@ -101,169 +93,3 @@
   display: flex;
   flex-direction: row;
 }
-.Texte {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 5px;
-  padding-top: 5px;
-  white-space: wrap;
-}
-
-.zoneDeCommandes{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 50px;
-  padding-top: 50px;
-  padding-right: 50px;
-  padding-bottom: 50px;
-  background-color: #155b55;
-  border-radius: 10px;
-  border: 2px solid #155b55;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  width: auto;
-  height: 100%;
-  margin:50px;
-}
-
-.infosCommande{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 50px;
-  padding-top: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    background-color: #155b55;
-    border-radius: 10px;
-    border: 2px solid #155b55;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-
-}
-
-#avion{
-  width: 50%;
-  height: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-left: 50px;
-  padding-top: 50px;
-  padding-right: 50px;
-  padding-bottom: 50px;
-  background-color: #155b55;
-  border-radius: 10px;
-  border: 2px solid #155b55;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
-}
-
-.reclamStyle{
-  background-color: #155b55;
-  border-radius:20px;
-  border: 2px solid #155b55;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-left: 50px;
-  padding-top: 50px;
-  padding-right: 50px;
-  padding-bottom: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: "Arial";
-  color: white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-
-/* Écran de taille maximale de 768px */
-@media (max-width: 768px) {
-  .remettre {
-    flex-direction: column;
-  }
-  .gauche,
-  .profile-info,
-  .bar,
-  .Texte {
-    padding: 20px;
-    display:flex;
-    flex-direction:column;
-  }
-  .rectangle {
-    width: 100%;
-  }
-  .vertical-side {
-    display: none;
-  }
-  .nomprenom,
-  .btnConfirmer,
-  .motsDP,
-  .colonne,
-  .colonne2 {
-    padding: 10px;
-    
-  }
-  .infosCommande,
-  #avion,
-  .reclamStyle {
-    width:50%;
-    height:auto;
-    display:flex;
-    flex-direction:column;
-  }
-  .bottom-side{
-    overflow-x:hidden;
-    width:90%;
-    align-items: center;
-  }
-  .reverse{
-    display:flex;
-    flex-direction:column;
-  }
-  .zoneDeCommandes{
-    display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  background-color: #155b55;
-  border-radius: 10px;
-  border: 2px solid #155b55;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  width: auto;
-  height: 50%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  }
-  .Texte{
-    background-color: #155b55;
-  border-radius: 10px;
-  border: 2px solid #155b55;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  }
-  .profile-info{
-    
-  }
-}
-
