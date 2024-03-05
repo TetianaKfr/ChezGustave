@@ -3,16 +3,15 @@ import { Navbar } from '../../components/Navbar/Navbar';
 import { Searchbar } from '../../components/SearchBar/Searchbar';
 import { Footer } from '../../components/Footer/Footer';
 import './Home.css'
-import Banner from '../../assets/PresentationLake.jpg';
+import Banner from '../../assets/heroBanner.png';
 
 export const Home = () => {
     return (
         <>
             <Navbar />
-            <img className='heroBanner' src={Banner} alt="" />
+            <img className='heroBanner' src={Banner} alt="Image d'accueil du site" />
             <Searchbar />
             <div className='wrapper displayHome'>
-
                 <div className='backgColor'>
                     <h2>Voyager en France</h2>
                     <p>Pourquoi pas ici?</p>

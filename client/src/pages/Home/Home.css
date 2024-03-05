@@ -18,7 +18,7 @@ body{
 .heroBanner{
     margin-top: 2vw;
     width:100%;
-    height: 40vw;
+    height: auto
 }
 
 .displayHome { 
@@ -79,4 +79,48 @@ color: var(--Blanc);
 
 .colorText{
     color: var(--DoreClair);
+}
+
+
+@media (max-width: 380px){
+    .heroBanner{
+        margin: 0;
+    }
+    
+    .displayVoyage{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .photoDestination{
+        height: 70vw;
+        width: 70vw 
+    }    
+
+    .displayCoeur{
+        display: flex;
+        flex-direction: column;  
+    }
+    .cardCoeur{
+        padding-top: 5vw;
+    }
+    .cardCoeur img{
+        height: 70vw;
+        width: 70vw;
+    }
+}
+
+@media (max-width: 780px) {
+    .heroBanner{
+        margin: 0;
+    }
+    .photoDestination{
+        height: 22vw;
+        width: 22vw 
+    }  
+    .cardCoeur img{
+        height: 30vw;
+        width: 30vw;
+    }
+    
 }
