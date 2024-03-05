@@ -89,3 +89,20 @@ export async function list(req: Request, res: Response) {
       handle_controller_errors(res, err);
     }
   }
+
+  export async function remove(req: Request, res: Response) {
+    try {
+  
+  
+      let name: string = req.params.name;
+  
+      const result = await database.getRepository(Housing).delete({ name: name });
+      if (result.affected == null || result.affected < 1) {
+        throw ControllerException.NOT_FOUND;
+      }
+  
+      res.sendStatus(200);
+    } catch (err) {
+      return handle_controller_errors(res, err);
+    }
+  };
