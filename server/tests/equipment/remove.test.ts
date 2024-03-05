@@ -19,7 +19,7 @@ describe('Remove equipment', () => {
 
   test("Remove equipment success", async () => {
     const response = await supertest(app)
-      .delete("/equipments")
+      .delete("/equipment")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Some equipment" });
 
@@ -32,7 +32,7 @@ describe('Remove equipment', () => {
 
   test("Remove equipment inexistant", async () => {
     const response = await supertest(app)
-      .delete("/equipments")
+      .delete("/equipment")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Other equipment" });
 
@@ -45,7 +45,7 @@ describe('Remove equipment', () => {
 
   test("Remove equipment unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .delete("/equipments")
+      .delete("/equipment")
       .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({ name: "Some equipment" });
 
@@ -58,7 +58,7 @@ describe('Remove equipment', () => {
 
   test("Remove equipment unauthorized not connected", async () => {
     const response = await supertest(app)
-      .delete("/equipments")
+      .delete("/equipment")
       .send({ name: "Some equipment" });
 
     const equipments = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -70,7 +70,7 @@ describe('Remove equipment', () => {
 
   test("Remove equipment unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .delete("/equipments")
+      .delete("/equipment")
       .auth("adhzjfheuirhdeuhvserui:admin", { type: "bearer" })
       .send({ name: "Some equipment" });
 
