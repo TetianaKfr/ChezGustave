@@ -6,11 +6,15 @@ export default class Housing {
   @PrimaryGeneratedColumn()
   id: number
 
+  @Column({ unique: true })
+  name: string
+
   /**
    * Json array of the images urls
    */
   @Column("json")
   images_urls: string[]
+
 
   /**
    * Housing area, usually a city
