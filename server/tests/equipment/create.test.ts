@@ -14,7 +14,7 @@ describe('Create equipment', () => {
 
   test("Create equipment success", async () => {
     const response = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
@@ -29,7 +29,7 @@ describe('Create equipment', () => {
 
   test("Create equipment unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("user", "user"), { type: "bearer" })
       .send({
         name: "equipment 1"
@@ -44,7 +44,7 @@ describe('Create equipment', () => {
 
   test("Create equipment unauthorized not connected", async () => {
     const response = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .send({
         name: "equipment 1"
       });
@@ -58,7 +58,7 @@ describe('Create equipment', () => {
 
   test("Create equipment unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth("dqjdhqzdkqzhdqzfhq:admin", { type: "bearer" })
       .send({
         name: "equipment 1"
@@ -73,7 +73,7 @@ describe('Create equipment', () => {
 
   test("Create equipment conflict", async () => {
     const response_1 = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
@@ -81,14 +81,14 @@ describe('Create equipment', () => {
 
 
     const response_2 = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 1"
       });
 
     const response_3 = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("admin", "admin"), { type: "bearer" })
       .send({
         name: "equipment 2"
@@ -109,7 +109,7 @@ describe('Create equipment', () => {
 
   test("Create equipment missing name", async () => {
     const response = await supertest(app)
-      .post("/equipments")
+      .post("/equipment")
       .auth(await authentificate("admin", "admin"), { type: "bearer" })
       .send({});
 
