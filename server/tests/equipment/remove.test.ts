@@ -3,7 +3,7 @@ import supertest from "supertest";
 import app from "../../src/app";
 import database from "../../src/database";
 import Equipment from "../../src/entities/Equipment";
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 
 describe('Remove equipment', () => {
   beforeEach(async () => {
@@ -20,7 +20,7 @@ describe('Remove equipment', () => {
   test("Remove equipment success", async () => {
     const response = await supertest(app)
       .delete("/equipment")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Some equipment" });
 
     const equipments = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -33,7 +33,7 @@ describe('Remove equipment', () => {
   test("Remove equipment inexistant", async () => {
     const response = await supertest(app)
       .delete("/equipment")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" })
+      .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({ name: "Other equipment" });
 
     const equipments = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);
@@ -46,7 +46,7 @@ describe('Remove equipment', () => {
   test("Remove equipment unauthorized connected as user", async () => {
     const response = await supertest(app)
       .delete("/equipment")
-      .auth(await authentificate("user", "user"), { type: "bearer" })
+      .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({ name: "Some equipment" });
 
     const equipments = (await database.getRepository(Equipment).find()).map(equipment => equipment.name);

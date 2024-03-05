@@ -1,5 +1,6 @@
-import { authentificate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import supertest from "supertest";
+
+import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
 
 describe('List users', () => {
@@ -12,8 +13,8 @@ describe('List users', () => {
 
   test("List users success", async () => {
     const response = await supertest(app)
-      .get("/users/")
-      .auth(await authentificate("admin", "admin"), { type: "bearer" });
+      .get("/users")
+      .auth(await authenticate("admin", "admin"), { type: "bearer" });
 
     expect(response.status).toBe(200);
     expect(response.body).toContain("admin");
@@ -23,8 +24,8 @@ describe('List users', () => {
 
   test("List users unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .get("/users/")
-      .auth(await authentificate("user", "user"), { type: "bearer" });
+      .get("/users")
+      .auth(await authenticate("user", "user"), { type: "bearer" });
 
     expect(response.status).toBe(401);
     expect(response.text).toBe("Unauthorized");
@@ -32,7 +33,7 @@ describe('List users', () => {
 
   test("List users unauthorized not connected", async () => {
     const response = await supertest(app)
-      .get("/users/");
+      .get("/users");
 
     expect(response.status).toBe(401);
     expect(response.text).toBe("Unauthorized");
@@ -40,7 +41,7 @@ describe('List users', () => {
 
   test("List users unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .get("/users/")
+      .get("/users")
       .auth("zdhqzkioghzesuiqfigsh:admin", { type: "bearer" });
 
     expect(response.status).toBe(401);
