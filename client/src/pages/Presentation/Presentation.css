@@ -1,22 +1,26 @@
 
+/* main CSS */
 :root {
     --blueGreen: #155B55;
     --white: #fff;
     --borderRadius: 15px;
     --fontSize18: 18px;
+    --fontSize16: 16px;
     --fontRaleway: 'raleway';
+    --fontManrope: 'manrope';
 }
-
-
-
 .titles-presentation-page{
     display: flex;
     justify-content: center;
     color: var(--blueGreen);
     font-size: 32px;
-    font-family: 'manrope';
+    font-family: var(--fontManrope);
 }
+/* end main CSS */
 
+
+/* desktop version */
+/* presentation part desktop */
 .welcome-div-presentation-page{
     display: flex;
     justify-content: center;
@@ -29,43 +33,42 @@
     border-radius: var(--borderRadius);
 }
 .welcome-paragraph-presentation-page{
-    width: 1000px;
+    width: 90%;
     font-size: 24px;
     color: var(--white);
     font-family: var(--fontRaleway);
 }
-
-
 #presentation-lake-div{
     display: flex;
     justify-content: center;
-}
-
-
-
-#presentation-lake-img {
-    width: 1000px;
     padding-top: 50px;
+}
+#presentation-lake-img {
+    width: 80%;
     border-radius: var(--borderRadius);
 }
+/* end presentation part desktop */
 
 
+/* founders part desktop */
 .founders-images{
     width: 400px;
     border-radius: var(--borderRadius);
 }
 .div-founders-images-and-founders-description{
     display: flex;
+    justify-content: space-evenly;
     padding-bottom: 25px;
-    
 }
-
+.name-founders{
+    font-size: 22px;
+    font-family: var(--fontManrope);
+}
 .paragraph-description-founders {
-    width: 550px;
+    width: 90%;
     font-size: var(--fontSize18);
     font-family: var(--fontRaleway);
 }
-
 .div-name-and-paragraph-founders{
     display: flex;
     justify-content: center;
@@ -76,41 +79,37 @@
     border-radius: var(--borderRadius);
     color: var(--white);
 }
+/* end founders part desktop*/
 
-.div-founders-images-and-founders-description {
-    display: flex;
-    justify-content: space-evenly;
-    
-}
 
+/* cliffs part desktop */
 .cliffs-image{
-    height: 566px;
+    width: 566px;
     border-radius: var(--borderRadius);
 }
-
 .cliffs-image-and-description{
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     padding-top: 50px;
-
 }
-
 .description-cliffs{
     width: 606px;
     color: var(--blueGreen);
     font-size: var(--fontSize18);
     font-family: var(--fontRaleway);
 }
+/* end cliffs part desktop */
 
 
+/* our values part desktop */
 .titles-our-values-presentation-page {
     display: flex;
     justify-content: center;
     color: var(--blueGreen);
     font-size: 20px;
-    font-family: 'manrope';
+    font-family: var(--fontManrope);
 }
-
 .icons-presentation{
     width: 220px;
 }
@@ -118,17 +117,121 @@
     display: flex;
     justify-content: center;
 }
-
-
-
 .description-our-values{
     color: var(--blueGreen);
     width: 700px;
     font-size: var(--fontSize18);
     font-family: var(--fontRaleway);
 }
-
 .div-description-our-values{
     display: flex;
     justify-content: center;
 }
+/* end our values part desktop */
+/* end desktop version */
+
+
+/* responsive for cliffs part*/
+@media screen and (max-width: 1185px) {
+    .cliffs-image-and-description{
+        flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+    }
+}
+/* end responsive for cliffs part */
+
+
+/* tablet responsive */
+@media screen and (max-width: 800px) {
+    /* presentation part tablet */
+    .welcome-div-div-presentation-page{
+        width: 90%;
+    }
+    .welcome-paragraph-presentation-page{
+        width: 90%;
+    }
+    #presentation-lake-img{
+        width: 100%;
+        border-radius: 0;
+    }
+    /* end presentation part tablet */
+    /* founders part tablet */
+    .div-founders-images-and-founders-description{
+        flex-direction: column;
+        align-items: center;
+    }
+    .founders-images{
+        width: 85%;
+    }
+    
+    .div-name-and-paragraph-founders{
+        width: 85%;
+        margin-top: 20px;
+    }
+    /* end founders part tablet */
+
+
+    /* cliffs part tablet */
+    .cliffs-image{
+        width: 95%;
+    }
+    .description-cliffs{
+        width: 80%;
+        padding-top: 20px;
+    }
+    /* end cliffs part tablet */
+
+
+    /* our values part tablet */
+    .icons-presentation{
+        width: 175px;
+    }
+    .description-our-values{
+        width: 80%;
+    }
+    /* end our values part tablet */
+}
+/* end tablet responsive */
+
+
+/* mobile responsive */
+@media screen and (max-width: 400px) {
+    /* main CSS mobile responsive */
+    .titles-presentation-page{
+        font-size: 22px;
+    }
+    /* end main CSS mobile responsive */
+
+
+    /* presentation part mobile */
+    .welcome-paragraph-presentation-page{
+        font-size: var(--fontSize18);
+    }
+    /* end presentation part mobile */
+
+
+    /* founders part mobile */
+    .paragraph-description-founders{
+        font-size: var(--fontSize16);
+    }
+    /* end founders part mobile */
+
+
+    /* cliffs part mobile */
+    .description-cliffs{
+        font-size: var(--fontSize16);
+    }
+    /* end cliffs part mobile */
+
+
+    /* our values part mobile */
+    .titles-our-values-presentation-page{
+        font-size: var(--fontSize18);
+    }
+    .description-our-values{
+        font-size: var(--fontSize16);
+    }
+    /* end our values part mobile */
+}
+/* end mobile responsive */
