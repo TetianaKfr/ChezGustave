@@ -24,9 +24,9 @@
 }
 .Formulaire{
   display: flex;
+  flex-direction: column ;
   justify-content: center;
   align-items: center;
-  border: solid 1px red;  
 }
 
 
@@ -53,6 +53,7 @@
 .profile-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .nomprenom {

@@ -106,34 +106,35 @@ function Profile() {
                     placeholder="jeandupont@gmail.com" // Ajout d'un placeholder avec la valeur initiale
                   />
                 </div>
-              </form>
-              <div className="chgmt">
-                <h3>Changement de mot de passe</h3>
-              </div>
-              <div className="motsDP">
-                <div className="colonne">
-                  <p>Mot de passe actuel :</p>
-                  <div className="input">
+
+                <div className="chgmt">
+                  <h3>Changement de mot de passe</h3>
+                </div>
+                <div className="motsDP">
+                  <div className="colonne">
+                    <p>Mot de passe actuel :</p>
+                    <div className="input">
+                      <input
+                        type="password"
+                        value={currentPassword}
+                        onChange={(e) => setCurrentPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="colonne">
+                    <p>Nouveau mot de passe :</p>
                     <input
                       type="password"
-                      value={currentPassword}
-                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </div>
                 </div>
-                <div className="colonne">
-                  <p>Nouveau mot de passe :</p>
-                  <input
-                    type="password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
+                <div className="btnConfirmer">
+                  <button onClick={handleChangePassword}>Confirmer</button>
                 </div>
-              </div>
-              <div className="btnConfirmer">
-                <button onClick={handleChangePassword}>Confirmer</button>
-              </div>
-              <p className="password-message">{passwordMessage}</p>
+                <p className="password-message">{passwordMessage}</p>
+              </form>
             </div>
           </div>
         </div>
@@ -147,13 +148,13 @@ function Profile() {
                 <label id="labelnom" htmlFor="nom">
                   Nom :
                 </label>
-                  <input className="input"
-                    type="text"
-                    id="nom"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="Prenom"
-                  />
+                <input className="input"
+                  type="text"
+                  id="nom"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Prenom"
+                />
               </div>
               <div className="colonne">
                 <label id="labelprenom" htmlFor="prenom">
@@ -180,8 +181,8 @@ function Profile() {
                 placeholder="votre mail"
               />
             </div>
-          </form>
-            <h3 className="chgmt">Changement de mot de passe</h3>
+          
+          <h3 className="chgmt">Changement de mot de passe</h3>
           <div className="motsDP">
             <div className="colonne">
               <p>Mot de passe actuel :</p>
@@ -206,6 +207,7 @@ function Profile() {
             <button onClick={handleChangePassword}>Confirmer</button>
           </div>
           <p className="password-message">{passwordMessage}</p>
+          </form>
         </div>
       </div>
       <Footer />
