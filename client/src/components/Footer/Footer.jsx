@@ -38,7 +38,7 @@ export const Footer = () => {
 
           <div className="row liens">
             <NavLink to="/">
-              <p>RGPD</p>
+              <p>GDPR </p>
             </NavLink>
             <NavLink to="/mentions-legales">
               <p>Mentions légales</p>
