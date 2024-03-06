@@ -42,10 +42,21 @@ body{
     justify-content: center;
 }
 .photoDestination {
-    height: 12vw;
-    width: 12vw;
+    height: 18vw;
+    width: 18vw;
     background-color: #155B55;
 }
+.cardCoeur p {
+    font-size: larger;
+}
+.backgroundColor{
+    background-color: #eeeeeede ;
+    border-radius: 20px;
+    font-size: larger;
+    color: var(--VertBleu);
+    padding: 1.2vw;
+}
+
 .displayVoyage div  {
     color: var(--VertBleu);
     align-items: center;
@@ -61,24 +72,70 @@ body{
 }
 
 .cardCoeur{
-background-color: var(--DoreClair);
-display: flex;
-font-size: larger;
-cursor: pointer;
-flex-direction: column;
-align-items: center;
-color: var(--Blanc);
-
+    background-color: var(--DoreClair);
+    display: flex;
+    font-size: larger;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    color: var(--Blanc);
 }
 .cardCoeur img{
-    height: 18vw;
-    width: 18vw;
+    height: 25vw;
+    width: 25vw;
     cursor: pointer;
     background-color: #155B55;
+}
+.backgColor{
+    background-size: cover;
+    background-position-Y: 50%;
+    color: var(--Blanc);
+}
+
+.Taille{
+    font-size: 3rem;
+    background-color: var(--VertBleu);
+    width: 35rem;
+    border-top-right-radius: 80px;
+    
+}
+.Taille2{
+    font-size: 1.5rem;
+    margin-top: -40px;
+    background-color: var(--DoreClair);
+    color: #155B55;
+    width: 35rem;
+
 }
 
 .colorText{
     color: var(--DoreClair);
+}
+
+@media (max-width: 780px) {
+    .heroBanner{
+        margin: 0;
+    }
+    .photoDestination{
+        height: 20vw;
+        width: 20vw 
+    }  
+    .cardCoeur img{
+        height: 30vw;
+        width: 30vw;
+    }
+
+}
+@media (max-width: 570px){
+    .Taille {
+        width: 100%;
+        border-radius: 0;
+        font-size: 2rem;
+    }
+    .Taille2 {
+        width: 100%;
+        margin-top: -28px;
+    }
 }
 
 
@@ -108,19 +165,4 @@ color: var(--Blanc);
         height: 70vw;
         width: 70vw;
     }
-}
-
-@media (max-width: 780px) {
-    .heroBanner{
-        margin: 0;
-    }
-    .photoDestination{
-        height: 22vw;
-        width: 22vw 
-    }  
-    .cardCoeur img{
-        height: 30vw;
-        width: 30vw;
-    }
-    
 }
