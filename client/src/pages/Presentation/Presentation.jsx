@@ -40,7 +40,7 @@ export const Presentation= () => {
             <div className='div-founders-images-and-founders-description'>
                 <img className='founders-images' src={gustaveMaurice} alt="image de Gustave Maurice" />
                 <div className='div-name-and-paragraph-founders'>
-                    <h3>Gustave Maurice</h3>
+                    <h3 className='name-founders'>Gustave Maurice</h3>
                     <p className='paragraph-description-founders'>
                         Ancien prospecteur immobilier pour AirBtoB, Gustave a parcouru le globe, découvrant des biens d'une rare beauté et d'une valeur inestimable. Riche de ces expériences, il choisit de changer de cap. Gustave est un visionnaire, il croit fermement en la valeur de la relation directe et personnalisée avec ses clients.
                     </p>
@@ -49,7 +49,7 @@ export const Presentation= () => {
             <div className='div-founders-images-and-founders-description'>
                 <img className='founders-images' src={jeanMarlin} alt="image de Jean Marlin" />
                 <div className='div-name-and-paragraph-founders'>
-                    <h3>Jean Marlin</h3>
+                    <h3 className='name-founders'>Jean Marlin</h3>
                     <p className='paragraph-description-founders'>
                         Jean est l'expert financier du groupe. Ayant travaillé dans plusieurs grandes banques, il apporte une solide connaissance en gestion financière et en investissement. C'est lui qui a conçu le modèle économique unique de l'entreprise, permettant un partage juste des bénéfices avec les propriétaires.
                     </p>
@@ -58,7 +58,7 @@ export const Presentation= () => {
             <div className='div-founders-images-and-founders-description'>
                     <img className='founders-images' src={marcLavie} alt="image de Marc Lavie" />
                 <div className='div-name-and-paragraph-founders'>
-                    <h3>Marc Lavie</h3>
+                    <h3 className='name-founders'>Marc Lavie</h3>
                     <p className='paragraph-description-founders'>
                         Marc est le stratège marketing du groupe. Avec une carrière dans le marketing pour des marques de luxe, Marc comprend l'importance d'une communication ciblée et personnalisée. Il est l'artisan des stratégies de marketing direct et de bouche à oreille qui ont fait le succès de l'entreprise. Marc est également un amateur de gastronomie, ce qui l'a poussé à initier des partenariats avec des chefs étoilés pour offrir des expériences culinaires uniques aux clients.
                     </p>
@@ -67,7 +67,7 @@ export const Presentation= () => {
             <div className='div-founders-images-and-founders-description'>
                     <img className='founders-images' src={paulAlker} alt="image de Paul Alker" />
                 <div className='div-name-and-paragraph-founders'>
-                    <h3>Paul Alker</h3>
+                    <h3 className='name-founders'>Paul Alker</h3>
                     <p className='paragraph-description-founders'>
                         Paul est l'expert en relation client de l'équipe. Avec une longue expérience dans la vente et le service client, notamment dans l'industrie du luxe, Paul est convaincu que la qualité de la relation est primordiale. Il est souvent le premier point de contact pour les nouveaux clients et s'assure que chaque interaction reflète les valeurs de l'entreprise. Passionné par les voyages, Paul a une compréhension profonde des attentes des clients haut de gamme et travaille sans relâche pour dépasser ces attentes.
                     </p>
@@ -76,7 +76,7 @@ export const Presentation= () => {
             <div className='div-founders-images-and-founders-description'>
                 <img className='founders-images' src={martinCraie} alt="image de Martin Craie" />
                 <div className='div-name-and-paragraph-founders'>
-                    <h3>Martin Craie</h3>
+                    <h3 className='name-founders'>Martin Craie</h3>
                     <p className='paragraph-description-founders'>
                         Martin est l'architecte intérieur de l'équipe. Avec un sens aigu du détail et une passion pour la beauté, il s'assure que chaque propriété est non seulement luxueuse mais aussi chaleureuse et accueillante. Avant de rejoindre l'aventure, Martin a dirigé sa propre agence de design, travaillant sur des projets d'hôtels de luxe et des résidences privées dans le monde entier. Il croit que chaque espace doit raconter une histoire et s'efforce de personnaliser chaque location pour qu'elle soit unique.
                     </p>
