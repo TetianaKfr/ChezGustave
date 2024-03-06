@@ -1,0 +1,20 @@
+:root{
+    --blueGreenColor: #155B55;
+}
+
+#title-mentions-legales {
+    color: var(--blueGreenColor);
+    font-size: 32px;
+    font-family: "manrope";
+}
+
+.div-mentions-legales{
+    display: flex;
+    justify-content: center;
+}
+
+#paragraph-mentions-legales{
+    width: 80%;
+    font-size: 20px;
+    color: var(--blueGreenColor);
+}
