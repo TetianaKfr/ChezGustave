@@ -1,0 +1,103 @@
+{
+    "logements": [
+      {
+        "id": 1,
+        "images": ["url_image_1", "url_image_2", "url_image_3"],
+        "secteur": "Quartier A",
+        "description": "Description du logement 1",
+        "tarif_bas": 100.0,
+        "tarif_moyen": 150.0,
+        "tarif_haut": 200.0,
+        "m_carre": 80.0,
+        "chambre": 2,
+        "salle_de_bain": 1,
+        "categorie": "Maison",
+        "type": "Type 1",
+        "equipements": [1, 2, 3]
+      },
+      {
+        "id": 2,
+        "images": ["url_image_4", "url_image_5"],
+        "secteur": "Quartier B",
+        "description": "Description du logement 2",
+        "tarif_bas": 120.0,
+        "tarif_moyen": 180.0,
+        "tarif_haut": 240.0,
+        "m_carre": 100.0,
+        "chambre": 3,
+        "salle_de_bain": 2,
+        "categorie": "Appartement",
+        "type": "Type 2",
+        "equipements": [2, 3, 4]
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "email": "user1@example.com",
+        "name": "John Doe",
+        "tel": "1234567890",
+        "password": "hashed_password",
+        "is_admin": false
+      },
+      {
+        "id": 2,
+        "email": "user2@example.com",
+        "name": "Jane Doe",
+        "tel": "0987654321",
+        "password": "hashed_password",
+        "is_admin": true
+      }
+    ],
+    "reservations": [
+      {
+        "id": 1,
+        "start_date": "2024-04-01",
+        "end_date": "2024-04-07",
+        "chef_cuisine": true,
+        "visite": "2024-03-28",
+        "logement": 1,
+        "user": 1,
+        "rating": 1
+      },
+      {
+        "id": 2,
+        "start_date": "2024-05-15",
+        "end_date": "2024-05-22",
+        "chef_cuisine": false,
+        "visite": "2024-05-10",
+        "logement": 2,
+        "user": 2,
+        "rating": null
+      }
+    ],
+    "equipements": [
+      {
+        "id": 1,
+        "name": "WiFi"
+      },
+      {
+        "id": 2,
+        "name": "Cuisine équipée"
+      },
+      {
+        "id": 3,
+        "name": "TV"
+      },
+      {
+        "id": 4,
+        "name": "Climatisation"
+      }
+    ],
+    "ratings": [
+      {
+        "id": 1,
+        "rated": 4,
+        "text": "Très bon séjour",
+        "logement": 1,
+        "reservation": 1,
+        "user": 1
+      }
+    ]
+  }
+  
