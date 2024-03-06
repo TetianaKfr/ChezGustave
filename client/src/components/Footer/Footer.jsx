@@ -40,7 +40,7 @@ export const Footer = () => {
             <NavLink to="/">
               <p>RGPD</p>
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/mentions-legales">
               <p>Mentions légales</p>
             </NavLink>
             <NavLink to="/">
