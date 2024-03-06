@@ -68,15 +68,21 @@ export const Navbar = () => {
               &times;
             </span>
             <form onSubmit={handleFormSubmit}>
+              <label id="id" htmlFor="email">
+                Identifiant :
+              </label>
               <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              <label id="pass" htmlFor="password">
+                Mot de passe :
+              </label>
               <input
                 type="password"
-                placeholder="Mot de passe"
+                placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
