@@ -33,49 +33,11 @@ export const Home = () => {
         }
     };
 
-
-    //Fonction de connexion 
-    const handleLogin = async () => {
-        try {
-            //fetch de la requete de log in
-            const response = await fetch("http://localhost:3630/authenticate", {
-                method: 'POST',
-                //methode post pour envoyer au serveur les informations entrées (user + mdp )
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // Info envoyer au serv sous la forme d'un JSON
-                body: JSON.stringify({
-                    email: "main@example.xyz",
-                    password: "super_secret",
-                })
-            });
-            if (response.ok) {
-                const { token } = await response.json();
-                localStorage.setItem("token", token);
-                console.log(response, "Succes!")
-            } else if (response.status === 401) {
-                // Email ou mot de passe invalide
-                console.log("faux mdp:", response)
-                setErrorMessage('Nom  ou mot de passe incorrect');
-
-            } else {
-                // Gestion d'erreur
-                console.log("erreur:", response)
-                setErrorMessage('Une erreur s\'est produite lors de la connexion')
-            }
-        } catch (error) {
-            console.error('Erreur lors de la connexion :', error);
-            setErrorMessage('Une erreur s\'est produite lors de la connexion');
-        }
-    }
     //appel de la fonction liste
     useEffect(() => {
         listeUsers(); // Appel de la fonction listeUsers lors du chargement du composant Home
     }, []); 
     // Le tableau vide en second argument signifie que useEffect s'exécutera une seule fois après le premier rendu
-
-
 
     return (
         <>
@@ -109,7 +71,6 @@ export const Home = () => {
                 <div className='coupCoeur'>
                     <h2 className='colorText'>Laissez-vous tenter par nos coups de coeur</h2>
                     <p className='colorText'>Nos locations les mieux notées</p>
-
                     <div className='displayCoeur'>
                         <div className='cardCoeur'>
                             <img className='vignetteCoeur' src="" alt="" />
