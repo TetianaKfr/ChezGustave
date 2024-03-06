@@ -16,7 +16,7 @@ describe('Create user', () => {
 
   test("Create user success", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -50,7 +50,7 @@ describe('Create user', () => {
 
   test("Create admin success", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -85,7 +85,7 @@ describe('Create user', () => {
 
   test("Create user unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -107,7 +107,7 @@ describe('Create user', () => {
 
   test("Create admin unauthorized connected as user", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("user", "user"), { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -129,7 +129,7 @@ describe('Create user', () => {
 
   test("Create user unauthorized not connected", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -150,7 +150,7 @@ describe('Create user', () => {
 
   test("Create admin unauthorized not connected", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .send({
         first_name: "First Name",
         last_name: "Last Name",
@@ -172,7 +172,7 @@ describe('Create user', () => {
 
   test("Create user unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth("dqzdqdqzdqzdqzd:admin", { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -194,7 +194,7 @@ describe('Create user', () => {
 
   test("Create admin unauthorized invalid token", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth("dqzdqdqzdqzdqzd:admin", { type: "bearer" })
       .send({
         first_name: "First Name",
@@ -217,7 +217,7 @@ describe('Create user', () => {
   
   test("Create user missing first name", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         last_name: "Last Name",
@@ -238,7 +238,7 @@ describe('Create user', () => {
 
   test("Create user missing last name", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
@@ -259,7 +259,7 @@ describe('Create user', () => {
 
   test("Create user missing email", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
@@ -280,7 +280,7 @@ describe('Create user', () => {
 
   test("Create user missing password", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users/")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
@@ -301,7 +301,7 @@ describe('Create user', () => {
 
   test("Create user missing phone number", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
@@ -322,7 +322,7 @@ describe('Create user', () => {
 
   test("Create user missing admin", async () => {
     const response = await supertest(app)
-      .post("/user")
+      .post("/users")
       .auth(await authenticate("admin", "admin"), { type: "bearer" })
       .send({
         first_name: "First name",
