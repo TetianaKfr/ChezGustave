@@ -26,9 +26,9 @@ export async function list(req: Request, res: Response) {
 
 export async function create(req: Request, res: Response) {
   try {
-    // if (!await isSessionAdmin(req)) {
-    //   throw ControllerException.UNAUTHORIZED;
-    // }
+    if (!await isSessionAdmin(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
 
     const {
       name,
@@ -47,7 +47,6 @@ export async function create(req: Request, res: Response) {
     const high_price_str = req.body.high_price;
     const surface_str = req.body.surface;
     const bathroom_count_str = req.body.bathroom_count;
-
 
     if (
       typeof name != "string" ||
@@ -118,9 +117,7 @@ export async function remove(req: Request, res: Response) {
       throw ControllerException.UNAUTHORIZED;
     }
 
-    let name: string = req.params.name;
-
-    const result = await database.getRepository(Housing).delete({ name: name });
+    const result = await database.getRepository(Housing).delete({ name: req.params.name });
     if (result.affected == null || result.affected < 1) {
       throw ControllerException.NOT_FOUND;
     }
@@ -190,9 +187,12 @@ export async function modify(req: Request, res: Response) {
   }
 }
 
-
 export async function get(req: Request, res: Response) {
   try {
+    if (!await isSessionConnected(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
     const housing = await database.getRepository(Housing).findOne({
       select: {
         name: true,
@@ -211,6 +211,10 @@ export async function get(req: Request, res: Response) {
         name: req.params.name
       }
     });
+
+    if (housing == null) {
+      throw ControllerException.NOT_FOUND;
+    }
 
     res.status(200).send(housing);
   } catch (err) {
