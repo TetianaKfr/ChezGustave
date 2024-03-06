@@ -44,7 +44,7 @@ export const Footer = () => {
               <p>Mentions légales</p>
             </NavLink>
             <NavLink to="/">
-              <p>CVG</p>
+              <p>CGU</p>
             </NavLink>
           </div>
         </div>
