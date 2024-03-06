@@ -14,5 +14,6 @@ app.use(cors());
 app.use(UsersRouter);
 app.use(EquipmentsRouter);
 app.use(HousingsRouter);
+app.use("/uploads", express.static('uploads'));
 
 export default app;
