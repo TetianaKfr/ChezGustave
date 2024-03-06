@@ -8,7 +8,7 @@ router.get("/users", UserController.list);
 router.post("/user", UserController.create);
 router.delete("/user", UserController.remove);
 router.put("/user", UserController.modify);
-router.get("/user", UserController.get);
+router.post("/user", UserController.get);
 
 router.post("/authenticate", UserController.authenticate);
 
