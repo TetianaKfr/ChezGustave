@@ -14,11 +14,11 @@ export async function list(req: Request, res: Response) {
       throw ControllerException.UNAUTHORIZED;
     }
 
-    let housings_names = (await database.getRepository(Housing).find(
-      { select: { name: true } }
-    )).map(housing => housing.name);
+    let housings = (await database.getRepository(Housing).find({
+      select: { name: true }
+    }));
 
-    res.status(200).send(housings_names);
+    res.status(200).send(housings.map(housing => housing.name));
   } catch (err) {
     handle_controller_errors(res, err);
   }
@@ -117,7 +117,13 @@ export async function remove(req: Request, res: Response) {
       throw ControllerException.UNAUTHORIZED;
     }
 
-    const result = await database.getRepository(Housing).delete({ name: req.params.name });
+    const { name } = req.body;
+
+    if (typeof name != "string") {
+      throw ControllerException.MALFORMED_REQUEST;
+    }
+
+    const result = await database.getRepository(Housing).delete({ name });
     if (result.affected == null || result.affected < 1) {
       throw ControllerException.NOT_FOUND;
     }
@@ -136,6 +142,7 @@ export async function modify(req: Request, res: Response) {
 
     const {
       name,
+      new_name,
       images_urls,
       area,
       description,
@@ -150,22 +157,25 @@ export async function modify(req: Request, res: Response) {
 
     if (
       typeof name != "string" ||
-      !Array.isArray(images_urls) ||
-      !images_urls.every(url => typeof url === "string") ||
-      typeof area != "string" ||
-      typeof description != "string" ||
-      typeof low_price != "number" ||
-      typeof medium_price != "number" ||
-      typeof high_price != "number" ||
-      typeof surface != "number" ||
-      typeof bathroom_count != "number" ||
-      typeof category != "string" ||
-      typeof type != "string"
+      (typeof new_name != "string" && new_name != undefined) ||
+      images_urls != undefined && (
+        !Array.isArray(images_urls) ||
+        !images_urls.every(url => typeof url === "string")
+      ) ||
+      (typeof area != "string" && area != undefined) ||
+      (typeof description != "string" && description != undefined) ||
+      (typeof low_price != "number" && low_price != undefined) ||
+      (typeof medium_price != "number" && medium_price != undefined) ||
+      (typeof high_price != "number" && high_price != undefined) ||
+      (typeof surface != "number" && surface != undefined) ||
+      (typeof bathroom_count != "number" && bathroom_count != undefined) ||
+      (typeof category != "string" && category != undefined) ||
+      (typeof type != "string" && type != undefined)
     ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
-    const housing = {
+    await database.getRepository(Housing).update({ name }, {
       name,
       images_urls,
       area,
@@ -177,9 +187,7 @@ export async function modify(req: Request, res: Response) {
       bathroom_count,
       category,
       type,
-    };
-
-    await database.getRepository(Housing).update({ name: req.params.name }, housing);
+    });
 
     res.sendStatus(200);
   } catch (err) {
@@ -191,6 +199,12 @@ export async function get(req: Request, res: Response) {
   try {
     if (!await isSessionConnected(req)) {
       throw ControllerException.UNAUTHORIZED;
+    }
+
+    const { name } = req.body;
+
+    if (typeof name != "string") {
+      throw ControllerException.MALFORMED_REQUEST;
     }
 
     const housing = await database.getRepository(Housing).findOne({
@@ -207,9 +221,7 @@ export async function get(req: Request, res: Response) {
         category: true,
         type: true,
       },
-      where: {
-        name: req.params.name
-      }
+      where: { name }
     });
 
     if (housing == null) {

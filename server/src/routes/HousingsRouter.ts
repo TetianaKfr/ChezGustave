@@ -5,10 +5,10 @@ import * as HousingController from "../controllers/HousingController";
 
 const router = Router();
 
-router.get("/housing", HousingController.list);
-router.post("/housing", multer().any(), HousingController.create);
-router.delete("/housing/:name", HousingController.remove);
-router.put("/housing/:name", HousingController.modify);
-router.get("/housing/:name", HousingController.get);
+router.get("/housings", HousingController.list);
+router.post("/housings", multer().any(), HousingController.create);
+router.delete("/housing", HousingController.remove);
+router.put("/housing", HousingController.modify);
+router.post("/housing", HousingController.get);
 
 export default router;
