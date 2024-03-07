@@ -41,44 +41,26 @@ export async function create(req: Request, res: Response) {
     // Numeric and array fields are collected as string because this request is a multipart request
     // Because multipart requests can receives file uploads.
     // Multipart request only handle string field
-    const images_urls_str = req.body.images_urls;
-    const low_price_str = req.body.low_price;
-    const medium_price_str = req.body.medium_price;
-    const high_price_str = req.body.high_price;
-    const surface_str = req.body.surface;
-    const bathroom_count_str = req.body.bathroom_count;
+    let images_urls = JSON.parse(req.body.images_urls);
+    const low_price = Number.parseFloat(req.body.low_price);
+    const medium_price = Number.parseFloat(req.body.medium_price);
+    const high_price = Number.parseFloat(req.body.high_price);
+    const surface = Number.parseFloat(req.body.surface);
+    const bathroom_count = Number.parseFloat(req.body.bathroom_count);
 
     if (
       typeof name != "string" ||
-      typeof images_urls_str != "string" ||
-      typeof area != "string" ||
-      typeof description != "string" ||
-      typeof low_price_str != "string" ||
-      typeof medium_price_str != "string" ||
-      typeof high_price_str != "string" ||
-      typeof surface_str != "string" ||
-      typeof bathroom_count_str != "string" ||
-      typeof category != "string" ||
-      typeof type != "string"
-    ) {
-      throw ControllerException.MALFORMED_REQUEST;
-    }
-
-    let images_urls = JSON.parse(images_urls_str);
-    const low_price = Number.parseFloat(low_price_str);
-    const medium_price = Number.parseFloat(medium_price_str);
-    const high_price = Number.parseFloat(high_price_str);
-    const surface = Number.parseFloat(surface_str);
-    const bathroom_count = Number.parseFloat(bathroom_count_str);
-
-    if (
       !Array.isArray(images_urls) ||
       !images_urls.every(image_url => typeof image_url == "string") ||
+      typeof area != "string" ||
+      typeof description != "string" ||
       Number.isNaN(low_price) ||
       Number.isNaN(medium_price) ||
       Number.isNaN(high_price) ||
       Number.isNaN(surface) ||
-      Number.isNaN(bathroom_count)
+      Number.isNaN(bathroom_count) ||
+      typeof category != "string" ||
+      typeof type != "string"
     ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
@@ -143,36 +125,54 @@ export async function modify(req: Request, res: Response) {
     const {
       name,
       new_name,
-      images_urls,
       area,
       description,
-      low_price,
-      medium_price,
-      high_price,
-      surface,
-      bathroom_count,
       category,
       type,
     } = req.body;
 
+    // Numeric and array fields are collected as string because this request is a multipart request
+    // Because multipart requests can receives file uploads.
+    // Multipart request only handle string field
+    let images_urls = JSON.parse(req.body.images_urls);
+    const low_price = Number.parseFloat(req.body.low_price);
+    const medium_price = Number.parseFloat(req.body.medium_price);
+    const high_price = Number.parseFloat(req.body.high_price);
+    const surface = Number.parseFloat(req.body.surface);
+    const bathroom_count = Number.parseFloat(req.body.bathroom_count);
+
     if (
       typeof name != "string" ||
       (typeof new_name != "string" && new_name != undefined) ||
-      images_urls != undefined && (
-        !Array.isArray(images_urls) ||
-        !images_urls.every(url => typeof url === "string")
-      ) ||
+      (images_urls != undefined && !(
+        Array.isArray(images_urls) &&
+        images_urls.every(url => typeof url === "string")
+      )) ||
       (typeof area != "string" && area != undefined) ||
       (typeof description != "string" && description != undefined) ||
       (typeof low_price != "number" && low_price != undefined) ||
-      (typeof medium_price != "number" && medium_price != undefined) ||
-      (typeof high_price != "number" && high_price != undefined) ||
-      (typeof surface != "number" && surface != undefined) ||
-      (typeof bathroom_count != "number" && bathroom_count != undefined) ||
+      Number.isNaN(medium_price) ||
+      Number.isNaN(high_price) ||
+      Number.isNaN(surface) ||
+      Number.isNaN(bathroom_count) ||
       (typeof category != "string" && category != undefined) ||
       (typeof type != "string" && type != undefined)
     ) {
       throw ControllerException.MALFORMED_REQUEST;
+    }
+
+    if (req.files != undefined && Array.isArray(req.files)) {
+      const uploaded_images_name = req.files.map(file => {
+        const file_name = crypto.createHash("sha256").update(file.buffer).digest("hex") + '.' + mime.extension(file.mimetype);
+        fs.writeFile("uploads/" + file_name, file.buffer);
+        return file_name;
+      });
+
+      if (images_urls == undefined) {
+        images_urls = uploaded_images_name;
+      } else {
+        images_urls = images_urls.concat(uploaded_images_name);
+      }
     }
 
     await database.getRepository(Housing).update({ name }, {

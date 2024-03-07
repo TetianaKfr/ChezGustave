@@ -1,6 +1,6 @@
 # API
 
-## Authentification
+## Authentication
 
 ```ts
 const response = await fetch("localhost:3630/authenticate", {
@@ -15,7 +15,7 @@ const response = await fetch("localhost:3630/authenticate", {
 });
 
 if (response.ok) {
-  const { token } = await reponse.json();
+  const { token } = await response.json();
   localStorage.setItem("token", token);
 } else if (response.status == 401) {
   // Email ou mot de passe invalide
@@ -24,7 +24,7 @@ if (response.ok) {
 }
 ```
 
-## Users
+## Users (utilisateurs)
 
 ### List users `GET /users`
 
@@ -45,10 +45,10 @@ if (response.ok) {
 }
 ```
 
-### Create user `POST /user`
+### Create user `POST /users`
 
 ```ts
-const response = await fetch("localhost:3630/user", {
+const response = await fetch("localhost:3630/users", {
   method: "POST",
   headers: {
     "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -57,7 +57,7 @@ const response = await fetch("localhost:3630/user", {
   body: JSON.stringify({
     first_name: "Louis",
     last_name: "Le Cam",
-    email: "mail@exampler.xyz",
+    email: "mail@example.xyz",
     password: "super_secret",
     phone_number: "0000000000",
     admin: true,
@@ -73,13 +73,13 @@ if (!response.ok) {
 
 ```ts
 const response = await fetch("localhost:3630/user", {
-  method: "GET",
+  method: "POST",
   headers: {
     "Authorization": "Bearer " + localStorage.getItem("token"),
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    email: "mail@exampler.xyz",
+    email: "mail@example.xyz",
   }),
 });
 
@@ -161,10 +161,10 @@ if (response.ok) {
 }
 ```
 
-### Create equipment `POST /equipment`
+### Create equipment `POST /equipments`
 
 ```ts
-const response = await fetch("localhost:3630/equipment", {
+const response = await fetch("localhost:3630/equipments", {
   method: "POST",
   headers: {
     "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -211,6 +211,144 @@ const response = await fetch("localhost:3630/equipment", {
   },
   body: JSON.stringify({
     name: "spa",
+  }),
+});
+
+if (!response.ok) {
+  // Gestion d'erreur
+}
+```
+
+## Housings (logements)
+
+### List housings `GET /housings`
+
+```ts
+const response = await fetch("localhost:3630/housings", {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+});
+
+if (response.ok) {
+  await response.json();
+  // ["Maison des Rives"]
+} else {
+  // Gestion d'erreur
+}
+```
+
+### Create housing `POST /housings`
+
+```ts
+let formData = new FormData();
+formData.append("name", "Maison des Rives");
+formData.append("area", "Sarlat");
+formData.append("description", "Au coeur du périguord...");
+formData.append("category", "Campagne");
+formData.append("type", "Maison");
+formData.append("images_urls", "[]");
+formData.append("image_1", /* image file blob */);
+formData.append("image_2", /* image file blob */);
+formData.append("low_price", "2000");
+formData.append("medium_price", "4000");
+formData.append("high_price", "5000");
+formData.append("surface", "540");
+formData.append("bathroom_count", "3");
+
+const response = await fetch("localhost:3630/housings", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: formData,
+});
+
+if (!response.ok) {
+  // Gestion d'erreur  
+}
+```
+
+### Get housing `GET /housing`
+
+```ts
+const response = await fetch("localhost:3630/housing", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Maison des Rives",
+  }),
+});
+
+if (response.ok) {
+  await response.json();
+  // {
+  //   images_urls: ["localhost:3630/uploads/1414ab8595035F42492.png"],
+  //   area: "Sarlat",
+  //   description: "Au coeur du périguord...",
+  //   category: "Campagne",
+  //   type: "Maison",
+  //   low_price: 2000,
+  //   medium_price: 4000,
+  //   high_price: 5000,
+  //   surface: 540,
+  //   bathroom_count: 3,
+  // }
+} else {
+  // Gestion d'erreur
+}
+```
+
+### Modify housing `PUT /housing`
+
+```ts
+let formData = new FormData();
+formData.append("name", "Maison des Rives");
+formData.append("new_name", "Caillou nuageux");
+formData.append("area", "Sarlat");
+formData.append("description", "Au coeur du périguord...");
+formData.append("category", "Campagne");
+formData.append("type", "Maison");
+formData.append("images_urls", "[]");
+formData.append("image_1", /* image file blob */);
+formData.append("image_2", /* image file blob */);
+formData.append("low_price", "2000");
+formData.append("medium_price", "4000");
+formData.append("high_price", "5000");
+formData.append("surface", "540");
+formData.append("bathroom_count", "3");
+
+const response = await fetch("localhost:3630/housing", {
+  method: "PUT",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: formData,
+});
+
+if (!response.ok) {
+  // Gestion d'erreur
+}
+```
+
+### Remove housing `DELETE /housing`
+
+```ts
+const response = await fetch("localhost:3630/housing", {
+  method: "DELETE",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Maison des Rives",
   }),
 });
 

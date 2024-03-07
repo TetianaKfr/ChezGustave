@@ -21,7 +21,7 @@ import customerServiceIcon from '../../assets/CustomerServiceIcon.png';
 
 import "./Presentation.css"
 
-export const Presentation= () => {
+export const Presentation = () => {
     return (
         <>
             <Navbar/>

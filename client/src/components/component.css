@@ -37,6 +37,10 @@ body{
     background: linear-gradient(0deg,#c2a564,#b99652, #d2c592,#c2a564,#b99652);        
 }
 
+.welcomeMsg{
+    color: var(--VertBleu);
+}
+
 #Logo{
     height: 15vw;
     width: 15vw;
@@ -285,9 +289,7 @@ a {
     width: 80px;;
 }
 
-
-{/*Modale : */}
-
+/* Gestion de la modal */
 .modal {
     display: flex;
     justify-content: center;
