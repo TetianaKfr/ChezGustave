@@ -11,6 +11,7 @@ import { Error } from "./pages/Erreur/Error";
 import { Presentation } from "./pages/Presentation/Presentation";
 import Commandes from "./pages/Profile/Commandes";
 import Reclamations from "./pages/Profile/Reclamations";
+import { CGU } from "./pages/CGU/CGU.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/presentation" element={<Presentation />} />
         <Route path="/profile/orders" element={<Commandes />} />
         <Route path="*" element={<Error />} />
+        <Route path="CGU" element={<CGU />} />
       </Routes>
     </Router>
   </React.StrictMode>
