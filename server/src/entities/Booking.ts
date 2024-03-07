@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 
 import Housing from "./Housing";
 import User from "./User";
@@ -26,7 +26,4 @@ export default class Booking {
 
   @ManyToOne(() => User, (user) => user.bookings)
   user: User
-
-  @ManyToOne(() => Rating)
-  rating: Rating
 }
