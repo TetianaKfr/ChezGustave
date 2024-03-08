@@ -71,7 +71,6 @@ function Profile() {
                     <label id="labelnom" htmlFor="nom">
                       Nom :
                     </label>
-                    <div className="input">
                       <input
                         type="text"
                         id="nom"
@@ -79,7 +78,6 @@ function Profile() {
                         onChange={(e) => setFirstName(e.target.value)}
                         placeholder="Nom"
                       />
-                    </div>
                   </div>
                   <div className="colonne">
                     <label id="labelprenom" htmlFor="prenom">
@@ -90,7 +88,7 @@ function Profile() {
                       id="prenom"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Jean" // Ajout d'un placeholder avec la valeur initiale
+                      placeholder="Prénom" 
                     />
                   </div>
                 </div>
@@ -103,7 +101,7 @@ function Profile() {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="jeandupont@gmail.com" // Ajout d'un placeholder avec la valeur initiale
+                    placeholder="Votre adresse mail"
                   />
                 </div>
 
@@ -186,13 +184,11 @@ function Profile() {
           <div className="motsDP">
             <div className="colonne">
               <p>Mot de passe actuel :</p>
-              <div className="input">
                 <input
                   type="password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
-              </div>
             </div>
             <div className="colonne">
               <p>Nouveau mot de passe :</p>

@@ -3,7 +3,6 @@ import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
-import Image from "../../assets/paradisiaque.jpeg";
 
 export default function Commandes() {
   const [firstName, setFirstName] = useState("");
@@ -21,22 +20,21 @@ export default function Commandes() {
           <div className="btnTitre">
             <NavLink to="/profile"><h3>Mes informations</h3></NavLink>
             <NavLink to="/profile/orders"><h3>Mes commandes</h3></NavLink>
-            <NavLink to="/profile/reclamations"> <h3>Mes réclamations </h3></NavLink>
+            <NavLink to="/profile/reclamations"><h3>Mes réclamations </h3></NavLink>
           </div>
           <span className="barVertical"></span>
           <div className="Formulaire">
-            <h2>Mes commandes</h2>
+            <h3>Mes commandes</h3>
             <h3>Vous n'avez pas de commandes</h3>
-            <h3>Vous avez x commandes en cours</h3>
           </div>
-          <div className="infosCommande">
+
+          {/* <div className="infosCommande">
             <p>Nombre de personnes : x</p>
             <p>Arrivée le xx/xx/xx . Départ au xx/xx/xx</p>
             <p>Prix : xxx€</p>
             <p>Lieu : xxxxxx</p>
-          </div>
-          <img id="avion" src={Image} />
-        </div>
+          </div> */}
+        </div>          
       </div>
       <Footer />
     </>
