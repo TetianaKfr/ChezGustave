@@ -17,6 +17,8 @@ describe('Modify equipment', () => {
     ]);
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Modify equipment success", async () => {
     const response = await supertest(app)
       .put("/equipment")

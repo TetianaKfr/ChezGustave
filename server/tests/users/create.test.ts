@@ -14,6 +14,8 @@ describe('Create user', () => {
     await insertUser();
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Create user success", async () => {
     const response = await supertest(app)
       .post("/users")

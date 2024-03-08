@@ -20,6 +20,8 @@ describe('Authentication', () => {
     });
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Authentication success", async () => {
     const response = await supertest(app).post("/authenticate").send({
       email: "mail@example.xyz",

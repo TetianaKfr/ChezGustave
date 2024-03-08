@@ -44,6 +44,8 @@ describe("Create bookings", () => {
     });
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Create booking success connected as admin", async () => {
     const response = await supertest(app)
       .post("/bookings")

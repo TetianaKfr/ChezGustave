@@ -62,6 +62,8 @@ describe("Remove bookings", () => {
     });
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Remove booking success connected as admin removing other's booking", async () => {
     const bookings = database.getRepository(Booking);
 

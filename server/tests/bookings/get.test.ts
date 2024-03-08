@@ -87,6 +87,8 @@ describe("Get booking", () => {
     });
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("Get bookings success as admin", async () => {
     const bookings_ids = (await database.getRepository(Booking).find()).map(booking => booking.id);
     
