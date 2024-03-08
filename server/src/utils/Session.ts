@@ -18,7 +18,7 @@ export async function getSession(req: Request): Promise<Session> {
 
   let full_token = authorization.slice(7);
   let [token, ...email_parts] = full_token.split(':');
-  let email = email_parts.join(':')
+  let email = email_parts.join(':');
 
   let users = database.getRepository(User);
 
@@ -39,6 +39,20 @@ export async function getSession(req: Request): Promise<Session> {
   } else {
     return Session.User;
   }
+}
+
+export function sessionEmail(req: Request): string | null {
+  let authorization = req.get("Authorization");
+
+  if (typeof authorization != "string") {
+    return null;
+  }
+
+  let full_token = authorization.slice(7);
+  let [_token, ...email_parts] = full_token.split(':');
+  let email = email_parts.join(':');
+
+  return email;
 }
 
 export async function isSessionAdmin(req: Request): Promise<boolean> {

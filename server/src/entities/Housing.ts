@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from "typeorm";
 
 import Equipment from "./Equipment";
+import Rating from "./Rating";
 
 @Entity()
 export default class Housing {
@@ -68,4 +69,7 @@ export default class Housing {
   @ManyToMany(() => Equipment)
   @JoinTable()
   equipments: Equipment[]
+
+  @OneToMany(() => Rating, rating => rating.housing)
+  ratings: Rating[]
 }

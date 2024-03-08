@@ -15,7 +15,9 @@ describe('Remove equipment', () => {
     await database.getRepository(Equipment).insert({
       name: "Some equipment",
     });
-  })
+  });
+
+  afterEach(async () => { await database.destroy() });
 
   test("Remove equipment success", async () => {
     const response = await supertest(app)

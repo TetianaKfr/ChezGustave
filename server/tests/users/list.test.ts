@@ -2,6 +2,7 @@ import supertest from "supertest";
 
 import { authenticate, initAndClearDatabase, insertAdmin, insertUser } from "../utils";
 import app from "../../src/app";
+import database from "../../src/database";
 
 describe('List users', () => {
   beforeEach(async () => {
@@ -10,6 +11,8 @@ describe('List users', () => {
     await insertUser();
     await insertAdmin();
   });
+
+  afterEach(async () => { await database.destroy() });
 
   test("List users success", async () => {
     const response = await supertest(app)

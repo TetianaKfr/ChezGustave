@@ -19,6 +19,8 @@ describe('List equipements', () => {
     ]);
   });
 
+  afterEach(async () => { await database.destroy() });
+
   test("List equipments success connected as admin", async () => {
     const response = await supertest(app)
       .get("/equipments")

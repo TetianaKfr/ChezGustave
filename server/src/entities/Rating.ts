@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import Housing from "./Housing";
 
 @Entity()
 export default class Rating {
@@ -10,4 +11,7 @@ export default class Rating {
 
   @Column()
   comment: string
+
+  @ManyToOne(() => Housing, housing => housing.ratings)
+  housing: Housing
 }
