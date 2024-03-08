@@ -27,12 +27,10 @@ body{
 */
 
 .navbar{
-    margin-top: 2.5vw;
     display: flex;
     justify-content: space-around;
-    padding: -10vw;
     align-items: center;
-    height: 10vw;
+    height: 15vw;
     width: 100vw;                       
     background: linear-gradient(0deg,#c2a564,#b99652, #d2c592,#c2a564,#b99652);        
 }
@@ -42,8 +40,9 @@ body{
 }
 
 #Logo{
-    height: 15vw;
-    width: 15vw;
+    height: 10vw;
+    width: 10vw;
+    border-radius: 20px;
 }
 
 .Boutons{
@@ -54,6 +53,9 @@ input{width: auto;}
 
 button{
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--Blanc);
     height: 4rem;
     width: 10rem;
@@ -70,7 +72,7 @@ button{
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 55vw;
+        height: 45vw;
     }
    .Boutons{
         flex-direction: row;
@@ -148,6 +150,7 @@ input{
     }
     .searchbar div, .searchbar input {
         width: 95%;
+        padding: 0;
     }
     #btnSearch {
         height: 3rem;

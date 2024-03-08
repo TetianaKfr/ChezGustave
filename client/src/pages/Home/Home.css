@@ -15,8 +15,8 @@ body{
     --DoreSombre: #b99652;
     overflow-x: hidden;
 }
+
 .heroBanner{
-    margin-top: 2vw;
     width:100%;
     height: auto
 }
@@ -29,6 +29,7 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
 .backgColor{
     display:flex ;
     flex-direction: column;
@@ -41,14 +42,17 @@ body{
     display: flex;
     justify-content: center;
 }
+
 .photoDestination {
     height: 18vw;
     width: 18vw;
     background-color: #155B55;
 }
+
 .cardCoeur p {
     font-size: larger;
 }
+
 .backgroundColor{
     background-color: #eeeeeede ;
     border-radius: 20px;
@@ -65,6 +69,7 @@ body{
     justify-content: center;
     cursor: pointer;
 }
+
 .coupCoeur h2, .coupCoeur p{
     display: flex;
     flex-direction: column;
@@ -80,12 +85,14 @@ body{
     align-items: center;
     color: var(--Blanc);
 }
+
 .cardCoeur img{
     height: 25vw;
     width: 25vw;
     cursor: pointer;
     background-color: #155B55;
 }
+
 .backgColor{
     background-size: cover;
     background-position-Y: 50%;
@@ -99,6 +106,7 @@ body{
     border-top-right-radius: 80px;
     
 }
+
 .Taille2{
     font-size: 1.5rem;
     margin-top: -40px;
@@ -113,13 +121,11 @@ body{
 }
 
 @media (max-width: 780px) {
-    .heroBanner{
-        margin: 0;
-    }
     .photoDestination{
         height: 20vw;
         width: 20vw 
     }  
+
     .cardCoeur img{
         height: 30vw;
         width: 30vw;
@@ -132,6 +138,7 @@ body{
         border-radius: 0;
         font-size: 2rem;
     }
+
     .Taille2 {
         width: 100%;
         margin-top: -28px;
@@ -140,10 +147,6 @@ body{
 
 
 @media (max-width: 380px){
-    .heroBanner{
-        margin: 0;
-    }
-    
     .displayVoyage{
         display: flex;
         flex-direction: column;
@@ -158,9 +161,11 @@ body{
         display: flex;
         flex-direction: column;  
     }
+
     .cardCoeur{
         padding-top: 5vw;
     }
+
     .cardCoeur img{
         height: 70vw;
         width: 70vw;
