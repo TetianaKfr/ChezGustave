@@ -28,10 +28,13 @@
   justify-content: center;
   align-items: center;
 }
-
+.profile-info {
+  display: flex;
+  gap: 5vw;
+  justify-content: center;
+}
 
 @media (max-width: 800px){
-
   .btnTitre {
     display: flex;
     justify-content: space-around;
@@ -48,12 +51,17 @@
   }
 
   .Formulaire {display: none;}
-}
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .profile-info {
+    flex-direction: column;
+  }
+
+  .nomprenom {
+    flex-direction: column;
+  }
+  .motsDP {
+    flex-direction: column;
+  }
 }
 
 .nomprenom {
@@ -63,18 +71,6 @@
   justify-content: center;
 }
 
-#labelnom {
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
-#labelprenom {
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
-#labelEmail {
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
 .motsDP {
   display: flex;
   align-items: row;
@@ -84,12 +80,7 @@
   display: flex;
   flex-direction: column;
 }
-.chgmt {
-  padding-top: 50px;
-}
-.input {
-  padding-right: 50px;
-}
+
 .colonne2 {
   display: flex;
   flex-direction: row;
