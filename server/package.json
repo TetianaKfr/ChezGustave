@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "npm i && nodemon -L src/index.ts",
-    "test": "jest --colors --runInBand"
+    "test": "jest --colors --runInBand --silent"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

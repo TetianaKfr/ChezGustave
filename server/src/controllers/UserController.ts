@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 import database from "../database";
 import User from "../entities/User";
-import { isSessionAdmin } from "../utils/Session";
+import { isSessionAdmin, isSessionConnected, sessionEmail } from "../utils/Session";
 import ControllerException, { handle_controller_errors } from "../utils/ControllerException";
 
 export async function list(req: Request, res: Response) {
@@ -172,24 +172,18 @@ export async function modify(req: Request, res: Response) {
 
 export async function get(req: Request, res: Response) {
   try {
-    if (!await isSessionAdmin(req)) {
-      throw ControllerException.UNAUTHORIZED;
-    }
-
     const { email } = req.body;
 
     if (typeof email != "string") {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
+    if (!await isSessionConnected(req) || (email != sessionEmail(req) && !await isSessionAdmin(req))) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
     const user = await database.getRepository(User).findOne({
-      select: {
-        first_name: true,
-        last_name: true,
-        email: true,
-        phone_number: true,
-        admin: true
-      },
+      relations: { bookings: true },
       where: { email },
     });
 
@@ -197,7 +191,13 @@ export async function get(req: Request, res: Response) {
       throw ControllerException.NOT_FOUND;
     }
 
-    res.status(200).send(user);
+    res.status(200).send({
+      first_name: user.first_name,
+      last_name: user.last_name,
+      phone_number: user.phone_number,
+      admin: user.admin,
+      bookings: user.bookings.map(booking => booking.id),
+    });
   } catch (err) {
     handle_controller_errors(res, err);
   }
