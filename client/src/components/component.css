@@ -118,13 +118,22 @@ input{
     border-style: none;
     text-align: center; 
 }
-
+select{
+    background-color: #d2c592;
+    color: var(--VertBleu);
+    font-size: large;
+    height: 6vh;
+    width: 15vh;
+    border-radius: 10px;
+    border-style: none;
+    text-align: center;  
+}
 .destination , .horaires , .nombrePersonnes{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.horaires input{
+.column input{
     width: auto;
 } 
 
