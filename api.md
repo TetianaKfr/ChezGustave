@@ -69,7 +69,7 @@ if (!response.ok) {
 }
 ```
 
-### Get user `GET /user`
+### Get user `POST /user`
 
 ```ts
 const response = await fetch("localhost:3630/user", {
@@ -272,10 +272,10 @@ if (!response.ok) {
 }
 ```
 
-### Get housing `GET /housing`
+### Get housing `POST /housing`
 
 ```ts
-const response = await fetch("localhost:3630/housing", {
+const response = await fetch("localhost:3630/housings", {
   method: "POST",
   headers: {
     "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -356,3 +356,121 @@ if (!response.ok) {
   // Gestion d'erreur
 }
 ```
+
+## Bookings (Réservations)
+
+
+### List bookings `GET /bookings`
+
+```ts
+const response = await fetch("localhost:3630/bookings", {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+});
+
+if (response.ok) {
+  await response.json();
+  // [12, 15]
+} else {
+  // Gestion d'erreur
+}
+```
+
+### Create booking `POST /bookings`
+
+```ts
+const response = await fetch("localhost:3630/bookings", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    housing_name: "Maison des Rives",
+    chef_available: true,
+    start: new Date(14, 4, 2024).toDateString(),
+    end: new Date(24, 4, 2024).toDateString(),
+    visit_date: new Date(4, 4, 2024).toDateString(),
+  }),
+});
+
+if (!response.ok) {
+  // Gestion d'erreur  
+}
+```
+
+### Get booking `POST /booking`
+
+```ts
+const response = await fetch("localhost:3630/booking", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    id: 13,
+  }),
+});
+
+if (response.ok) {
+  await response.json();
+  // {
+  //   start: "Sun May 14 2024",
+  //   last_name: "Wed May 24 2024",
+  //   phone_number: "Tue May 4 2024",
+  //   chef_available: true,
+  //   housing_name: "Maison des Rives",
+  //   user_email: "mail@example.xyz"
+  // }
+} else {
+  // Gestion d'erreur
+}
+```
+
+### Modify booking `PUT /booking`
+
+```ts
+const response = await fetch("localhost:3630/booking", {
+  method: "PUT",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    id: 13,
+    housing_name: "Manoir de la montagne",
+    chef_available: false,
+    start: new Date(13, 4, 2024).toDateString(),
+    end: new Date(23, 4, 2024).toDateString(),
+    visit_date: new Date(3, 4, 2024).toDateString(),
+  }),
+});
+
+if (!response.ok) {
+  // Gestion d'erreur
+}
+```
+
+### Remove booking `DELETE /booking`
+
+```ts
+const response = await fetch("localhost:3630/booking", {
+  method: "DELETE",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    id: 13,
+  }),
+});
+
+if (!response.ok) {
+  // Gestion d'erreur
+}
+```
+
