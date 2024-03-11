@@ -2,7 +2,7 @@ import React from "react";
 import "../component.css";
 import pictoVille from "../../assets/pictoVille.png";
 
-export const CardDetails = () => {
+export const CardDetails = ({housing}) => {
   return (
     <>
       <div className="cardComplete">
@@ -12,10 +12,10 @@ export const CardDetails = () => {
         <span className="UseForCSS"></span>
         <div className="textCard">
           <div className="row gap">
-            <h2>Nom du logement</h2>
+            <h2>{housing}</h2>
             <div className="divPicto">
               <img src={pictoVille} alt="pictogramme ville" />
-              <p>ville</p>
+              <p>catégories</p>
             </div>
           </div>
           <p>
@@ -42,6 +42,7 @@ export const CardDetails = () => {
             ratione neque officia ut sunt est libero esse, dolor laboriosam
             minus, sed dicta perspiciatis deleniti ipsa?
           </p>
+          <p className="row">Equipements : </p>
         </div>
       </div>
     </>

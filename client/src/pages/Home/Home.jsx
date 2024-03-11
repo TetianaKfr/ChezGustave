@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { Footer } from '../../components/Footer/Footer';
-import './Home.css'
+import { NavLink } from 'react-router-dom';
+import './Home.css';
 import Banner from '../../assets/heroBanner.png';
 import Banner2 from '../../assets/Chateau-a-louer.jpg';
 import Background from '../../assets/BackgroundDestination.jpg';
 import LogoGustave from "../../assets/LogoGustave.png";
-import { NavLink } from 'react-router-dom';
 
-
-export const Home = () => {
+export const Home = ({housings}) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [Banner, Banner2]; // Array of images to display
@@ -33,7 +32,6 @@ export const Home = () => {
 
     return (
         <>
-            {/* <Navbar /> */}
             <div className='heroBannerContainer'>
                 <div className='row navHome'>
                     <img id="Logo" src={LogoGustave} alt="logo site" />
@@ -48,13 +46,7 @@ export const Home = () => {
                 </div>
 
                 <img className='heroBanner' src={images[currentImageIndex]} alt="Image d'accueil du site" />
-
             </div>
-
-
-
-
-
 
             <div className='wrapper displayHome'>
                 <div className='backgColor' style={{ backgroundImage: `url(${Background})` }}>
@@ -101,5 +93,5 @@ export const Home = () => {
             </div>
             <Footer />
         </>
-    )
-}
+    );
+};
