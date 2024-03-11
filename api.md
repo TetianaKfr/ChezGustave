@@ -363,6 +363,44 @@ if (!response.ok) {
 }
 ```
 
+### List categories `GET /categories`
+
+```ts
+const response = await fetch("localhost:3630/categories", {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+});
+
+if (response.ok) {
+  await response.json();
+  // ["Montagne", "Campagne", "Bord de mer"]
+} else {
+  // Gestion d'erreur
+}
+```
+
+### List types `GET /types`
+
+```ts
+const response = await fetch("localhost:3630/types", {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+});
+
+if (response.ok) {
+  await response.json();
+  // ["Manoir", "Chalet", "Villa"]
+} else {
+  // Gestion d'erreur
+}
+```
+
 ## Bookings (Réservations)
 
 

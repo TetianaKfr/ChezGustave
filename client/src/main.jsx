@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import { Search } from "./pages/Search/Search";
@@ -14,22 +14,60 @@ import Reclamations from "./pages/Profile/Reclamations";
 import { MentionsLegales } from "./pages/MentionsLegales/MentionsLegales.jsx";
 import { CGU } from "./pages/CGU/CGU.jsx";
 import { RGPD } from "./pages/RGPD/RGPD.jsx";
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/recherche" element={<Search />} />
-        <Route path="/profile/reclamations" element={<Reclamations />} />
-        <Route path="/details" element={<Produit />} />
-        <Route path="/presentation" element={<Presentation />} />
-        <Route path="/profile/orders" element={<Commandes />} />
-        <Route path="*" element={<Error />} />
-        <Route path="/mentions-legales" element={<MentionsLegales />} />
-        <Route path="CGU" element={<CGU />} />
-        <Route path="/RGPD" element={<RGPD />} />
-      </Routes>
-    </Router>
-  </React.StrictMode>
-);
+import { useState } from "react";
+import { useEffect } from "react";
+
+function App() {
+  const [housings, setHousings] = useState([]);
+
+
+    // Fetch logement  
+    useEffect(() => {
+      const fetchHousings = async () => {
+          try {
+              const response = await fetch("http://localhost:3630/housings", {
+                  method: "GET",
+                  headers: {
+                      "Authorization": "Bearer " + localStorage.getItem("token"),
+                      "Content-Type": "application/json",
+                  },
+              });
+
+              if (response.ok) {
+                  const housings = await response.json();
+                  setHousings(housings);
+                  console.log(housings)
+              } else {
+                  console.error("Error fetching housings");
+              }
+          } catch (error) {
+              console.error("Error fetching housings:", error);
+          }
+      };
+
+      fetchHousings();
+  }, []);
+
+  return (
+    <React.StrictMode>
+      <Router>
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Home  housings={housings} />} />
+          <Route path="/recherche" element={<Search housings={housings} />} />
+          <Route path="/profile/reclamations" element={<Reclamations />} />
+          <Route path="/details" element={<Produit />} />
+          <Route path="/presentation" element={<Presentation />} />
+          <Route path="/profile/orders" element={<Commandes />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="CGU" element={<CGU />} />
+          <Route path="/RGPD" element={<RGPD />} />
+        </Routes>
+      </Router>
+    </React.StrictMode>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+

@@ -266,3 +266,31 @@ export async function get(req: Request, res: Response) {
     handle_controller_errors(res, err);
   }
 }
+
+export async function listCategories(req: Request, res: Response) {
+  try {
+    if (!await isSessionConnected(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
+    const categories = Array.from(new Set((await database.getRepository(Housing).find({ select: { category: true } })).map(housing => housing.category)));
+
+    res.status(200).send(categories);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
+
+export async function listTypes(req: Request, res: Response) {
+  try {
+    if (!await isSessionConnected(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
+    const types = Array.from(new Set((await database.getRepository(Housing).find({ select: { type: true } })).map(housing => housing.type)));
+
+    res.status(200).send(types);
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
