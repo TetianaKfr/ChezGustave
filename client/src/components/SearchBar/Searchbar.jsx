@@ -8,7 +8,7 @@ export const Searchbar = () => {
     return (
         <>
             <div className='searchbar'>
-                {/* <div className='date'>
+                <div className='date'>
                     <div className='row'>
                         <label htmlFor="">Départ :</label>
                         <input type="date"  />
@@ -18,7 +18,7 @@ export const Searchbar = () => {
                         <label htmlFor="">Arrivée :</label>
                         <input type="date"/>
                     </div>
-                </div> */}
+                </div>
                 
                 <NavLink to="/recherche">
                     <button id='btnSearch'>Louez votre paradis </button>
