@@ -281,14 +281,10 @@ a {
 .cardComplete{
     display: flex;
     height: auto;
-    width: 100vw;
-    margin-top:60%;
-    margin-bottom:50%;
-    padding-top: 100px;
-    flex-direction:column;
-    
-    
+    width: 60vw;
+    margin-bottom: 15px;    
 }
+
 .cardComplete span {
     width: 30px;
     background: linear-gradient(90deg,#b99652,#d2c592); 
