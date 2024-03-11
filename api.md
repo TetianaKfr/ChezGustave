@@ -240,6 +240,35 @@ if (response.ok) {
 }
 ```
 
+### Search housings `POST /housings/search`
+
+```ts
+const response = await fetch("localhost:3630/housings/search", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token"),
+    "Content-Type": "application/json",
+  },
+  body: {
+    categories: {
+      with: ["Bord de mer"] | undefined,
+      without: ["Montagne"] | undefined,
+    },
+    types: {
+      with: ["Maison"] | undefined,
+      without: ["Villa"] | undefined,
+    },
+  }
+});
+
+if (response.ok) {
+  await response.json();
+  // ["Maison des Rives"]
+} else {
+  // Gestion d'erreur
+}
+```
+
 ### Create housing `POST /housings`
 
 ```ts

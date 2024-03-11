@@ -7,6 +7,7 @@ import ControllerException, { handle_controller_errors } from "../utils/Controll
 import database from "../database";
 import Housing from "../entities/Housing";
 import { isSessionAdmin, isSessionConnected } from "../utils/Session";
+import { And, Any, FindOperator, Not } from "typeorm";
 
 export async function list(req: Request, res: Response) {
   try {
@@ -16,6 +17,59 @@ export async function list(req: Request, res: Response) {
 
     let housings = (await database.getRepository(Housing).find({
       select: { name: true }
+    }));
+
+    res.status(200).send(housings.map(housing => housing.name));
+  } catch (err) {
+    handle_controller_errors(res, err);
+  }
+}
+
+export async function search(req: Request, res: Response) {
+  try {
+    if (!await isSessionConnected(req)) {
+      throw ControllerException.UNAUTHORIZED;
+    }
+
+    function assertIsArrayOfString(obj: any): string[] {
+      if (!Array.isArray(obj) || !obj.every((filter: any) => typeof filter == "string")) {
+        throw ControllerException.MALFORMED_REQUEST;
+      }
+
+      return obj;
+    }
+
+    function getFilter(obj: any): FindOperator<string> | undefined {
+      if (obj == undefined) {
+        return undefined;
+      }
+
+      if (obj.with != undefined) {
+        if (obj.without != undefined) {
+          return And(Any(assertIsArrayOfString(obj.with)), Not(Any(assertIsArrayOfString(obj.without))));
+        } else {
+          return Any(assertIsArrayOfString(obj.with));
+        }
+      } else {
+        if (obj.without != undefined) {
+          return Not(Any(assertIsArrayOfString(obj.without)));
+        } else {
+          return undefined;
+        }
+      }
+    }
+
+    const {
+      categories,
+      types,
+    } = req.body;
+
+    const housings = (await database.getRepository(Housing).find({
+      select: { name: true },
+      where: {
+        category: getFilter(categories),
+        type: getFilter(types),
+      }
     }));
 
     res.status(200).send(housings.map(housing => housing.name));
