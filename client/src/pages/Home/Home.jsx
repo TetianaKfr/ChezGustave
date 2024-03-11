@@ -1,49 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../components/Navbar/Navbar';
-import { Searchbar } from '../../components/SearchBar/Searchbar';
 import { Footer } from '../../components/Footer/Footer';
 import './Home.css'
 import Banner from '../../assets/heroBanner.png';
-import Background from '../../assets/BackgroundDestination.jpg'
-import { useEffect } from 'react';
+import Banner2 from '../../assets/Chateau-a-louer.jpg';
+import Background from '../../assets/BackgroundDestination.jpg';
+import LogoGustave from "../../assets/LogoGustave.png";
+import { NavLink } from 'react-router-dom';
+
 
 export const Home = () => {
     const [errorMessage, setErrorMessage] = useState('');
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = [Banner, Banner2]; // Array of images to display
 
-    // Fonction pour récupérer la liste des utilisateurs
-    const listeUsers = async () => {
-        try {
-            console.log('Début de la fonction listeUsers');
-            const userList = await fetch("http://localhost:3630/users", {
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("token"),
-                    "Content-Type": "application/json",
-                },
-            });
-            console.log('Après la requête fetch');
-            if (userList.ok) {
-                const usersData = await userList.json();
-                console.log("Liste des utilisateurs:", usersData);
-            } else {
-                console.log("Erreur lors de la récupération des utilisateurs:", userList);
-            }
-        } catch (error) {
-            console.error('Erreur lors de la récupération des utilisateurs :', error);
-        }
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 10000);
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const handleNextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     };
 
-    //appel de la fonction liste
-    useEffect(() => {
-        listeUsers(); // Appel de la fonction listeUsers lors du chargement du composant Home
-    }, []); 
-    // Le tableau vide en second argument signifie que useEffect s'exécutera une seule fois après le premier rendu
+    const handlePrevImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        );
+    };
 
     return (
         <>
-            <Navbar />
-            <img className='heroBanner' src={Banner} alt="Image d'accueil du site" />
-            <Searchbar />
+            {/* <Navbar /> */}
+            <div className='heroBannerContainer'>
+                <div className='row navHome'>
+                    <img id="Logo" src={LogoGustave} alt="logo site" />
+                </div>
+
+                <div className='row bannerbtn'>
+                    <button className="prevButton" onClick={handlePrevImage}>{'<'}</button>
+                    <NavLink to="/recherche">
+                        <button id='BtnHomeReservation'>Reserver votre paradis !</button>
+                    </NavLink>
+                    <button className="nextButton" onClick={handleNextImage}>{'>'}</button>
+                </div>
+
+                <img className='heroBanner' src={images[currentImageIndex]} alt="Image d'accueil du site" />
+
+            </div>
+
+
+
+
+
+
             <div className='wrapper displayHome'>
                 <div className='backgColor' style={{ backgroundImage: `url(${Background})` }}>
                     <h2 className='Taille'>Voyager en France</h2>
