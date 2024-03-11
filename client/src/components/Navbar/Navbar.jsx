@@ -86,9 +86,6 @@ return (
         ) : (
           <>
             <button onClick={handleLogin}>Se connecter</button>
-            <NavLink to="/">
-              <button>S'inscrire</button>
-            </NavLink>
           </>
         )}
       </div>
