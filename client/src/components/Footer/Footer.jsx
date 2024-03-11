@@ -37,8 +37,8 @@ export const Footer = () => {
           <span className="decoration"></span>
 
           <div className="row liens">
-            <NavLink to="/">
-              <p>GDPR </p>
+            <NavLink to="/RGPD">
+              <p>RGPD </p>
             </NavLink>
             <NavLink to="/mentions-legales">
               <p>Mentions légales</p>
