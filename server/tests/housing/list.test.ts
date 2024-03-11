@@ -22,7 +22,9 @@ describe("List housings", () => {
       medium_price: 1,
       high_price: 1,
       surface: 1,
+      bedroom_count: 1,
       bathroom_count: 1,
+      chef: "Forfait sur mesure",
       category: "Category 1",
       type: "Type 1",
       equipments: []
@@ -37,7 +39,9 @@ describe("List housings", () => {
       medium_price: 2,
       high_price: 2,
       surface: 2,
+      bedroom_count: 2,
       bathroom_count: 2,
+      chef: "Non disponible",
       category: "Category 2",
       type: "Type 2",
       equipments: []

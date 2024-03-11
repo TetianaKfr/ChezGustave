@@ -22,9 +22,11 @@ describe("Remove housings", () => {
       medium_price: 1,
       high_price: 1,
       surface: 1,
+      bedroom_count: 1,
       bathroom_count: 1,
       category: "Category 1",
       type: "Type 1",
+      chef: "Forfait sur mesure",
       equipments: []
     });
   });

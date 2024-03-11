@@ -52,7 +52,13 @@ export default class Housing {
   surface: number
 
   @Column("int2")
+  bedroom_count: number
+
+  @Column("int2")
   bathroom_count: number
+
+  @Column()
+  chef: string
 
   /**
    * Catory of the housing e.g Ville, Montage, Campagne, Bord de mer

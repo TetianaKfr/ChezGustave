@@ -22,7 +22,9 @@ describe("Modify housings", () => {
       medium_price: 1,
       high_price: 1,
       surface: 1,
+      bedroom_count: 1,
       bathroom_count: 1,
+      chef: "Forfait sur mesure",
       category: "Category 1",
       type: "Type 1",
       equipments: []
@@ -47,7 +49,9 @@ describe("Modify housings", () => {
       .field("medium_price", "7000")
       .field("high_price", "8000")
       .field("surface", "1040")
-      .field("bathroom_count", "5");
+      .field("bedroom_count", "3")
+      .field("bathroom_count", "5")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing 2"
@@ -72,7 +76,9 @@ describe("Modify housings", () => {
     expect(housing.medium_price).toBe("$7,000.00");
     expect(housing.high_price).toBe("$8,000.00");
     expect(housing.surface).toBe(1040);
+    expect(housing.bedroom_count).toBe(3);
     expect(housing.bathroom_count).toBe(5);
+    expect(housing.chef).toBe("Forfait sur mesure");
   });
 
   test("Modify housing success partial", async () => {
@@ -86,7 +92,8 @@ describe("Modify housings", () => {
       .field("type", "Type 2")
       .field("low_price", "5000")
       .field("medium_price", "7000")
-      .field("surface", "1040");
+      .field("surface", "1040")
+      .field("bedroom_count", "7");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing 1"
@@ -110,6 +117,7 @@ describe("Modify housings", () => {
     expect(housing.medium_price).toBe("$7,000.00");
     expect(housing.high_price).toBe("$1.00");
     expect(housing.surface).toBe(1040);
+    expect(housing.bedroom_count).toBe(7);
   });
 
   test("Modify housing unauthorized connected as user", async () => {
@@ -128,7 +136,9 @@ describe("Modify housings", () => {
       .field("medium_price", "7000")
       .field("high_price", "8000")
       .field("surface", "1040")
-      .field("bathroom_count", "5");
+      .field("bedroom_count", "3")
+      .field("bathroom_count", "5")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing 1"
@@ -171,7 +181,9 @@ describe("Modify housings", () => {
       .field("medium_price", "7000")
       .field("high_price", "8000")
       .field("surface", "1040")
-      .field("bathroom_count", "5");
+      .field("bedroom_count", "3")
+      .field("bathroom_count", "5")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing 1"
@@ -215,7 +227,9 @@ describe("Modify housings", () => {
       .field("medium_price", "7000")
       .field("high_price", "8000")
       .field("surface", "1040")
-      .field("bathroom_count", "5");
+      .field("bedroom_count", "3")
+      .field("bathroom_count", "5")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing 1"

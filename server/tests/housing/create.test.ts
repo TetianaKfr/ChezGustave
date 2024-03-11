@@ -29,7 +29,9 @@ describe("Create housings", () => {
       .field("medium_price", "2000")
       .field("high_price", "3000")
       .field("surface", "540")
-      .field("bathroom_count", "3");
+      .field("bedroom_count", "5")
+      .field("bathroom_count", "3")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing Name"
@@ -54,7 +56,9 @@ describe("Create housings", () => {
     expect(housing.medium_price).toBe("$2,000.00");
     expect(housing.high_price).toBe("$3,000.00");
     expect(housing.surface).toBe(540);
+    expect(housing.bedroom_count).toBe(5);
     expect(housing.bathroom_count).toBe(3);
+    expect(housing.chef).toBe("Forfait sur mesure");
   });
 
   test("Create housing unauthorized connected as user", async () => {
@@ -72,7 +76,9 @@ describe("Create housings", () => {
       .field("medium_price", "2000")
       .field("high_price", "3000")
       .field("surface", "540")
-      .field("bathroom_count", "3");
+      .field("bedroom_count", "5")
+      .field("bathroom_count", "3")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing Name"
@@ -97,7 +103,9 @@ describe("Create housings", () => {
       .field("medium_price", "2000")
       .field("high_price", "3000")
       .field("surface", "540")
-      .field("bathroom_count", "3");
+      .field("bedroom_count", "5")
+      .field("bathroom_count", "3")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing Name"
@@ -123,7 +131,9 @@ describe("Create housings", () => {
       .field("medium_price", "2000")
       .field("high_price", "3000")
       .field("surface", "540")
-      .field("bathroom_count", "3");
+      .field("bedroom_count", "5")
+      .field("bathroom_count", "3")
+      .field("chef", "Forfait sur mesure");
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing Name"
@@ -145,7 +155,10 @@ describe("Create housings", () => {
       .field("type", "Housing Type")
       .field("low_price", "1000")
       .field("medium_price", "2000")
-      .field("surface", "540");
+      .field("surface", "540")
+      .field("bedroom_count", "5")
+      .field("chef", "Forfait sur mesure");
+
 
     const housing = await database.getRepository(Housing).findOneBy({
       name: "Housing Name"

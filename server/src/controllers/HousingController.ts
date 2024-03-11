@@ -36,6 +36,7 @@ export async function create(req: Request, res: Response) {
       description,
       category,
       type,
+      chef,
     } = req.body;
 
     // Numeric and array fields are collected as string because this request is a multipart request
@@ -48,6 +49,7 @@ export async function create(req: Request, res: Response) {
     const high_price = Number.parseFloat(req.body.high_price);
     const surface = Number.parseFloat(req.body.surface);
     const bathroom_count = Number.parseFloat(req.body.bathroom_count);
+    const bedroom_count = Number.parseFloat(req.body.bedroom_count);
 
     if (
       typeof name != "string" ||
@@ -60,8 +62,10 @@ export async function create(req: Request, res: Response) {
       Number.isNaN(high_price) ||
       Number.isNaN(surface) ||
       Number.isNaN(bathroom_count) ||
+      Number.isNaN(bedroom_count) ||
       typeof category != "string" ||
-      typeof type != "string"
+      typeof type != "string" ||
+      typeof chef != "string"
     ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
@@ -84,8 +88,10 @@ export async function create(req: Request, res: Response) {
       high_price,
       surface,
       bathroom_count,
+      bedroom_count,
       category,
       type,
+      chef,
     });
 
     res.sendStatus(201);
@@ -130,6 +136,7 @@ export async function modify(req: Request, res: Response) {
       description,
       category,
       type,
+      chef,
     } = req.body;
 
     // Numeric and array fields are collected as string because this request is a multipart request
@@ -157,6 +164,10 @@ export async function modify(req: Request, res: Response) {
     if (req.body.bathroom_count != undefined) {
       bathroom_count = Number.parseFloat(req.body.bathroom_count);
     }
+    let bedroom_count = undefined;
+    if (req.body.bedroom_count != undefined) {
+      bedroom_count = Number.parseFloat(req.body.bedroom_count);
+    }
 
     if (
       typeof name != "string" ||
@@ -172,8 +183,10 @@ export async function modify(req: Request, res: Response) {
       (high_price != undefined && Number.isNaN(high_price)) ||
       (surface != undefined && Number.isNaN(surface)) ||
       (bathroom_count != undefined && Number.isNaN(bathroom_count)) ||
+      (bedroom_count != undefined && Number.isNaN(bedroom_count)) ||
       (typeof category != "string" && category != undefined) ||
-      (typeof type != "string" && type != undefined)
+      (typeof type != "string" && type != undefined) ||
+      (typeof chef != "string" && chef != undefined)
     ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
@@ -201,9 +214,11 @@ export async function modify(req: Request, res: Response) {
       medium_price,
       high_price,
       surface,
+      bedroom_count,
       bathroom_count,
       category,
       type,
+      chef,
     });
 
     res.sendStatus(200);
@@ -234,8 +249,10 @@ export async function get(req: Request, res: Response) {
         high_price: true,
         surface: true,
         bathroom_count: true,
+        bedroom_count: true,
         category: true,
         type: true,
+        chef: true
       },
       where: { name }
     });
