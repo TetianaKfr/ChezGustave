@@ -85,3 +85,9 @@
   display: flex;
   flex-direction: row;
 }
+
+.titreCompte{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}

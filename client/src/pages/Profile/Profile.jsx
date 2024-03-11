@@ -5,6 +5,7 @@ import Commandes from "./Commandes";
 import Reclamations from "./Reclamations";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
+import ButtonAmi from "./ButtonAmi";
 
 function Profile() {
   // State variables for user data
@@ -50,16 +51,26 @@ function Profile() {
 
       <div className="titreCompte">
         <h2>Mon compte: </h2>
-        <h3>{firstName} {lastName}</h3>
+        <h3>
+          {firstName} {lastName}
+        </h3>
+        <ButtonAmi />
       </div>
 
       <div className="responsiveReverse">
         <span className="barHoriz"></span>
         <div className="testDiv">
           <div className="btnTitre">
-            <NavLink to="/profile"><h3>Mes informations</h3></NavLink>
-            <NavLink to="/profile/orders"><h3>Mes commandes</h3></NavLink>
-            <NavLink to="/profile/reclamations"> <h3>Mes réclamations </h3></NavLink>
+            <NavLink to="/profile">
+              <h3>Mes informations</h3>
+            </NavLink>
+            <NavLink to="/profile/orders">
+              <h3>Mes commandes</h3>
+            </NavLink>
+            <NavLink to="/profile/reclamations">
+              {" "}
+              <h3>Mes réclamations </h3>
+            </NavLink>
           </div>
           <span className="barVertical"></span>
           <div className="Formulaire">
@@ -71,13 +82,13 @@ function Profile() {
                     <label id="labelnom" htmlFor="nom">
                       Nom :
                     </label>
-                      <input
-                        type="text"
-                        id="nom"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="Nom"
-                      />
+                    <input
+                      type="text"
+                      id="nom"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Nom"
+                    />
                   </div>
                   <div className="colonne">
                     <label id="labelprenom" htmlFor="prenom">
@@ -88,7 +99,7 @@ function Profile() {
                       id="prenom"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Prénom" 
+                      placeholder="Prénom"
                     />
                   </div>
                 </div>
@@ -146,7 +157,8 @@ function Profile() {
                 <label id="labelnom" htmlFor="nom">
                   Nom :
                 </label>
-                <input className="input"
+                <input
+                  className="input"
                   type="text"
                   id="nom"
                   value={firstName}
@@ -179,30 +191,30 @@ function Profile() {
                 placeholder="votre mail"
               />
             </div>
-          
-          <h3 className="chgmt">Changement de mot de passe</h3>
-          <div className="motsDP">
-            <div className="colonne">
-              <p>Mot de passe actuel :</p>
+
+            <h3 className="chgmt">Changement de mot de passe</h3>
+            <div className="motsDP">
+              <div className="colonne">
+                <p>Mot de passe actuel :</p>
                 <input
                   type="password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
+              </div>
+              <div className="colonne">
+                <p>Nouveau mot de passe :</p>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="colonne">
-              <p>Nouveau mot de passe :</p>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
+            <div className="btnConfirmer">
+              <button onClick={handleChangePassword}>Confirmer</button>
             </div>
-          </div>
-          <div className="btnConfirmer">
-            <button onClick={handleChangePassword}>Confirmer</button>
-          </div>
-          <p className="password-message">{passwordMessage}</p>
+            <p className="password-message">{passwordMessage}</p>
           </form>
         </div>
       </div>
