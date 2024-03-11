@@ -11,5 +11,6 @@ router.delete("/housing", HousingController.remove);
 router.put("/housing", multer().any(), HousingController.modify);
 router.post("/housing", HousingController.get);
 router.get("/categories", HousingController.listCategories);
+router.get("/types", HousingController.listTypes);
 
 export default router;
