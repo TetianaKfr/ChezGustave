@@ -256,7 +256,9 @@ formData.append("low_price", "2000");
 formData.append("medium_price", "4000");
 formData.append("high_price", "5000");
 formData.append("surface", "540");
+formData.append("bedroom_count", "5");
 formData.append("bathroom_count", "3");
+formData.append("chef", "Forfait sur mesure");
 
 const response = await fetch("localhost:3630/housings", {
   method: "POST",
@@ -298,7 +300,9 @@ if (response.ok) {
   //   medium_price: 4000,
   //   high_price: 5000,
   //   surface: 540,
+  //   bedroom_count: 5,
   //   bathroom_count: 3,
+  //   chef: "Forfait sur mesure"
   // }
 } else {
   // Gestion d'erreur
@@ -322,7 +326,9 @@ formData.append("low_price", "2000");
 formData.append("medium_price", "4000");
 formData.append("high_price", "5000");
 formData.append("surface", "540");
+formData.append("bedroom_count", "5");
 formData.append("bathroom_count", "3");
+formData.append("chef", "Forfait sur mesure");
 
 const response = await fetch("localhost:3630/housing", {
   method: "PUT",

@@ -20,10 +20,12 @@ describe("Get housings", () => {
       medium_price: 2,
       high_price: 3,
       surface: 4,
+      bedroom_count: 3,
       bathroom_count: 5,
       category: "Category 1",
       type: "Type 1",
-      equipments: []
+      chef: "Forfait sur mesure",
+      equipments: [],
     });
   });
 
@@ -45,9 +47,11 @@ describe("Get housings", () => {
     expect(response.body.medium_price).toBe("$2.00");
     expect(response.body.high_price).toBe("$3.00");
     expect(response.body.surface).toBe(4);
+    expect(response.body.bedroom_count).toBe(3);
     expect(response.body.bathroom_count).toBe(5);
     expect(response.body.category).toBe("Category 1");
     expect(response.body.type).toBe("Type 1");
+    expect(response.body.chef).toBe("Forfait sur mesure");
   });
 
   test("Get housing success connected as user", async () => {
@@ -66,9 +70,11 @@ describe("Get housings", () => {
     expect(response.body.medium_price).toBe("$2.00");
     expect(response.body.high_price).toBe("$3.00");
     expect(response.body.surface).toBe(4);
+    expect(response.body.bedroom_count).toBe(3);
     expect(response.body.bathroom_count).toBe(5);
     expect(response.body.category).toBe("Category 1");
     expect(response.body.type).toBe("Type 1");
+    expect(response.body.chef).toBe("Forfait sur mesure");
   });
 
   test("Get housing unauthorized not connected", async () => {
