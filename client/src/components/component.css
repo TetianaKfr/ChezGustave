@@ -105,10 +105,16 @@ button{
     color: var(--Blanc);
     border-radius: 20px;
     display: flex;
-    justify-content:center;
+    justify-content:space-around;
     gap: 50px;
     align-items: center;
 }
+
+.date{
+    display: flex;
+    gap: 50px;
+}
+
 input{
     background-color: #d2c592;
     color: var(--VertBleu);
@@ -118,38 +124,21 @@ input{
     border-style: none;
     text-align: center; 
 }
-select{
-    background-color: #d2c592;
-    color: var(--VertBleu);
-    font-size: large;
-    height: 6vh;
-    width: 15vh;
-    border-radius: 10px;
-    border-style: none;
-    text-align: center;  
-}
-.destination , .horaires , .nombrePersonnes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.column input{
+
+.row input{
     width: auto;
 } 
-
-.InputNb{
-    width: 4rem;
-}
 
 #btnSearch {
     background-color: var(--DoreClair);
     color: var(--VertBleu);
-    height: 3.2vw;
+    height: auto;
 }
 
 .row {
     display: flex;
-    gap: 2px;
+    gap: 20px;
+    align-items: center;
 }
 
 /* searchbar responsive*/
