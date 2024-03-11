@@ -13,7 +13,7 @@ import Commandes from "./pages/Profile/Commandes";
 import Reclamations from "./pages/Profile/Reclamations";
 import { MentionsLegales } from "./pages/MentionsLegales/MentionsLegales.jsx";
 import { CGU } from "./pages/CGU/CGU.jsx";
-
+import { RGPD } from "./pages/RGPD/RGPD.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
@@ -28,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="*" element={<Error />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="CGU" element={<CGU />} />
+        <Route path="/RGPD" element={<RGPD />} />
       </Routes>
     </Router>
   </React.StrictMode>

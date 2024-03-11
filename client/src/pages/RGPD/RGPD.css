@@ -1,0 +1,51 @@
+/* main CSS RGPD page desktop */
+:root{
+    --blueGreen: #155B55;
+}
+.div-RGPD{
+    display: flex;
+    justify-content: center;
+}
+/* end main CSS page desktop */
+
+
+/* title RGPD desktop */
+#title-RGPD{
+    width: 39%;
+    font-size: 32px;
+    color: var(--blueGreen);
+    font-family: "manrope";
+}
+/* end title RGPD desktop */
+
+
+/* paragraph RGPD desktop */
+#paragraph-RGPD{
+    width: 80%;
+    font-size: 20px;
+    font-family: "raleway";
+    color: var(--blueGreen);
+}
+/* end paragraph RGPD desktop */
+
+/* CSS mobile version */
+@media (max-width: 400px) {
+    /* for center the title in mobile format */
+    #title-RGPD{
+        width: 55%;
+    }
+
+    
+    /* title RGPD mobile */
+    #paragraph-RGPD{
+        font-size: 18px;
+    }
+    /* end title RGPD mobile */
+
+
+    /* paragraph RGPD mobile */
+    #title-RGPD{
+        font-size: 22px;
+    }
+    /* end paragraph RGPD mobile */
+}
