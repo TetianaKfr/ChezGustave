@@ -41,7 +41,8 @@ export async function create(req: Request, res: Response) {
     // Numeric and array fields are collected as string because this request is a multipart request
     // Because multipart requests can receives file uploads.
     // Multipart request only handle string field
-    let images_urls = JSON.parse(req.body.images_urls);
+    let images_urls = undefined;
+    try { images_urls = JSON.parse(req.body.images_urls); } catch (_) { }
     const low_price = Number.parseFloat(req.body.low_price);
     const medium_price = Number.parseFloat(req.body.medium_price);
     const high_price = Number.parseFloat(req.body.high_price);
@@ -134,12 +135,28 @@ export async function modify(req: Request, res: Response) {
     // Numeric and array fields are collected as string because this request is a multipart request
     // Because multipart requests can receives file uploads.
     // Multipart request only handle string field
-    let images_urls = JSON.parse(req.body.images_urls);
-    const low_price = Number.parseFloat(req.body.low_price);
-    const medium_price = Number.parseFloat(req.body.medium_price);
-    const high_price = Number.parseFloat(req.body.high_price);
-    const surface = Number.parseFloat(req.body.surface);
-    const bathroom_count = Number.parseFloat(req.body.bathroom_count);
+    let images_urls = undefined;
+    try { images_urls = JSON.parse(req.body.images_urls) } catch (_) { };
+    let low_price = undefined;
+    if (req.body.low_price != undefined) {
+      low_price = Number.parseFloat(req.body.low_price);
+    }
+    let medium_price = undefined;
+    if (req.body.medium_price != undefined) {
+      medium_price = Number.parseFloat(req.body.medium_price);
+    }
+    let high_price = undefined;
+    if (req.body.high_price != undefined) {
+      high_price = Number.parseFloat(req.body.high_price);
+    }
+    let surface = undefined;
+    if (req.body.surface != undefined) {
+      surface = Number.parseFloat(req.body.surface);
+    }
+    let bathroom_count = undefined;
+    if (req.body.bathroom_count != undefined) {
+      bathroom_count = Number.parseFloat(req.body.bathroom_count);
+    }
 
     if (
       typeof name != "string" ||
@@ -151,17 +168,17 @@ export async function modify(req: Request, res: Response) {
       (typeof area != "string" && area != undefined) ||
       (typeof description != "string" && description != undefined) ||
       (typeof low_price != "number" && low_price != undefined) ||
-      Number.isNaN(medium_price) ||
-      Number.isNaN(high_price) ||
-      Number.isNaN(surface) ||
-      Number.isNaN(bathroom_count) ||
+      (medium_price != undefined && Number.isNaN(medium_price)) ||
+      (high_price != undefined && Number.isNaN(high_price)) ||
+      (surface != undefined && Number.isNaN(surface)) ||
+      (bathroom_count != undefined && Number.isNaN(bathroom_count)) ||
       (typeof category != "string" && category != undefined) ||
       (typeof type != "string" && type != undefined)
     ) {
       throw ControllerException.MALFORMED_REQUEST;
     }
 
-    if (req.files != undefined && Array.isArray(req.files)) {
+    if (req.files != undefined && Array.isArray(req.files) && req.files.length != 0) {
       const uploaded_images_name = req.files.map(file => {
         const file_name = crypto.createHash("sha256").update(file.buffer).digest("hex") + '.' + mime.extension(file.mimetype);
         fs.writeFile("uploads/" + file_name, file.buffer);
@@ -176,7 +193,7 @@ export async function modify(req: Request, res: Response) {
     }
 
     await database.getRepository(Housing).update({ name }, {
-      name,
+      name: new_name,
       images_urls,
       area,
       description,
@@ -209,7 +226,6 @@ export async function get(req: Request, res: Response) {
 
     const housing = await database.getRepository(Housing).findOne({
       select: {
-        name: true,
         images_urls: true,
         area: true,
         description: true,

@@ -70,13 +70,7 @@ body{
     background: var(--Blanc);
   }
 
-  .PB-range-slider::-moz-range-thumb {
-    width: 25px;
-    height:  25px;
-    border-radius: 50%;
-    background-color: var(--DoreClair);
-    cursor: pointer;
-  }
+
 
 
 
