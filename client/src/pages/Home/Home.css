@@ -67,6 +67,8 @@ body{
     margin-top: 20rem;
 }
 
+a{    text-decoration: none;}
+
 .displayHome { 
     display: block;
 } 

@@ -25,4 +25,3 @@ dist-ssr
 .helix/
 
 /server/src/rest/
-/server/uploads
