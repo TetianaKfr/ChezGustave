@@ -4,6 +4,7 @@ import Equipment from './entities/Equipment';
 import Housing from './entities/Housing';
 import Rating from './entities/Rating';
 import User from './entities/User';
+import Cooptation from './entities/Cooptation';
 
 export default new DataSource({
     type: 'postgres',
@@ -17,5 +18,6 @@ export default new DataSource({
         Housing,
         Rating,
         User,
+        Cooptation,
     ]
 });
