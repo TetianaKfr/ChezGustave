@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./Profile.css";
 
 const ButtonAmi = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [friendName, setFriendName] = useState('');
-  const [friendEmail, setFriendEmail] = useState('');
-  const [friendMessage, setFriendMessage] = useState('');
+  const [friendName, setFriendName] = useState("");
+  const [friendEmail, setFriendEmail] = useState("");
+  const [friendMessage, setFriendMessage] = useState("");
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
@@ -17,9 +18,9 @@ const ButtonAmi = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send friend request)
-    console.log('Friend Name:', friendName);
-    console.log('Friend Email:', friendEmail);
-    console.log('Friend Message:', friendMessage);
+    console.log("Friend Name:", friendName);
+    console.log("Friend Email:", friendEmail);
+    console.log("Friend Message:", friendMessage);
     // You can add your logic here to send the friend request
     // (e.g., make an API call, update state, etc.)
     setIsModalOpen(false);
