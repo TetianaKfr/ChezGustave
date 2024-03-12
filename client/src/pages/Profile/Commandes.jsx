@@ -3,6 +3,7 @@ import "./Profile.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
+import CompCommande from "./composantCommandes";
 
 export default function Commandes() {
   const [firstName, setFirstName] = useState("");
@@ -12,15 +13,23 @@ export default function Commandes() {
       <Navbar />
       <div className="titreCompte">
         <h2>Mon compte: </h2>
-        <h3>{firstName} {lastName}</h3>
+        <h3>
+          {firstName} {lastName}
+        </h3>
       </div>
       <div className="responsiveReverse">
         <span className="barHoriz"></span>
         <div className="testDiv">
           <div className="btnTitre">
-            <NavLink to="/profile"><h3>Mes informations</h3></NavLink>
-            <NavLink to="/profile/orders"><h3>Mes commandes</h3></NavLink>
-            <NavLink to="/profile/reclamations"><h3>Mes réclamations </h3></NavLink>
+            <NavLink to="/profile">
+              <h3>Mes informations</h3>
+            </NavLink>
+            <NavLink to="/profile/orders">
+              <h3>Mes commandes</h3>
+            </NavLink>
+            <NavLink to="/profile/reclamations">
+              <h3>Mes réclamations </h3>
+            </NavLink>
           </div>
           <span className="barVertical"></span>
           <div className="Formulaire">
@@ -28,13 +37,14 @@ export default function Commandes() {
             <h3>Vous n'avez pas de commandes</h3>
           </div>
 
+          <CompCommande />
           {/* <div className="infosCommande">
             <p>Nombre de personnes : x</p>
             <p>Arrivée le xx/xx/xx . Départ au xx/xx/xx</p>
             <p>Prix : xxx€</p>
             <p>Lieu : xxxxxx</p>
           </div> */}
-        </div>          
+        </div>
       </div>
       <Footer />
     </>
