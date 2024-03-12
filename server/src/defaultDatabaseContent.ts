@@ -6,6 +6,7 @@ import Equipment from "./entities/Equipment";
 import Housing from "./entities/Housing";
 import Rating from "./entities/Rating";
 import User from "./entities/User";
+import { DeepPartial } from "typeorm";
 
 export default async function insertDefaultDatbaseContent() {
   const entities_names = database.entityMetadatas.map(entity => '"' + entity.tableName + '"').join(", ");
@@ -548,14 +549,497 @@ export default async function insertDefaultDatbaseContent() {
     });
   }
 
-  users.insert({
-    first_name: "Louis",
-    last_name: "Le Cam",
+  await users.insert({
+    first_name: "admin",
+    last_name: "admin",
     password_hash: await bcrypt.hash("admin", 12),
     email: "admin",
     phone_number: "0123456789",
     admin: true,
     bookings: []
   });
-}
 
+  await users.insert({
+    first_name: "Louis",
+    last_name: "Le Cam",
+    password_hash: await bcrypt.hash("louis", 12),
+    email: "louis.le-cam@institutsolacroup.com",
+    phone_number: "0000000001",
+    admin: true,
+    bookings: []
+  });
+
+  await users.insert({
+    first_name: "Carl",
+    last_name: "Richard",
+    password_hash: await bcrypt.hash("carl", 12),
+    email: "carl.richard@institutsolacroup.com",
+    phone_number: "0000000002",
+    admin: false,
+    bookings: []
+  });
+
+  await users.insert({
+    first_name: "Tetiana",
+    last_name: "Kosorukova",
+    password_hash: await bcrypt.hash("tetiana", 12),
+    email: "tetiana.kosorukova@institutsolacroup.com",
+    phone_number: "0000000003",
+    admin: true,
+    bookings: []
+  });
+
+  await users.insert({
+    first_name: "Olivier",
+    last_name: "Evrard",
+    password_hash: await bcrypt.hash("olivier", 12),
+    email: "olivier.evrard@institutsolacroup.com",
+    phone_number: "0000000004",
+    admin: true,
+    bookings: []
+  });
+
+  await users.insert({
+    first_name: "Olivier",
+    last_name: "Robert Duboille",
+    password_hash: await bcrypt.hash("olivier", 12),
+    email: "olivier.robert-duboille@institutsolacroup.com",
+    phone_number: "0000000005",
+    admin: false,
+    bookings: []
+  });
+
+  await users.insert({
+    first_name: "Dorian",
+    last_name: "Delpeux",
+    password_hash: await bcrypt.hash("dorian", 12),
+    email: "dorian.delpeux@institutsolacroup.com",
+    phone_number: "0000000006",
+    admin: false,
+    bookings: []
+  });
+
+  const booking_list = [
+    {
+      start: new Date(2034, 9, 7),
+      end: new Date(2034, 9, 12),
+      chef_available: true,
+      visit_date: new Date(2034, 9, 2),
+      housing: "Maison des Rives",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2048, 6, 12),
+      end: new Date(2048, 6, 20),
+      chef_available: true,
+      visit_date: new Date(2048, 6, 3),
+      housing: "Villa des Vignes",
+      user: "admin",
+    },
+    {
+      start: new Date(2023, 5, 9),
+      end: new Date(2023, 5, 13),
+      chef_available: false,
+      visit_date: new Date(2023, 5, 6),
+      housing: "Guarrigue",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2025, 3, 10),
+      end: new Date(2025, 3, 14),
+      chef_available: false,
+      visit_date: new Date(2025, 3, 4),
+      housing: "Villa des Vignes",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2035, 7, 12),
+      end: new Date(2035, 7, 18),
+      chef_available: true,
+      visit_date: new Date(2035, 7, 4),
+      housing: "La Galibe",
+      user: "admin",
+    },
+    {
+      start: new Date(2025, 4, 18),
+      end: new Date(2025, 4, 20),
+      chef_available: false,
+      visit_date: new Date(2025, 4, 8),
+      housing: "Villa des Vignes",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2037, 0, 8),
+      end: new Date(2037, 0, 11),
+      chef_available: true,
+      visit_date: new Date(2037, 0, 4),
+      housing: "Vue sur Mer",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2044, 2, 13),
+      end: new Date(2044, 2, 18),
+      chef_available: false,
+      visit_date: new Date(2044, 2, 4),
+      housing: "La Cabane",
+      user: "admin",
+    },
+    {
+      start: new Date(2024, 9, 4),
+      end: new Date(2024, 9, 9),
+      chef_available: false,
+      visit_date: new Date(2024, 9, 1),
+      housing: "Nid de Chouette",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2041, 9, 9),
+      end: new Date(2041, 9, 14),
+      chef_available: true,
+      visit_date: new Date(2041, 9, 1),
+      housing: "Villa des Vignes",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2041, 7, 12),
+      end: new Date(2041, 7, 20),
+      chef_available: true,
+      visit_date: new Date(2041, 7, 6),
+      housing: "La Cabane",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2038, 8, 14),
+      end: new Date(2038, 8, 19),
+      chef_available: false,
+      visit_date: new Date(2038, 8, 8),
+      housing: "La maison dans les bois",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2047, 1, 7),
+      end: new Date(2047, 1, 15),
+      chef_available: false,
+      visit_date: new Date(2047, 1, 4),
+      housing: "Lavande",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2040, 4, 7),
+      end: new Date(2040, 4, 15),
+      chef_available: true,
+      visit_date: new Date(2040, 4, 3),
+      housing: "La Cabane",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2035, 4, 11),
+      end: new Date(2035, 4, 15),
+      chef_available: true,
+      visit_date: new Date(2035, 4, 2),
+      housing: "La Cabane",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2044, 11, 17),
+      end: new Date(2044, 11, 19),
+      chef_available: true,
+      visit_date: new Date(2044, 11, 9),
+      housing: "Les Cimes",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2025, 1, 15),
+      end: new Date(2025, 1, 20),
+      chef_available: true,
+      visit_date: new Date(2025, 1, 5),
+      housing: "Belle époque",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2047, 10, 9),
+      end: new Date(2047, 10, 17),
+      chef_available: false,
+      visit_date: new Date(2047, 10, 1),
+      housing: "Nid de Chouette",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2027, 2, 19),
+      end: new Date(2027, 2, 21),
+      chef_available: false,
+      visit_date: new Date(2027, 2, 9),
+      housing: "Les Landes",
+      user: "admin",
+    },
+    {
+      start: new Date(2042, 11, 3),
+      end: new Date(2042, 11, 10),
+      chef_available: true,
+      visit_date: new Date(2042, 11, 2),
+      housing: "Snowbeach",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2040, 5, 10),
+      end: new Date(2040, 5, 13),
+      chef_available: false,
+      visit_date: new Date(2040, 5, 7),
+      housing: "Villa des Pins",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+    {
+      start: new Date(2027, 7, 9),
+      end: new Date(2027, 7, 15),
+      chef_available: true,
+      visit_date: new Date(2027, 7, 4),
+      housing: "Les Landes",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2043, 6, 5),
+      end: new Date(2043, 6, 12),
+      chef_available: true,
+      visit_date: new Date(2043, 6, 2),
+      housing: "Villa Basque",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2047, 11, 5),
+      end: new Date(2047, 11, 7),
+      chef_available: false,
+      visit_date: new Date(2047, 11, 4),
+      housing: "Les Cimes",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+    {
+      start: new Date(2026, 7, 8),
+      end: new Date(2026, 7, 16),
+      chef_available: false,
+      visit_date: new Date(2026, 7, 7),
+      housing: "Villa des Puys",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2046, 9, 9),
+      end: new Date(2046, 9, 15),
+      chef_available: false,
+      visit_date: new Date(2046, 9, 6),
+      housing: "Villa des Vignes",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2028, 9, 8),
+      end: new Date(2028, 9, 11),
+      chef_available: false,
+      visit_date: new Date(2028, 9, 5),
+      housing: "Buron des Cimes",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2036, 5, 16),
+      end: new Date(2036, 5, 23),
+      chef_available: false,
+      visit_date: new Date(2036, 5, 7),
+      housing: "Villa Normande",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2037, 8, 7),
+      end: new Date(2037, 8, 11),
+      chef_available: false,
+      visit_date: new Date(2037, 8, 6),
+      housing: "Villa Margeride",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2045, 8, 14),
+      end: new Date(2045, 8, 17),
+      chef_available: false,
+      visit_date: new Date(2045, 8, 10),
+      housing: "Villa Normande",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2032, 3, 9),
+      end: new Date(2032, 3, 12),
+      chef_available: false,
+      visit_date: new Date(2032, 3, 4),
+      housing: "Vue sur Mer",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+    {
+      start: new Date(2025, 3, 10),
+      end: new Date(2025, 3, 14),
+      chef_available: false,
+      visit_date: new Date(2025, 3, 2),
+      housing: "Villa Berthe",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2026, 4, 10),
+      end: new Date(2026, 4, 14),
+      chef_available: true,
+      visit_date: new Date(2026, 4, 3),
+      housing: "La Galibe",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2035, 8, 6),
+      end: new Date(2035, 8, 14),
+      chef_available: true,
+      visit_date: new Date(2035, 8, 4),
+      housing: "Les Cimes",
+      user: "admin",
+    },
+    {
+      start: new Date(2045, 3, 15),
+      end: new Date(2045, 3, 18),
+      chef_available: false,
+      visit_date: new Date(2045, 3, 6),
+      housing: "Villa les Murets",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2044, 1, 11),
+      end: new Date(2044, 1, 18),
+      chef_available: false,
+      visit_date: new Date(2044, 1, 4),
+      housing: "Villa Normande",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2044, 7, 14),
+      end: new Date(2044, 7, 20),
+      chef_available: true,
+      visit_date: new Date(2044, 7, 8),
+      housing: "Buron des Cimes",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+    {
+      start: new Date(2026, 1, 3),
+      end: new Date(2026, 1, 11),
+      chef_available: false,
+      visit_date: new Date(2026, 1, 2),
+      housing: "Les Landes",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2036, 10, 8),
+      end: new Date(2036, 10, 13),
+      chef_available: true,
+      visit_date: new Date(2036, 10, 3),
+      housing: "Villa les Murets",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2041, 0, 11),
+      end: new Date(2041, 0, 14),
+      chef_available: false,
+      visit_date: new Date(2041, 0, 9),
+      housing: "Villa des Puys",
+      user: "admin",
+    },
+    {
+      start: new Date(2039, 5, 15),
+      end: new Date(2039, 5, 19),
+      chef_available: false,
+      visit_date: new Date(2039, 5, 8),
+      housing: "Villa Berthe",
+      user: "olivier.evrard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2023, 3, 16),
+      end: new Date(2023, 3, 19),
+      chef_available: false,
+      visit_date: new Date(2023, 3, 10),
+      housing: "Buron des Cimes",
+      user: "carl.richard@institutsolacroup.com",
+    },
+    {
+      start: new Date(2032, 6, 14),
+      end: new Date(2032, 6, 22),
+      chef_available: false,
+      visit_date: new Date(2032, 6, 5),
+      housing: "Spa des Alpes",
+      user: "admin",
+    },
+    {
+      start: new Date(2023, 0, 18),
+      end: new Date(2023, 0, 20),
+      chef_available: false,
+      visit_date: new Date(2023, 0, 9),
+      housing: "Villa des Vignes",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2041, 5, 9),
+      end: new Date(2041, 5, 13),
+      chef_available: false,
+      visit_date: new Date(2041, 5, 4),
+      housing: "Buron des Cimes",
+      user: "dorian.delpeux@institutsolacroup.com",
+    },
+    {
+      start: new Date(2036, 10, 5),
+      end: new Date(2036, 10, 7),
+      chef_available: true,
+      visit_date: new Date(2036, 10, 4),
+      housing: "Yololoiou",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2037, 1, 4),
+      end: new Date(2037, 1, 7),
+      chef_available: true,
+      visit_date: new Date(2037, 1, 3),
+      housing: "Les Roches",
+      user: "tetiana.kosorukova@institutsolacroup.com",
+    },
+    {
+      start: new Date(2044, 1, 11),
+      end: new Date(2044, 1, 15),
+      chef_available: false,
+      visit_date: new Date(2044, 1, 2),
+      housing: "La Malouine",
+      user: "olivier.robert-duboille@institutsolacroup.com",
+    },
+    {
+      start: new Date(2028, 3, 9),
+      end: new Date(2028, 3, 16),
+      chef_available: true,
+      visit_date: new Date(2028, 3, 6),
+      housing: "Villa des Puys",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+    {
+      start: new Date(2035, 7, 5),
+      end: new Date(2035, 7, 7),
+      chef_available: true,
+      visit_date: new Date(2035, 7, 1),
+      housing: "Maison des Rives",
+      user: "louis.le-cam@institutsolacroup.com",
+    },
+  ];
+
+  for (const booking of booking_list) {
+    const housing = await housings.findOneBy({ name: booking.housing });
+    if (housing == null) {
+      throw new Error("Cannot find housing when inserting default database content");
+    }
+
+    const user = await users.findOneBy({ email: booking.user });
+    if (user == null) {
+      throw new Error("Cannot find user when inserting default database content");
+    }
+
+    await bookings.save({
+      start: booking.start,
+      end: booking.end,
+      chef_available: booking.chef_available,
+      visit_date: booking.visit_date,
+      housing,
+      user,
+    });
+  }
+}
