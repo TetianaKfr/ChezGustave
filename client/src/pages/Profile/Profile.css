@@ -1,56 +1,61 @@
-.barHoriz{
+.barHoriz {
   display: block;
   height: 2px;
-  width:100%;
+  width: 100%;
   background-color: #155b55;
 }
-.titreCompte{
-  padding:  2vw 2vw;
+.titreCompte {
+  padding: 2vw 2vw;
 }
 
-.barVertical{
+.barVertical {
   height: 10rem;
-  width:2px;
+  width: 2px;
   background-color: #155b55;
 }
-.formulaireResponsive{
+.formulaireResponsive {
   display: none;
 }
 
-.testDiv{
+.testDiv {
   display: flex;
   gap: 20px;
-  padding:  0 2vw;
+  padding: 0 2vw;
 }
-.Formulaire{
+.Formulaire {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .profile-info {
   display: flex;
   gap: 5vw;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
   .btnTitre {
     display: flex;
     justify-content: space-around;
     gap: 50px;
   }
-  .barVertical{display: none;}
-  .responsiveReverse{
+  .barVertical {
+    display: none;
+  }
+  .responsiveReverse {
     display: flex;
     flex-direction: column-reverse;
   }
 
-  .formulaireResponsive{
+  .formulaireResponsive {
     display: block;
   }
 
-  .Formulaire {display: none;}
+  .Formulaire {
+    display: none;
+  }
 
   .profile-info {
     flex-direction: column;
@@ -58,6 +63,8 @@
 
   .nomprenom {
     flex-direction: column;
+    display:flex;
+    justify-content:space-between;
   }
   .motsDP {
     flex-direction: column;
@@ -68,7 +75,8 @@
   display: flex;
   padding-bottom: 50px;
   padding-top: 20px;
-  justify-content: center;
+  gap:20px;
+  justify-content: space-between;
 }
 
 .motsDP {
@@ -79,19 +87,24 @@
 .colonne {
   display: flex;
   flex-direction: column;
+  justify-content:space-between;
+  align-self:flex-start;
+  margin:20px;
 }
+#email{
 
+}
 .colonne2 {
   display: flex;
   flex-direction: row;
 }
 
-.titreCompte{
-  display:flex;
-  flex-direction:row;
+.titreCompte {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
-#friendMessage{
-  width:300px;
-  height:150px;
+#friendMessage {
+  width: 300px;
+  height: 150px;
 }
