@@ -44,7 +44,7 @@ export default async function insertDefaultDatbaseContent() {
   const housing_list = [
     {
       name: "Nid de Chouette",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/050afba036faed30c9de4690682c265f.jpg"],
+      images_urls: ["nid_de_chouette.jpg"],
       area: "Gap",
       description: "Se lever à l’aurore, aller chercher le soleil qui se lève sur les sommets",
       low_price: 2000,
@@ -60,7 +60,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "La Galibe",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/1mns73s41dqvdwddf57tqre8tlz8k93tm1hkd3t18.jpg"],
+      images_urls: ["la_galibe.jpg"],
       area: "Malestroit",
       description: "Terre de Chouans!",
       low_price: 3000,
@@ -76,7 +76,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Les Roches",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/0wh455.jpg"],
+      images_urls: ["les_roches.jpg"],
       area: "Les Sables d’Olonne",
       description: "Bercée par les flots, cette villa vous promet des moments enchanteurs.",
       low_price: 4000,
@@ -92,7 +92,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Maison des Rives",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/06l0bb21pxgl07i0zhhhm25oenjh7pvvkb27bjags.jpg"],
+      images_urls: ["maison_des_rives.jpg"],
       area: "Sarlat",
       description: "Au coeur du périgord noir, pour des vacances gastronomiques et sportives! Idéal pour les familles!",
       low_price: 2000,
@@ -108,7 +108,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Les Cimes",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/640x480_554133-lodge_ete_12014.jpg"],
+      images_urls: ["les_cimes.jpg"],
       area: "Chambéry",
       description: "Une vue révee sur les sommets, un spa de luxe caché dans ses murs, des balades équestres en montagne. Un lieu parfait pour se détendre",
       low_price: 2000,
@@ -124,7 +124,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Les Landes",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/Bazas.png"],
+      images_urls: ["les_landes.png"],
       area: "Bazas",
       description: "Notre chef local excelle dans la préparation du boeuf de Bazas",
       low_price: 3000,
@@ -140,7 +140,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Snowbeach",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/640x480_megeve-location-chalet-luxe-taxozite-piscine-13422.jpg"],
+      images_urls: ["snowbeach.jpg"],
       area: "Mégève",
       description: "Pour les fans de glisse!!!",
       low_price: 2000,
@@ -156,7 +156,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Yololoiou",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/1605-Batieu-180927-JG-16-EU-RJ.jpg"],
+      images_urls: ["yololoiou.jpg"],
       area: "Alpes suisses",
       description: "Authentique! AU coeur des Alpes suisses,, avec un contact heureux avec le folklore local!",
       low_price: 2000,
@@ -172,7 +172,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Lavande",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/6086cb70306fd.jpg"],
+      images_urls: ["lavande.jpg"],
       area: "Saint Paul de Vence",
       description: "Cézanne y a vécu, pour y peindre l’Estaque",
       low_price: 2000,
@@ -188,7 +188,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Les vents d’ouest",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/27061_00-2021-11-10-0148.jpg"],
+      images_urls: ["les_vents_d_ouest.jpg"],
       area: "Carnac",
       description: "Une villa pour vous sentir riches...ou juste pour passer un moment délicieux en famille!",
       low_price: 4000,
@@ -204,7 +204,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "La maison dans les bois",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/21240-france-les-tournels.jpg"],
+      images_urls: ["la_maison_dans_les_bois.jpg"],
       area: "Luz Saint Sauveur",
       description: "Vous ne vous arrêterez pas ici, vous vous équiperez et partirez à l’assaut des cimes!",
       low_price: 1500,
@@ -220,7 +220,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Guarrigue",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/0871_Source_JG_180529_01_EU.jpg"],
+      images_urls: ["guarrigue.jpg"],
       area: "Saint Maximin",
       description: "Monter sur la Sainte Victoire et voir la mer, une fois dans sa vie! Savourer le beurre de truffe lors d’apéritifs trainants!",
       low_price: 3000,
@@ -236,7 +236,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Le Pic",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/111904-2.jpg"],
+      images_urls: ["le_pic.jpg"],
       area: "Gavarnie",
       description: "Qui n’a jamais vu le cirque de Gavarnie n’a pas vécu!",
       low_price: 2000,
@@ -252,7 +252,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "L’alpage",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/265473276.jpg"],
+      images_urls: ["l_alpage.jpg"],
       area: "Voiron",
       description: "La douceur des premières pentes, le repos de l’âme!",
       low_price: 2000,
@@ -268,7 +268,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Berthe",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/chic-villas-brittany-emeraude-g1.jpg"],
+      images_urls: ["villa_berthe.jpg"],
       area: "Granville",
       description: "Son bateau à moteur dernier cri pour de superbes balades sur Chausey et Jersey",
       low_price: 2000,
@@ -284,7 +284,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa des Pins",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/lagapa-perros-guirec-crdit-kelly-martos-5-640x360-crop-1579247128.jpg"],
+      images_urls: ["villa_des_pins.jpg"],
       area: "La Roche sur Yon",
       description: "Cette maison, à deux pas de la plage, a vu passer Jean Rochefort, Lino Ventura, Gérard Depardieu. Tous la conseillent!",
       low_price: 2000,
@@ -300,7 +300,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa les Murets",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/d4.jpg"],
+      images_urls: ["villa_les_murets.jpg"],
       area: "Rocamadour",
       description: "Rocamadour, terre de miracles!",
       low_price: 4000,
@@ -316,7 +316,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Sémaphore",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/istockphoto-1175468826-612x612.jpg"],
+      images_urls: ["villa_semaphore.jpg"],
       area: "Oléron",
       description: "Le charme de l’authentique, l’appel de la mer",
       low_price: 2000,
@@ -332,7 +332,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Basque",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/les-maisons-avec-vue-sur-mer-comme-ici-a-groix-sont_4776968_676x338p_(1).jpg"],
+      images_urls: ["villa_basque.jpg"],
       area: "Mimizan",
       description: "Pour la Feria, à deux pas de Bayonne!",
       low_price: 2000,
@@ -348,7 +348,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "La Cabane",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/location-gite-haut-de-gamme-scaled.jpg"],
+      images_urls: ["la_cabane.jpg"],
       area: "Cahors",
       description: "Un nid parfait pour renouveler votre amour!",
       low_price: 1500,
@@ -364,7 +364,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Vue sur Mer",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/maison-avec-vue-mer.jpg"],
+      images_urls: ["vue_sur_mer.jpg"],
       area: "Dinard",
       description: "So British!",
       low_price: 1000,
@@ -380,7 +380,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Trappeur",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/location-vacances-chalet-la-bresse-465103-7.jpeg"],
+      images_urls: ["villa_trappeur.jpeg"],
       area: "Annecy",
       description: "Vous sentez-vous prêts pour l’aventure? Programme proposé sur mesure",
       low_price: 2000,
@@ -396,7 +396,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "La Malouine",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/meuble-maison-de-maitre-de-perier-85200-fontenay-le-comte-1.jpg"],
+      images_urls: ["la_malouine.jpg"],
       area: "Saint Malo",
       description: "Vous sentez-vous une âme d’armateur? Surcouf y est passé!",
       low_price: 4000,
@@ -412,7 +412,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Spa des Alpes",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/salon-chalet-luxe-serre-che.jpg"],
+      images_urls: ["spa_des_alpes.jpg"],
       area: "Briançon",
       description: "Se reposer, se détendre, profiter, aimer!!",
       low_price: 2000,
@@ -428,7 +428,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa des Vignes",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/unnamed_(3).jpg"],
+      images_urls: ["villa_des_vignes.jpg"],
       area: "Blaye",
       description: "Un verre de Saint Estèphe 1998, au coin du feu le soir ou sur la terrasse le midi, pendant que dorent les poissons sur la plancha....",
       low_price: 2000,
@@ -444,7 +444,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Margeride",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/unnamed_(2).jpg"],
+      images_urls: ["villa_margeride.jpg"],
       area: "Saint Flour",
       description: "Saint Flour, cité des grands vents! A visiter absolument! A deux pas des monts du Cantal et du GR400!",
       low_price: 3000,
@@ -460,7 +460,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Buron des Cimes",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/swimming-pool.jpg"],
+      images_urls: ["buron_des_cimes.jpg"],
       area: "Serre-Chevalier",
       description: "Le luxe au coeur des montagnes!",
       low_price: 8000,
@@ -476,7 +476,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Belle époque",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/unnamed_(1).jpg"],
+      images_urls: ["belle_epoque.jpg"],
       area: "Fontainebleau",
       description: "Le faste des Rois. Joséphine de Beauharnais y a résidé",
       low_price: 3000,
@@ -492,7 +492,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa Normande",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/unnamed.jpg"],
+      images_urls: ["villa_normande.jpg"],
       area: "Honfleur",
       description: "Coup de coeur! ma famille y a vécu pendant trois générations, les murs ont une histoire!",
       low_price: 3000,
@@ -508,7 +508,7 @@ export default async function insertDefaultDatbaseContent() {
     },
     {
       name: "Villa des Puys",
-      images_urls: ["Catalogue%20b1708c8345b34bfdb1cd22a8554d8b6e/1fcak8163jr3xmm42ghm5hgua0vjwdn7y1jxz0lj4.jpg"],
+      images_urls: ["villa_des_puys.jpg"],
       area: "Chamaliéres",
       description: "Clermont-Ferrand, cité des Volcans. Les puys à deux pas pour des balades enchanteresses! Vous profiterez aussi des thermes de Royat et Chatel Guyon, pour des vacances ressourçantes!",
       low_price: 2000,
