@@ -20,33 +20,49 @@ import { useEffect } from "react";
 function App() {
   const [housings, setHousings] = useState([]);
 
+  useEffect(() => {
+    const fetchHousings = async () => {
+      try {
+        const response = await fetch("http://localhost:3630/housings", {
+          method: "GET",
+          headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          const housingNames = await response.json();
+          //console.log("nom ok :" ,housingNames)
+          const housingData = await Promise.all(housingNames.map(async (housingName) => {
+            const housingDetail = await fetch("http://localhost:3630/housing", {
+              method: "POST",
+              headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token"),
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name: housingName }),
+            });
+  
+            if (!housingDetail.ok) {
+              console.error("Error fetching details", housingDetail.statusText);
+              return null;
+            }
+            return await housingDetail.json();
+          }));
+          const HousingData = housingData;
+          setHousings(HousingData);
+          console.log("Housings data" ,HousingData)
 
-    // Fetch logement  
-    useEffect(() => {
-      const fetchHousings = async () => {
-          try {
-              const response = await fetch("http://localhost:3630/housings", {
-                  method: "GET",
-                  headers: {
-                      "Authorization": "Bearer " + localStorage.getItem("token"),
-                      "Content-Type": "application/json",
-                  },
-              });
-
-              if (response.ok) {
-                  const housings = await response.json();
-                  setHousings(housings);
-                  console.log(housings)
-              } else {
-                  console.error("Error fetching housings");
-              }
-          } catch (error) {
-              console.error("Error fetching housings:", error);
-          }
-      };
-
-      fetchHousings();
-  }, []);
+        } else {
+          console.error("Error fetching housing names:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error :", error.message);
+      }
+    };
+    fetchHousings();
+  }, []); 
 
   return (
     <React.StrictMode>

@@ -7,17 +7,61 @@ import { CardDetails } from '../../components/CardDetails/CardDetails';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-//export default function Search() {
 export const Search = ({ housings }) => {
-
-    // State pour stocker la valeur actuelle du slider
     const [sliderValue, setSliderValue] = useState(0);
+    const [categories, setCategories] = useState([]);
+    const [types, setTypes] = useState([]);
 
-    // Fonction pour mettre à jour la valeur actuelle du slider
     const handleSliderChange = (e) => {
         setSliderValue(parseInt(e.target.value));
     };
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch("http://localhost:3630/categories", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem("token"),
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setCategories(data);
+                } else {
+                    console.error("Error categories");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+
+        const fetchTypes = async () => {
+            try {
+                const response = await fetch("http://localhost:3630/types", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem("token"),
+                   
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setTypes(data);
+                } else {
+                    console.error("Error types");
+                }
+            } catch (error) {
+                console.error("Error :", error);
+            }
+        };
+
+        fetchCategories();
+        fetchTypes();
+    }, []);
+    
     return (
         <>
             <Navbar />
@@ -32,57 +76,28 @@ export const Search = ({ housings }) => {
 
                     <div>
                         <h4>Catégories:</h4>
-                        <div className='row'>
-                            <input type="checkbox" name='categorie1' value="categorie1" /> <p>Montagne</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='categorie2' value="categorie2" /> <p>Campagne</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='categorie3' value="categorie3" /> <p>Bord de mer</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='categorie4' value="categorie4" /> <p>Ville</p>
-                        </div>
+                        {categories.map((category, i) => (
+                            <div className='row' key={i}>
+                                <input type="checkbox" name={'categorie' + i} value={category.id} />
+                                <p>{category}</p>
+                            </div>
+                        ))}
                     </div>
 
                     <div>
                         <h4>Type:</h4>
-                        <div className='row'>
-                            <input type="checkbox" name='type1' value="type1" />
-                            <p> Maison</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type2' value="type2" />
-                            <p>Villa</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type3' value="type3" />
-                            <p>Chateau</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type4' value="type4" />
-                            <p>Manoir</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type5' value="type5" />
-                            <p>Atypique</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type6' value="type6" />
-                            <p>Chalet</p>
-                        </div>
-                        <div className='row'>
-                            <input type="checkbox" name='type7' value="type7" />
-                            <p>Appartement</p>
-                        </div>
+                        {types.map((type, index) => (
+                            <div className='row' key={index}>
+                                <input type="checkbox" name={'type' + index} value={type.id} />
+                                <p>{type}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className='card'>
                     {housings.map((housing, index) => (
-                        <CardDetails key={housing.id} housing={housing} />
+                        <CardDetails key={housing.area} housing={housing} />
                     ))}
-
                 </div>
             </div>
             <Footer />

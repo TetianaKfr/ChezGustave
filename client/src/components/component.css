@@ -304,6 +304,7 @@ a {
 }
 .textCard h2 {
     color: var(--VertBleu); 
+    width: 20rem;
 }
 
 .photoLogement{
