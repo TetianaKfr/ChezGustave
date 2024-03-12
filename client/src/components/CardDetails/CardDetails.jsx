@@ -7,7 +7,7 @@ export const CardDetails = ({housing}) => {
     <>
       <div className="cardComplete">
         <div className="CardDetails">
-          <img className="photoLogement" src={housing.images_urls[0]} alt="photo du logement" />
+          <img className="photoLogement" src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt="photo du logement" />
         </div>
         <span className="UseForCSS"></span>
         <div className="textCard">
