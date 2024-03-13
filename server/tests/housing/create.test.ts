@@ -52,9 +52,9 @@ describe("Create housings", () => {
     expect(housing.images_urls).toContain("image_1");
     expect(housing.images_urls).toContain("image_2");
     expect(housing.images_urls.length).toBe(2);
-    expect(housing.low_price).toBe("$1,000.00");
-    expect(housing.medium_price).toBe("$2,000.00");
-    expect(housing.high_price).toBe("$3,000.00");
+    expect(housing.low_price).toBe(1000);
+    expect(housing.medium_price).toBe(2000);
+    expect(housing.high_price).toBe(3000);
     expect(housing.surface).toBe(540);
     expect(housing.bedroom_count).toBe(5);
     expect(housing.bathroom_count).toBe(3);
