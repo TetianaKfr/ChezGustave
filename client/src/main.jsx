@@ -72,17 +72,17 @@ function App() {
       <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Router>
           <Routes>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Home housings={housings} />} />
-            <Route path="/recherche" element={<Search housings={housings} />} />
-            <Route path="/profile/reclamations" element={<Reclamations />} />
-            <Route path="/details" element={<Produit />} />
-            <Route path="/presentation" element={<Presentation />} />
-            <Route path="/profile/orders" element={<Commandes />} />
-            <Route path="*" element={<Error />} />
-            <Route path="/mentions-legales" element={<MentionsLegales />} />
-            <Route path="CGU" element={<CGU />} />
-            <Route path="/RGPD" element={<RGPD />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Home  housings={housings} />} />
+          <Route path="/recherche" element={<Search housings={housings} />} />
+          <Route path="/profile/reclamations" element={<Reclamations />} />
+          <Route path="/details/:housing_name" element={<Produit />} />
+          <Route path="/presentation" element={<Presentation />} />
+          <Route path="/profile/orders" element={<Commandes />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="CGU" element={<CGU />} />
+          <Route path="/RGPD" element={<RGPD />} />
           </Routes>
         </Router>
       </LoginContext.Provider>

@@ -1,8 +1,11 @@
 import React from "react";
 import "../component.css";
 import pictoVille from "../../assets/pictoVille.png";
+import { Link } from "react-router-dom";
+
 
 export const CardDetails = ({housing}) => {
+
   return (
     <>
       <div className="cardComplete">
@@ -23,6 +26,9 @@ export const CardDetails = ({housing}) => {
           </p>
           <p>prix: {housing.medium_price}</p>
           <p className="row"> Chambres: {housing.bedroom_count}  / Salle de bain: {housing.bathroom_count}  </p>
+          <Link to={{ pathname: "/details/" + housing.area}} state={housing} >
+            <button>Afficher les détails du logement</button>
+          </Link>
         </div>
       </div>
     </>
