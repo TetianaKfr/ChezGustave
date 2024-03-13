@@ -16,9 +16,12 @@ import { CGU } from "./pages/CGU/CGU.jsx";
 import { RGPD } from "./pages/RGPD/RGPD.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
+import LoginContext, { SessionState } from "./LoginContext.jsx";
 
 function App() {
   const [housings, setHousings] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(SessionState.NotConnected);
+
 
   useEffect(() => {
     const fetchHousings = async () => {
@@ -30,7 +33,7 @@ function App() {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (response.ok) {
           const housingNames = await response.json();
           //console.log("nom ok :" ,housingNames)
@@ -43,7 +46,7 @@ function App() {
               },
               body: JSON.stringify({ name: housingName }),
             });
-  
+
             if (!housingDetail.ok) {
               console.error("Error fetching details", housingDetail.statusText);
               return null;
@@ -52,7 +55,7 @@ function App() {
           }));
           const HousingData = housingData;
           setHousings(HousingData);
-          console.log("Housings data" ,HousingData)
+          console.log("Housings data", HousingData)
 
         } else {
           console.error("Error fetching housing names:", response.statusText);
@@ -62,12 +65,13 @@ function App() {
       }
     };
     fetchHousings();
-  }, []); 
+  }, []);
 
   return (
     <React.StrictMode>
-      <Router>
-        <Routes>
+      <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <Router>
+          <Routes>
           <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<Home  housings={housings} />} />
           <Route path="/recherche" element={<Search housings={housings} />} />
@@ -79,8 +83,9 @@ function App() {
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="CGU" element={<CGU />} />
           <Route path="/RGPD" element={<RGPD />} />
-        </Routes>
-      </Router>
+          </Routes>
+        </Router>
+      </LoginContext.Provider>
     </React.StrictMode>
   );
 }

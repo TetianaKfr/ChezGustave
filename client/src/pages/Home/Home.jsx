@@ -7,6 +7,8 @@ import Banner from '../../assets/heroBanner.png';
 import Banner2 from '../../assets/Chateau-a-louer.jpg';
 import Background from '../../assets/BackgroundDestination.jpg';
 import LogoGustave from "../../assets/LogoGustave.png";
+import { useContext } from 'react';
+import LoginContext, { SessionState } from "../../LoginContext";
 
 export const Home = ({ housings }) => {
     // gérer les messages d'erreur
@@ -19,6 +21,7 @@ export const Home = ({ housings }) => {
     const [randomHousings, setRandomHousings] = useState([]);
     // coup de coeur random
     const [randomCoeur, setRandomCoeur] = useState([]);
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
     // Utiliser useEffect pour gérer le diaporama
     useEffect(() => {
@@ -37,7 +40,6 @@ export const Home = ({ housings }) => {
         setRandomHousings(piocheHousings);
         const Coeurhousing = hazardHousings.slice(5, 8)
         setRandomCoeur(Coeurhousing);
-        
     }, [housings]);
 
     // Fonction pour passer à l'image suivante dans le diaporama
@@ -55,10 +57,10 @@ export const Home = ({ housings }) => {
     return (
         <>
             <div className='heroBannerContainer'>
-                <div className='row navHome'>
+                {/* <div className='row navHome'>
                     <img id="Logo" src={LogoGustave} alt="logo site" />
-                </div>
-
+                </div> */}
+                <Navbar/>
                 <div className='row bannerbtn'>
                     <button className="prevButton" onClick={handlePrevImage}>{'<'}</button>
                     <NavLink to="/recherche">
@@ -66,19 +68,22 @@ export const Home = ({ housings }) => {
                     </NavLink>
                     <button className="nextButton" onClick={handleNextImage}>{'>'}</button>
                 </div>
-
                 <img className='heroBanner' src={images[currentImageIndex]} alt="Image d'accueil du site" />
             </div>
-
-            <div className='wrapper displayHome'>
+            {isLoggedIn==SessionState.NotConnected ? (
+            <>
+                <p>Vous devez etre connecté pour consulter nos logements</p>
+            </>
+          ) : (
+            <>
+              <div className='wrapper displayHome'>
                 <div className='backgColor' style={{ backgroundImage: `url(${Background})` }}>
                     <h2 className='Taille'>Voyager en France</h2>
                     <p className='Taille2'>Pourquoi pas ici?</p>
                     <div className='displayVoyage'>
-                        {/* Afficher les hébergements aléatoires */}
                         {randomHousings.map((housing, index) => (
                             <div key={index}>
-                                <img className='photoDestination' src={housing.images_urls[index]} alt="" />
+                                <img className='photoDestination' src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt="" />
                                 <p className='backgroundColor'>{housing.area}</p>
                             </div>
                         ))}
@@ -90,13 +95,15 @@ export const Home = ({ housings }) => {
                     <div className='displayCoeur'>
                     {randomCoeur.map((housing, index) => (
                         <div className='cardCoeur'>
-                        <img className='vignetteCoeur' src={housing.images_urls[index]} alt={housing.area} />
+                        <img className='vignetteCoeur' src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt={housing.area} />
                         <p>Voir le descriptif</p>
                     </div>
                         ))}
                     </div>
                 </div>
             </div>
+            </>
+          )}
             <Footer />
         </>
     );
