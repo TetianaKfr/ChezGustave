@@ -7,7 +7,8 @@ import ControllerException, { handle_controller_errors } from "../utils/Controll
 import database from "../database";
 import Housing from "../entities/Housing";
 import { isSessionAdmin, isSessionConnected } from "../utils/Session";
-import { And, Any, FindOperator, Not } from "typeorm";
+import { And, Any, Between, FindOperator, LessThan, MoreThan, Not } from "typeorm";
+import Booking from "../entities/Booking";
 
 export async function list(req: Request, res: Response) {
   try {
@@ -62,17 +63,74 @@ export async function search(req: Request, res: Response) {
     const {
       categories,
       types,
+      price_range_start,
+      price_range_end,
     } = req.body;
 
-    const housings = (await database.getRepository(Housing).find({
+    const date_start_str = req.body.date_start;
+    const date_end_str = req.body.date_end;
+
+    if (
+      (price_range_start != undefined && typeof price_range_start != "number") ||
+      (price_range_end != undefined && typeof price_range_end != "number") ||
+      (date_start_str != undefined && typeof date_start_str != "string") ||
+      (date_end_str != undefined && typeof date_end_str != "string")
+    ) {
+      throw ControllerException.MALFORMED_REQUEST;
+    }
+
+    let date_start: Date | undefined = new Date(date_start_str);
+    let date_end: Date | undefined = new Date(date_end_str);
+
+    if (Number.isNaN(date_start.valueOf())) {
+      date_start = undefined;
+    }
+    if (Number.isNaN(date_end.valueOf())) {
+      date_end = undefined;
+    }
+
+    let price_filter: FindOperator<number> | undefined;
+    if (price_range_start != undefined) {
+      if (price_range_end != undefined) {
+        price_filter = Between(price_range_start, price_range_end);
+      } else {
+        price_filter = MoreThan(price_range_start);
+      }
+    } else {
+      if (price_range_end != undefined) {
+        price_filter = LessThan(price_range_end);
+      } else {
+        price_filter = undefined;
+      }
+    }
+
+    const housings_names = (await database.getRepository(Housing).find({
       select: { name: true },
       where: {
         category: getFilter(categories),
         type: getFilter(types),
+        medium_price: price_filter,
       }
-    }));
+    })).map(housing => housing.name);
 
-    res.status(200).send(housings.map(housing => housing.name));
+    const bookings = await database.getRepository(Booking).find({
+      relations: { housing: true },
+      select: { start: true, end: true, housing: { name: true } },
+      where: {
+        housing: { name: Any(housings_names) }
+      },
+    });
+
+    housings_names.filter(housing_name => {
+      return !bookings
+        .filter(booking => booking.housing.name = housing_name)
+        .some(booking => {
+          (date_end == undefined || booking.start <= date_end) &&
+            (date_start == undefined || booking.end >= date_start)
+        });
+    });
+
+    res.status(200).send(housings_names);
   } catch (err) {
     handle_controller_errors(res, err);
   }

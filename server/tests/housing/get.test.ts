@@ -43,9 +43,9 @@ describe("Get housings", () => {
     expect(response.body.images_urls.length).toBe(2);
     expect(response.body.area).toBe("Area 1");
     expect(response.body.description).toBe("Description 1");
-    expect(response.body.low_price).toBe("$1.00");
-    expect(response.body.medium_price).toBe("$2.00");
-    expect(response.body.high_price).toBe("$3.00");
+    expect(response.body.low_price).toBe(1);
+    expect(response.body.medium_price).toBe(2);
+    expect(response.body.high_price).toBe(3);
     expect(response.body.surface).toBe(4);
     expect(response.body.bedroom_count).toBe(3);
     expect(response.body.bathroom_count).toBe(5);
@@ -66,9 +66,9 @@ describe("Get housings", () => {
     expect(response.body.images_urls.length).toBe(2);
     expect(response.body.area).toBe("Area 1");
     expect(response.body.description).toBe("Description 1");
-    expect(response.body.low_price).toBe("$1.00");
-    expect(response.body.medium_price).toBe("$2.00");
-    expect(response.body.high_price).toBe("$3.00");
+    expect(response.body.low_price).toBe(1);
+    expect(response.body.medium_price).toBe(2);
+    expect(response.body.high_price).toBe(3);
     expect(response.body.surface).toBe(4);
     expect(response.body.bedroom_count).toBe(3);
     expect(response.body.bathroom_count).toBe(5);

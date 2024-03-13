@@ -30,19 +30,19 @@ export default class Housing {
   /**
    * Price during the low season
    */
-  @Column("money")
+  @Column()
   low_price: number
 
   /**
    * Price during the medium season
    */
-  @Column("money")
+  @Column()
   medium_price: number
 
   /**
    * Price during the high season
    */
-  @Column("money")
+  @Column()
   high_price: number
 
   /**
