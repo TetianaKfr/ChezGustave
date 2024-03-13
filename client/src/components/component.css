@@ -32,11 +32,12 @@ body{
     align-items: center;
     height: 15vw;
     width: 100vw;                       
-    background: linear-gradient(0deg,#c2a564,#b99652, #d2c592,#c2a564,#b99652);        
+    background: var(--VertBleu);        
 }
 
 .welcomeMsg{
-    color: var(--VertBleu);
+    color: var(--Blanc);
+    font-size: 1.2rem;
 }
 
 #Logo{
@@ -48,6 +49,7 @@ body{
 .Boutons{
     display: flex;
     gap: 2vw; 
+    
 }
 input{width: auto;}
 
@@ -60,7 +62,7 @@ button{
     height: 4rem;
     width: 10rem;
     border-radius: 20px;
-    background-color: var(--VertBleu);
+    background-color: var(--DoreClair);
     border: solid 3px #0d4b46;
     font-size: 1.3rem;
 }
@@ -372,7 +374,7 @@ input {
     border-radius: 5px;
 }
 
-button {
+/* button {
     background-color: #155b55;
     color: white;
     border: none;
@@ -380,7 +382,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
+} */
 
 button:hover {
     background-color: #0f423d;
