@@ -2,8 +2,18 @@ import { Footer } from "../../components/Footer/Footer"
 import { Navbar } from "../../components/Navbar/Navbar"
 import "./Produit.css"
 import LogoCalendrier from '../../assets/calendrier.png'
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
 export const Produit = () => {
+
+    const location = useLocation();
+    
+    useEffect(() => {
+        // array informations housing
+        const dataHousing = location.state;
+      }, [location]);
+
     return (
         <>
             <Navbar />
