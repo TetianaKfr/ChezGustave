@@ -65,8 +65,13 @@ body{
     background-color: #155b55b8;
     color: var(--Blanc);
     margin-top: 20rem;
+    border: solid 2px #d2c592;
 }
-
+#BtnHomeReservation:hover{
+    cursor: pointer;
+    background-color: #d2c59289;
+    color: #155B55;
+}
 a{    text-decoration: none;}
 
 .displayHome { 
