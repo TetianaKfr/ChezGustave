@@ -58,6 +58,7 @@ body{
 }
 #connectBtn:hover{
     color: var(--Blanc); 
+    cursor: pointer;
 
 }
 
@@ -116,6 +117,7 @@ button{
     background-color: var(--VertBleu);
     color: var(--Blanc);
     border-radius: 20px;
+    border: solid 2px #d2c592;
     display: flex;
     justify-content:space-around;
     gap: 50px;
@@ -136,6 +138,9 @@ input{
     border-style: none;
     text-align: center; 
 }
+input:hover{
+    cursor: pointer;
+}
 
 .row input{
     width: auto;
@@ -145,6 +150,11 @@ input{
     background-color: var(--DoreClair);
     color: var(--VertBleu);
     height: auto;
+}
+#btnSearch:hover {
+    background-color: var(--VertBleu);
+    color: var(--Blanc);
+    cursor: pointer;
 }
 
 .row {
