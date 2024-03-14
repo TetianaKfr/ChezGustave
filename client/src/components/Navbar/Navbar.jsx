@@ -129,7 +129,7 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <button onClick={handleLogin}>Se connecter</button>
+              <button id="connectBtn" onClick={handleLogin}>Se connecter</button>
             </>
           )}
         </div>

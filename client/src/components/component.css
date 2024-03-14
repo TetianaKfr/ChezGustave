@@ -33,6 +33,7 @@ body{
     height: 15vw;
     width: 100vw;                       
     background: var(--VertBleu);        
+    border-bottom: solid 3px #d2c592;
 }
 
 .welcomeMsg{
@@ -49,8 +50,18 @@ body{
 .Boutons{
     display: flex;
     gap: 2vw; 
-    
 }
+
+#connectBtn{
+    color: var(--VertBleu); 
+
+}
+#connectBtn:hover{
+    color: var(--Blanc); 
+
+}
+
+
 input{width: auto;}
 
 button{
@@ -61,7 +72,6 @@ button{
     color: var(--Blanc);
     height: 4rem;
     width: 10rem;
-    border-radius: 20px;
     background-color: var(--DoreClair);
     border: solid 3px #0d4b46;
     font-size: 1.3rem;
@@ -383,7 +393,7 @@ input {
     cursor: pointer;
     transition: background-color 0.3s;
 } */
-
+ 
 button:hover {
     background-color: #0f423d;
 }
