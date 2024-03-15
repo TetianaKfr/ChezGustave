@@ -51,7 +51,7 @@ export const Searchbar = ({housings, selectedCategories, selectedTypes, price_ra
     return (
         <div className='searchbar'>
             <div className='date'>
-                <div className='row'>
+                <div className='column center'>
                     <label htmlFor="date_start">Départ :</label>
                     <input
                         type="date"
@@ -61,7 +61,7 @@ export const Searchbar = ({housings, selectedCategories, selectedTypes, price_ra
                     />
                 </div>
 
-                <div className='row'>
+                <div className='column center'>
                     <label htmlFor="date_end">Arrivée :</label>
                     <input
                         type="date"

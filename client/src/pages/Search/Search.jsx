@@ -22,7 +22,7 @@ export const Search = ({ housings }) => {
     //recuperer les catégories checked.
     const handleCategoryChange = (e) => {
         const category = e.target.value;
-        console.log(category)
+        //console.log(category)
         if (e.target.checked) {
             // stocker les resultats 
             setSelectedCategories([...selectedCategories, category]);
@@ -35,7 +35,7 @@ export const Search = ({ housings }) => {
     const handleTypeChange = (e) => {
         // Récupération de l'identifiant du type depuis la valeur de la case à cocher
         const type = e.target.value;
-        console.log(type);
+        //console.log(type);
         // Vérification si la case à cocher est cochée ou non
         if (e.target.checked) {
             // Si la case à cocher est cochée, ajouter le typeId à la liste des types sélectionnés
@@ -43,7 +43,6 @@ export const Search = ({ housings }) => {
         } else {
             // Si la case à cocher est décochée, filtrer le typeId de la liste des types sélectionnés
             setSelectedTypes(selectedTypes.filter(id => id !== type));
-
         }
     };
 
@@ -104,13 +103,16 @@ export const Search = ({ housings }) => {
                     <h3>Filtres</h3>
                     <p>Prix : {price_range_end} € max</p>
                     <div >
-                        <input type="range" min="0" max="5000" className="PB-range-slider" id="myRange" value={price_range_end} onChange={handleSliderChange} />
+                        <input type="range" min="0" max="5000" 
+                        className="PB-range-slider" id="myRange" 
+                        value={price_range_end} 
+                        onChange={handleSliderChange} />
                     </div>
 
                     <div>
                         <h4>Catégories:</h4>
                         {categories.map((category) => (
-                            <div className='row' key={category}>
+                            <div className='row center' key={category}>
                                 <input
                                     type="checkbox"
                                     name={category}
@@ -126,7 +128,7 @@ export const Search = ({ housings }) => {
                     <div>
                         <h4>Type:</h4>
                         {types.map(type => (
-                            <div className='row' key={type}>
+                            <div className='row center' key={type}>
                                 <input
                                     type="checkbox"
                                     name={type}
