@@ -17,7 +17,7 @@ export const Search = ({ housings }) => {
     // Valeur checkbox filtre type
     const [selectedTypes, setSelectedTypes] = useState([]);
     //recup le resultat de la recherche
-    const [resultSearch, setResultSearch] = useState([])
+    const [resultSearch, setResultSearch] = useState(undefined)
 
     //recuperer les catégories checked.
     const handleCategoryChange = (e) => {
@@ -140,12 +140,22 @@ export const Search = ({ housings }) => {
                     </div>
                 </div>
                 <div className='card'>
-                    {(resultSearch.length==0? housings:resultSearch).map((housing) => (
-                        <CardDetails 
-                        key={housing.name} 
-                        housing={housing} 
-                        />
-                    ))}
+                    {
+                        // Ajout de la fonction fleché pour permettre d'ecrire du JS dans le return html
+                        (() => {
+                            const housingList = resultSearch == undefined ? housings : resultSearch;
+                            if (housingList.length == 0) {
+                                return "Aucun resultat ne corresponds aux critères actuel";
+                            } else {
+                                return housingList.map((housing) => (
+                                    <CardDetails
+                                        key={housing.name}
+                                        housing={housing}
+                                    />
+                                ));
+                            }
+                        })()
+                    }
                 </div>
             </div>
             <Footer />
