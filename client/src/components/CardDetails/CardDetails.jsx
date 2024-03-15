@@ -14,7 +14,7 @@ export const CardDetails = ({housing}) => {
         <span className="UseForCSS"></span>
         <div className="textCard">
           <div className="row gap">
-            <h2>{housing.area}</h2>
+            <h2>{housing.name}</h2>
             <div className="divPicto">
               <img src={pictoVille} alt="pictogramme ville" />
               <p>{housing.category}</p>
@@ -25,7 +25,7 @@ export const CardDetails = ({housing}) => {
           </p>
           <p>prix: {housing.medium_price}</p>
           <p className="row"> Chambres: {housing.bedroom_count}  / Salle de bain: {housing.bathroom_count}  </p>
-          <Link to={{ pathname: "/details/" + housing.area}} state={housing} >
+          <Link to={{ pathname: "/details/" + housing.name}} state={housing} >
             <button id="boutton-afficher-details">Afficher les détails du logement</button>
           </Link>
         </div>
