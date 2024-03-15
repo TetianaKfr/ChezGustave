@@ -26,7 +26,7 @@ export const CardDetails = ({housing}) => {
           <p>prix: {housing.medium_price}</p>
           <p className="row"> Chambres: {housing.bedroom_count}  / Salle de bain: {housing.bathroom_count}  </p>
           <Link to={{ pathname: "/details/" + housing.area}} state={housing} >
-            <button>Afficher les détails du logement</button>
+            <button id="boutton-afficher-details">Afficher les détails du logement</button>
           </Link>
         </div>
       </div>

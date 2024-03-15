@@ -71,12 +71,18 @@ button{
     justify-content: center;
     align-items: center;
     color: var(--Blanc);
-    height: 4rem;
+    height: 5rem;
     width: 10rem;
     background-color: var(--DoreClair);
     border: solid 3px #0d4b46;
     font-size: 1.3rem;
 }
+#boutton-afficher-details{
+    background-color: var(--VertBleu);
+}
+#boutton-afficher-details:hover {
+    background-color: var(--DoreSombre);
+  }
 
 /* Navbar Responsive*/
 @media (max-width: 780px){
