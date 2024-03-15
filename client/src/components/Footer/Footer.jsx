@@ -29,9 +29,16 @@ export const Footer = () => {
               <NavLink to="/profile">
                 <h4>Mon profil</h4>
               </NavLink>
+              <NavLink to="/profile">
               <p>Mes informations</p>
+              </NavLink>
+              <NavLink to="/profile/orders">
               <p>Mes commandes</p>
+              </NavLink>
+              <NavLink to="profile/reclamations">
               <p>Mes réclamations</p>
+              </NavLink>
+
             </div>
           </div>
           <span className="decoration"></span>

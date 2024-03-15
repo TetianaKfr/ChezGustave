@@ -169,8 +169,6 @@ input:hover{
         flex-direction: column;
         display:flex;
         align-items:center;
-        margin-bottom:100%;
-        padding-bottom:20px;
     }
     .searchbar div, .searchbar input {
         width: 95%;
@@ -178,6 +176,13 @@ input:hover{
     }
     #btnSearch {
         height: 3rem;
+        padding: 15px;
+        width: 95%;
+        height: 10vh;
+    }
+    .date{
+        display: flex;
+        flex-direction: column;
     }
 }
 
