@@ -5,6 +5,7 @@ function Profile_Deux() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   // Simulate fetching user data (replace with actual API call)
   useEffect(() => {
@@ -37,6 +38,7 @@ function Profile_Deux() {
         const userData = await response.json();
         setLastName(userData.last_name);
         setFirstName(userData.first_name);
+        setPhone(userData.phone_number);
       } else {
         // Gestion d'erreur
       }
@@ -51,6 +53,7 @@ function Profile_Deux() {
         <p>Prénom : {firstName}</p>
         <p>Nom : {lastName}</p>
         <p>Email : {email}</p>
+        <p>Téléphone : {phone}</p>
       </div>
     </div>
   );

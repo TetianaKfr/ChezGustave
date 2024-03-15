@@ -27,9 +27,9 @@ const Commandes = () => {
       //on assosie l'adresse recuperer a la valeur de email
 
       const reservationIds = reservation_parts.join(":");
-      setEmail(reservationIds);
+      setReservation(reservationIds);
 
-      const response = await fetch("http://localhost:3630/user", {
+      const response = await fetch("http://localhost:3630/booking", {
         method: "POST",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -42,7 +42,7 @@ const Commandes = () => {
 
       if (response.ok) {
         const userData = await response.json();
-        SetreservationIds(userData.last_name);
+        SetreservationIds(userData.housing_list);
       } else {
         // Gestion d'erreur
       }

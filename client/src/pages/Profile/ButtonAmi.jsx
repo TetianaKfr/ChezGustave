@@ -4,6 +4,8 @@ import "./Profile.css";
 const ButtonAmi = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [friendName, setFriendName] = useState("");
+  const [friendPrenom, setFriendPrenom] = useState("");
+  const [friendTel, setFriendTel] = useState("");
   const [friendEmail, setFriendEmail] = useState("");
   const [friendMessage, setFriendMessage] = useState("");
 
@@ -48,6 +50,25 @@ const ButtonAmi = () => {
                 onChange={(e) => setFriendName(e.target.value)}
                 required
               />
+
+              <label htmlFor="friendPrenom">Prénom de l'ami :</label>
+              <input
+                type="text"
+                id="friendPrenom"
+                value={friendPrenom}
+                onChange={(e) => setFriendPrenom(e.target.value)}
+                required
+              />
+
+              <label htmlFor="friendTel">Téléphone de l'ami :</label>
+              <input
+                type="text"
+                id="friendTel"
+                value={friendTel}
+                onChange={(e) => setFriendTel(e.target.value)}
+                required
+              />
+
               <label htmlFor="friendEmail">Email de l'ami :</label>
               <input
                 type="email"
