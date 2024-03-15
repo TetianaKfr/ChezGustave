@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
@@ -16,7 +16,7 @@ body{
     overflow-x: hidden;
 }
 
-.wrapper{
+.wrapper {
     margin: 4vw 0;
     display: flex;
     flex-direction: row;
@@ -24,20 +24,18 @@ body{
     justify-content: space-around;
 }
 
-/* */
-
-.detailsProduit{
+.detailsProduit {
     margin: 2vw;
     padding: 2vw;
     width: 55vw;
     height: 100%;
     border-radius: 20px;
-    background-color:  var(--DoreClair);
+    background-color:  var(--VertBleu);
     color: var(--Blanc);
 }
 
 .detailsProduit h2 {
-    color: var(--VertBleu);
+    color: var(--DoreClair);
 }
 
 .boutonsReserv{
@@ -52,7 +50,7 @@ body{
 }
 
 /*Taille img principale*/
-.divImg{
+.divImg {
     width: 35vw;
     border-radius: 20px;
     padding: 2vw;
@@ -69,7 +67,7 @@ body{
     gap: 2vw;
 }
 
-.mainImg{
+.mainImg {
     padding: 1vw;
     width: 30vw;
     height: 20vw;
@@ -78,86 +76,88 @@ body{
     border-radius: 10px;
 }
 
-.miniImg{
+.miniImg {
     width: 6vw;
     height: 6vw;
     background-color: #155B55;
     border-radius: 10px;
 }
 
-.tailleLogo{
+.tailleLogo {
     height: 4vw;
     width: 4vw;
 }
-.boutonsReserv button{
+
+.boutonsReserv button {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--VertBleu);
 }
 
-.displayMobile{display: none;}
+.displayMobile{ display: none; }
 /* media qwery */
-.displayDesktop{display: block;}
+.displayDesktop{ display: block; }
 
 @media (max-width: 780px) {
-    .wrapper{
+    .wrapper {
         flex-direction: column;
-        align-items:center ;
+        align-items:center;
     }
-    .displayDesktop{display: none;}
+    .displayDesktop{ display: none; }
     
-    .displayMobile{
+    .displayMobile {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .divImg{
+    .divImg {
         min-width: 100%;
     }
 
-    .detailsProduit{
+    .detailsProduit {
         width: 90%;
     }    
 
-    .boutonsReserv button{
+    .boutonsReserv button {
         width: 14rem;
         height: 3rem;
     }
-    .mainImg{
+    .mainImg {
         height: 50vw;
         width: 80vw;
     }
-    .miniImg{
+    .miniImg {
         height: 19vw;
         width: 19vw;
     }
 }
 
 @media (max-width: 430px) {
-    .boutonsReserv button{
+    .boutonsReserv button {
         width: 16rem;
         height: 4rem;
     }
-    .boutonsReserv{
+    .boutonsReserv {
         flex-direction: column;
         align-items: center;
         gap: 2vw;
     }
-    .tailleLogo{
+    .tailleLogo {
         width: 40px;
         height: 40px;
     }
-    .wrapper{
+    .wrapper {
         flex-direction: column;
         align-items: center;
     }
 
-    .mainImg{
+    .mainImg {
         height: 50vw;
         width: 80vw;
     }
-    .miniImg{
+    .miniImg {
         height: 20vw;
         width: 20vw;
     }
