@@ -32,7 +32,9 @@
   display: flex;
   gap: 5vw;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction:column;
+  
 }
 
 @media (max-width: 800px) {
@@ -105,4 +107,11 @@
 #friendMessage {
   width: 300px;
   height: 150px;
+}
+
+.monProfil{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items:center;
 }
