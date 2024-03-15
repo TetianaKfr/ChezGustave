@@ -38,11 +38,11 @@ export const Search = ({ housings }) => {
         //console.log(type);
         // Vérification si la case à cocher est cochée ou non
         if (e.target.checked) {
-            // Si la case à cocher est cochée, ajouter le typeId à la liste des types sélectionnés
+            // Si la case est cochée, ajouter le type à la liste des types sélectionnés
             setSelectedTypes([...selectedTypes, type]);
         } else {
-            // Si la case à cocher est décochée, filtrer le typeId de la liste des types sélectionnés
-            setSelectedTypes(selectedTypes.filter(id => id !== type));
+            // Si la case est décochée, filtrer le typeId de la liste
+            setSelectedTypes(selectedTypes.filter(id => id !== type));  
         }
     };
 

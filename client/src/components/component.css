@@ -56,12 +56,11 @@ body{
     color: var(--VertBleu); 
 
 }
-#connectBtn:hover{
+#connectBtn:hover , .nameLog button:hover{
     color: var(--Blanc); 
     cursor: pointer;
 
 }
-
 
 input{width: auto;}
 
@@ -79,13 +78,32 @@ button{
 }
 #boutton-afficher-details{
     background-color: var(--VertBleu);
+    width: 20rem;
+
 }
 #boutton-afficher-details:hover {
     background-color: var(--DoreSombre);
   }
 
+.nameLog button {
+    color:var(--VertBleu)
+}
+
+.displayModulable{
+    display: inline;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* Navbar Responsive*/
 @media (max-width: 780px){
+
+    .nameLog{
+        margin-top: -8vh;
+    }
+
     .navbar{
         margin-top: 0;
         display: flex;
@@ -302,7 +320,7 @@ a {
 */
 
 .CardDetails{
-    background-color: var(--DoreMedium);
+    background-color: var(--VertBleu);
     display: flex;
     justify-content: center;
     align-items:center ;
@@ -318,28 +336,29 @@ a {
     margin-bottom: 15px;    
 }
 
-.cardComplete span {
-    width: 30px;
-    background: linear-gradient(90deg,#b99652,#d2c592); 
+.description{
+    font-size: 1.2rem;
 }
-
 .textCard{
-    background-color: #d2c592;
-    color: var(--Blanc);
+    background-color: var(--Blanc);
+    color: var(--DoreSombre);
     padding: 1vw;
+    border: solid 3px #0d4b46;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     display: flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    width: 100%;
     
 }
 .textCard h2 {
     color: var(--VertBleu); 
-    width: 20rem;
 }
-
+span{
+    color:var(--VertBleu)
+}
 .photoLogement{
     width: 15vw;
     height: 15vw;
@@ -350,12 +369,54 @@ a {
 .divPicto{
     display: flex;
     align-items: center;
-    gap: 1vw;
 }
 
 .divPicto img{
     height: 80px;
-    width: 80px;;
+    width: 80px;
+}
+
+@media (max-width: 780px) {
+
+    .produitDescription{
+        display: flex;
+        justify-content: center;
+        gap: 0;
+    }
+    .cardComplete{
+        flex-direction: column;
+        align-items: center ;
+        width:100%;
+    }
+    .card{
+    align-items: center;
+    width: 95vw;    
+    gap: 5vw;
+    }
+    .CardDetails img{
+        padding: 0;
+        border-radius: 0;
+        width: 90vw;
+        height: 90vw;
+    }
+    .CardDetails{
+        margin: 0;
+        background-color: #fff;
+        width: 100%;
+        justify-content: center;
+    }
+    .textCard{
+        width: 100%;
+        border-radius: 0;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .mobilVersion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 /* Gestion de la modal */

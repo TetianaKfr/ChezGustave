@@ -57,6 +57,17 @@ export const Produit = ({ housings }) => {
           <h2 className="displayDesktop">{housing.name}</h2>
           <h4 className="displayDesktop">{housing.area}</h4>
           <p>{housing.description}</p>
+          <p>{housing.type} en {housing.category}</p>
+          <div className="row">  <p>Chambres :{housing.bedroom_count} </p>
+            <p>Salle de bain :{housing.bathroom_count} </p>
+          </div>
+
+          <div className="row space"><p>Surface : {housing.surface} m²</p>
+
+            <h3>Prix: {housing.medium_price}
+              €</h3>
+          </div>
+
           <div className="boutonsReserv">
             <div className="row">
               <input
@@ -77,7 +88,7 @@ export const Produit = ({ housings }) => {
             </button>
           </div>
         </div>
-      </div>
+      </div >
       <Footer />
     </>
   );

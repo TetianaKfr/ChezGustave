@@ -10,6 +10,7 @@ import LogoGustave from "../../assets/LogoGustave.png";
 import { useContext } from 'react';
 import LoginContext, { SessionState } from "../../LoginContext";
 
+
 export const Home = ({ housings }) => {
     // gérer les messages d'erreur
     const [errorMessage, setErrorMessage] = useState('');
@@ -57,10 +58,7 @@ export const Home = ({ housings }) => {
     return (
         <>
             <div className='heroBannerContainer'>
-                {/* <div className='row navHome'>
-                    <img id="Logo" src={LogoGustave} alt="logo site" />
-                </div> */}
-                <Navbar/>
+                <Navbar />
                 <div className='row bannerbtn'>
                     <button className="prevButton" onClick={handlePrevImage}>{'<'}</button>
                     <NavLink to="/recherche">
@@ -83,7 +81,9 @@ export const Home = ({ housings }) => {
                     <div className='displayVoyage'>
                         {randomHousings.map((housing, index) => (
                             <div key={index}>
+                                <NavLink to={`/details/${housing.name}`}>
                                 <img className='photoDestination' src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt="" />
+                                </NavLink>
                                 <p className='backgroundColor'>{housing.area}</p>
                             </div>
                         ))}
@@ -95,7 +95,9 @@ export const Home = ({ housings }) => {
                     <div className='displayCoeur'>
                     {randomCoeur.map((housing, index) => (
                         <div className='cardCoeur'>
-                        <img className='vignetteCoeur' src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt={housing.area} />
+                            <NavLink to={`/details/${housing.name}`}>
+                        <img className='vignetteCoeur' src={"http://localhost:3630/uploads/"+housing.images_urls[0]} alt={housing.area} />      
+                            </NavLink>
                         <p>Voir le descriptif</p>
                     </div>
                         ))}

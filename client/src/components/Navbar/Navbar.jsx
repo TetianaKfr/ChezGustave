@@ -11,7 +11,7 @@ export const Navbar = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
 
-  useEffect( () => {
+  useEffect(() => {
     // On récupère le token complet depuis le localStorage.
     const full_token = localStorage.getItem("token");
     // si le token existe.
@@ -122,10 +122,12 @@ export const Navbar = () => {
         </NavLink>
 
         <div className="Boutons">
-          {isLoggedIn!=SessionState.NotConnected ? (
+          {isLoggedIn != SessionState.NotConnected ? (
             <>
-              <p className="welcomeMsg">Bienvenue {email}</p>
-              <button onClick={handleLogout}>Déconnexion</button>
+              <div className="nameLog">
+                <p className="welcomeMsg">Bienvenue {email}</p>
+                <button onClick={handleLogout}>Déconnexion</button>
+              </div>
             </>
           ) : (
             <>
