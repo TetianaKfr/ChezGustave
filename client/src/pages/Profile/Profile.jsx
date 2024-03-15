@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Profile.css";
 import { NavLink } from "react-router-dom";
-import Commandes from "./Commandes";
-import Reclamations from "./Reclamations";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import ButtonAmi from "./ButtonAmi";
+import Profile_Deux from "./Profile_Deux";
 
 function Profile() {
   // State variables for user data
@@ -76,7 +75,9 @@ function Profile() {
           <div className="Formulaire">
             <div className="profile-info">
               <h3>Mes informations</h3>
+              <Profile_Deux />
               <form>
+                <h2>Modifier mes informations : </h2>
                 <div className="nomprenom">
                   <div className="colonne">
                     <label id="labelnom" htmlFor="nom">
