@@ -24,6 +24,11 @@ body {
     justify-content: space-around;
 }
 
+.space{
+    display: flex;
+    justify-content: space-between;
+}
+
 .detailsProduit {
     margin: 2vw;
     padding: 2vw;
@@ -43,6 +48,7 @@ body {
     align-items: end;
     justify-content: space-between;
 }
+
 .column {
     display: flex;
     flex-direction: column;
@@ -93,7 +99,12 @@ body {
     justify-content: center;
     align-items: center;
     color: var(--VertBleu);
+    
 }
+.boutonsReserv button :hover {
+    color: #eeeeee;
+}
+
 
 .displayMobile{ display: none; }
 /* media qwery */
