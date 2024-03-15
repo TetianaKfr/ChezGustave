@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 
 export const CardDetails = ({housing}) => {
-
   return (
     <>
       <div className="cardComplete">
