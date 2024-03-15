@@ -36,8 +36,8 @@ function App() {
 
         if (response.ok) {
           const housingNames = await response.json();
-          //console.log("nom ok :" ,housingNames)
-          const housingData = await Promise.all(housingNames.map(async (housingName) => {
+          let housingList = [];
+          for( const housingName of housingNames ){
             const housingDetail = await fetch("http://localhost:3630/housing", {
               method: "POST",
               headers: {
@@ -49,14 +49,13 @@ function App() {
 
             if (!housingDetail.ok) {
               console.error("Error fetching details", housingDetail.statusText);
-              return null;
+              continue;
             }
-            return await housingDetail.json();
-          }));
-          const HousingData = housingData;
-          setHousings(HousingData);
-          console.log("Housings data", HousingData)
 
+            housingList.push({name:housingName, ...await housingDetail.json()});
+          }
+
+          setHousings(housingList);
         } else {
           console.error("Error fetching housing names:", response.statusText);
         }

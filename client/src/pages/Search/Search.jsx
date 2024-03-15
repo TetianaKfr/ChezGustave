@@ -6,20 +6,50 @@ import { Footer } from '../../components/Footer/Footer';
 import { CardDetails } from '../../components/CardDetails/CardDetails';
 
 export const Search = ({ housings }) => {
-    //valeur slider
+    // Valeur du slider
     const [price_range_end, setPrice_range_end] = useState(0);
-    //listes des categories (fetch)
+    // Liste des catégories (fetch)
     const [categories, setCategories] = useState([]);
-    //listes des types (fetch)
+    // Liste des types (fetch)
     const [types, setTypes] = useState([]);
-    //valeur checkbox filtre categorie
+    // Valeur checkbox filtre catégorie
     const [selectedCategories, setSelectedCategories] = useState([]);
-    //valeur checkbox filtre type
+    // Valeur checkbox filtre type
     const [selectedTypes, setSelectedTypes] = useState([]);
+    //recup le resultat de la recherche
+    const [resultSearch, setResultSearch] = useState([])
 
+    //recuperer les catégories checked.
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        console.log(category)
+        if (e.target.checked) {
+            // stocker les resultats 
+            setSelectedCategories([...selectedCategories, category]);
+        } else {
+            setSelectedCategories(selectedCategories.filter(id => id !== category));
+        }
+    };
 
+    // Gestionnaire de changement pour les types
+    const handleTypeChange = (e) => {
+        // Récupération de l'identifiant du type depuis la valeur de la case à cocher
+        const type = e.target.value;
+        console.log(type);
+        // Vérification si la case à cocher est cochée ou non
+        if (e.target.checked) {
+            // Si la case à cocher est cochée, ajouter le typeId à la liste des types sélectionnés
+            setSelectedTypes([...selectedTypes, type]);
+        } else {
+            // Si la case à cocher est décochée, filtrer le typeId de la liste des types sélectionnés
+            setSelectedTypes(selectedTypes.filter(id => id !== type));
+
+        }
+    };
+
+    // Valeur slider, prix max
     const handleSliderChange = (e) => {
-        setPrice_range_end(parseInt(e.target.value));
+        setPrice_range_end(e.target.valueAsNumber);
     };
 
     useEffect(() => {
@@ -35,6 +65,7 @@ export const Search = ({ housings }) => {
                 if (categoriesResponse.ok) {
                     const categoriesData = await categoriesResponse.json();
                     setCategories(categoriesData);
+
                 } else {
                     console.error("Error fetching categories:", categoriesResponse.statusText);
                 }
@@ -47,8 +78,7 @@ export const Search = ({ housings }) => {
                 });
 
                 if (typesResponse.ok) {
-                    const typesData = await typesResponse.json();
-                    setTypes(typesData);
+                    setTypes(await typesResponse.json());
                 } else {
                     console.error("Error fetching types:", typesResponse.statusText);
                 }
@@ -59,11 +89,16 @@ export const Search = ({ housings }) => {
         fetchCategoriesAndTypes();
     }, []);
 
-
     return (
         <>
             <Navbar />
-            <Searchbar selectedTypes={selectedTypes} selectedCategories={selectedCategories} price_range_end={price_range_end} />
+            <Searchbar
+                housings={housings}
+                selectedTypes={selectedTypes}
+                selectedCategories={selectedCategories}
+                price_range_end={price_range_end}
+                setResultSearch={setResultSearch}
+            />
             <div className='produitDescription'>
                 <div className='filtre'>
                     <h3>Filtres</h3>
@@ -74,9 +109,15 @@ export const Search = ({ housings }) => {
 
                     <div>
                         <h4>Catégories:</h4>
-                        {categories.map((category, i) => (
-                            <div className='row' key={i}>
-                                <input type="checkbox" name={'categorie' + i} value={category.id} />
+                        {categories.map((category) => (
+                            <div className='row' key={category}>
+                                <input
+                                    type="checkbox"
+                                    name={category}
+                                    value={category}
+                                    onChange={handleCategoryChange}
+                                    checked={undefined}
+                                />
                                 <p>{category}</p>
                             </div>
                         ))}
@@ -84,17 +125,26 @@ export const Search = ({ housings }) => {
 
                     <div>
                         <h4>Type:</h4>
-                        {types.map((type, index) => (
-                            <div className='row' key={index}>
-                                <input type="checkbox" name={'type' + index} value={type.id} onChange={setSelectedTypes} />
-                                <p>{type}</p>
+                        {types.map(type => (
+                            <div className='row' key={type}>
+                                <input
+                                    type="checkbox"
+                                    name={type}
+                                    value={type}
+                                    onChange={handleTypeChange}
+                                    checked={undefined}
+                                />
+                                <p> {type} </p>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className='card'>
-                    {housings.map((housing, index) => (
-                        <CardDetails key={housing.area} housing={housing} onChange={setSelectedCategories} />
+                    {(resultSearch.length==0? housings:resultSearch).map((housing) => (
+                        <CardDetails 
+                        key={housing.name} 
+                        housing={housing} 
+                        />
                     ))}
                 </div>
             </div>
