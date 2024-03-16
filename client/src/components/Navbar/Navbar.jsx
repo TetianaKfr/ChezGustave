@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../component.css";
-import LogoGustave from "../../assets/LogoGustave.png";
+import LogoGustave from "../../assets/LogoGustave1.png";
 import { NavLink } from "react-router-dom";
 import LoginContext, { SessionState } from "../../LoginContext";
 
